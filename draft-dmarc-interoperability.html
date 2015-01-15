@@ -616,6 +616,7 @@
   <li>Consolidating many email addresses into a single acccount to centralize processing.</li>
   <li>Services that provides "activity based", "role based" or "temporary" email addresses such as universities and professional associations.</li>
 </ul>
+<p id="rfc.section.3.2.1.p.4">A fundamental challenge in dealing with workarounds involving Aliases is that in many instances, the aMSA has no administrative relationship to the ADMD of the alias.  Another challenge is that the underlying mechanisms upon which DMARC relies do not consider the local-part of the addr-spec.  While normally considered a perfectly reasonable scaling feature, the underlying assumption is that Authors will make use of aMSAs that are always authorized for a given domain.  For vanity domains, this assumption turns out to not hold.  </p>
 <h1 id="rfc.section.3.2.2"><a href="#rfc.section.3.2.2">3.2.2.</a> ReSender</h1>
 <p id="rfc.section.3.2.2.p.1">ReSenders "splice" a message's addressing information to connect the Author of the original message with the Recipient of the new message.  The new Recipient sees the message as being from the original Author, even if the Mediator adds commentary.</p>
 <p id="rfc.section.3.2.2.p.2">ReSenders introduce DMARC interoperability issues as content modification invalidates DKIM signatures.  SPF's ability to grant authorization is removed as the new Recipient receives the message from the Mediator.</p>
@@ -649,12 +650,12 @@
 <p id="rfc.section.4.p.1">Solutions to interoperability issues between DMARC and indirect email flows vary from improving of underlying processors, such as proper handling multiple DKIM signatures, to more radical approaches to the messaging architecture.  This section decribes possible ways to address interoperability issues.</p>
 <p id="rfc.section.4.p.2">Through external knowledge it may be possible to determinine that the DMARC mechanism cannot be applied to a particular message because modification and/or forwarding is to be expected through the normal course of operations for a given sender.  This is known as an "override".  </p>
 <h1 id="rfc.section.4.1"><a href="#rfc.section.4.1">4.1.</a> Identifier Alignment</h1>
-<p id="rfc.section.4.1.p.1">In the case of forwarders, identity alignment poses a substantial concern.  A receiving ADMD may track subscriptions to mailing lists, so that different processing may be applied to those messages.  </p>
+<p id="rfc.section.4.1.p.1">In the case of forwarders, identity alignment poses a substantial concern.  A receiving ADMD may track subscriptions to mailing lists, so that different processing may be applied to those messages.  p	</p>
 <p id="rfc.section.4.1.p.2">Various proposals have been submitted to provide either some form of transitive trust between an email sender, a realy and an email receiver, or to allow a modified version of DKIM to survive light transformation to the message.  </p>
 
 <ul>
   <li>DKIM conditional signatures, <a href="#I-D.levine-dkim-conditional">[I-D.levine-dkim-conditional]</a></li>
-  <li>Third party authorization, <a href="#RFC6541">[RFC6541]</a>, <a href="#I-D.otis-tpa-label">[I-D.otis-tpa-label]</a> and  <a href="#I-D.kucherawy-dkim-delegate">[I-D.kucherawy-dkim-delegate]</a></li>
+  <li>Third party authorization, <a href="#RFC6541">[RFC6541]</a>, <a href="#I-D.otis-tpa-label">[I-D.otis-tpa-label]</a> and <a href="#I-D.kucherawy-dkim-delegate">[I-D.kucherawy-dkim-delegate]</a></li>
   <li>DKIM with light transformations, <a href="#I-D.kucherawy-dkim-list-canon">[I-D.kucherawy-dkim-list-canon]</a></li>
 </ul>
 

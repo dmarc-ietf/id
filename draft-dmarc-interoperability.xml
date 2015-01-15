@@ -315,6 +315,17 @@
                <t>Consolidating many email addresses into a single acccount to centralize processing.</t>
                <t>Services that provides "activity based", "role based" or "temporary" email addresses such as universities and professional associations.</t>
              </list></t>
+	  <t>A fundamental challenge in dealing with workarounds
+	  involving Aliases is that in many instances, the aMSA has no
+	  administrative relationship to the ADMD of the alias.
+	  Another challenge is that the underlying
+	  mechanisms upon which DMARC relies do not consider the
+	  local-part of the addr-spec.  While normally considered a
+	  perfectly reasonable scaling feature, the underlying
+	  assumption is that Authors will make use of aMSAs that are
+	  always authorized for a given domain.  For vanity domains,
+	  this assumption turns out to not hold.
+	    </t>
         </section>
         <section title="ReSender">
           <t>ReSenders "splice" a message's addressing information to connect the Author of the original message with the Recipient of the new message.  The new Recipient sees the message as being from the original Author, even if the Mediator adds commentary.</t>
@@ -364,11 +375,13 @@
 	substantial concern.  A receiving ADMD may track subscriptions
 	to mailing lists, so that different processing may be applied
 	to those messages.
-	</t>
+p	</t>
         <t>Various proposals have been submitted to provide either some form of transitive trust between an email sender, a realy and an email receiver, or to allow a modified version of DKIM to survive light transformation to the message.
           <list style="symbols">
             <t>DKIM conditional signatures, <xref target="I-D.levine-dkim-conditional" /></t>
-            <t>Third party authorization, <xref target="RFC6541"/>, <xref target="I-D.otis-tpa-label" /> and  <xref target="I-D.kucherawy-dkim-delegate"/></t>
+            <t>Third party authorization, <xref target="RFC6541"/>,
+            <xref target="I-D.otis-tpa-label" /> and
+            <xref target="I-D.kucherawy-dkim-delegate"/></t>
             <t>DKIM with light transformations, <xref target="I-D.kucherawy-dkim-list-canon"/></t>
           </list>
         </t>
