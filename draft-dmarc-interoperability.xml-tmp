@@ -174,75 +174,53 @@
     </section>
 
     <section title="Causes of Interoperability Issues">
-      <t>What do we mean by "interoperability issues"?  We say that
-      DMARC introduces interoperability issues or problems, when
-      conformance to the DMARC specification leads an implementation
-      to reject a message that is both compliant with the architecture as
-      specified in <xref target="RFC5598"/> and would have been viewed as
-      legitimate in the eyes of the intended recipient.  This the
-      secondary effects of behaviors caused by that rejection.
-      Therefore, we can already conclude that DMARC poses no
-      interoperability problems when messages properly validate
-      through its specified processes.  The rest of this section,
-      therefore, delves into how legitimate messages may get
-      rejected.
-      </t>
       <section title="Identifier Alignment">
-        <t>A fundamental aspect of message source validation is
-        understanding how the originator of a message is validated.
-        Each of the underlying mechanisms that DMARC uses
-        (<xref target="RFC6376">DKIM</xref>
-        or <xref target="RFC7208">SPF</xref>) takes a different
-        approach. Therefore,
-        the <xref target="I-D.kucherawy-dmarc-base">DMARC</xref>
-        mechanism attempts to predictably specify the domain of the
-        originator that will
-        be used for its purposes (reporting/message disposition).
-        This step is referred to as Identifier Alignment.</t>
-	<t>DKIM provides a cryptographic means for a
-	  domain to be associated with a particular message.  However,
-	  the the signing domain is not required to be related to
-	  the domain be contained in the 5322.From field.  The DMARC
-	  identifier alignment process posits just such a relationship.
-	  For an identifier to align in DKIM, the signing domain must
-	  be found in the domain in the 5322.From field, and the
-	  signature must be valid.
-	</t>
-       <t>In addition, DKIM allows for the
-	possibility of multiple valid signatures.  The DMARC mechanism
-	will process Authenticated Identifiers that are based on DKIM
-	signatures until an aligned Authenticated Identifier is found
-	(if any).  However, operational experience has shown that some
-	implementations have difficulty processing multiple
-	signatures.  The impact on DMARC processing is clear: if an
-	implementation cannot process multiple DKIM signatures it may
-	lead to perfectly valid messages being flagged as not
-	authentic. </t> 
-	<t>SPF provides authenticated domain identifiers based on
-        either the 5321.MailFrom domain or, if the 5321.MailFrom
-        address is absent (as in the case of "bounces"), the domain
-        found in the HELO/EHLO SMTP command.</t>
+        <t>A fundamental aspect of message source validation is understanding what part of a message is being validated.  Each of the underlying mechanisms that DMARC uses (<xref target="RFC6376">DKIM</xref> or <xref target="RFC7208">SPF</xref>) takes a different approach. Therefore, the <xref target="I-D.kucherawy-dmarc-base">DMARC</xref> mechanism attempts to predictably specify the domain that will be used for its purposes (reporting/message disposition).  In the DMARC specification, this step is referred to as Identifier Alignment with the Orgnizational Domain(s) present in the 5322.From <xref target="RFC5322" />.</t> 
+        <t>DMARC's Identifier Alignment requirement causes a number of distinct interoperability issues with indirect email flows. The central role that the 5322.From domain plays in Identifier Alignment can cause issue with email Originators (Section 2.2.1 of <xref target="RFC5598" />) that otherwise have no administrative relationship to a message's 5322.From domain. The presence of multiple domains within a single 5322.From header can further complicate DMARC processing.</t>
+        <t>SPF provides authenticated domain identifiers based on
+        either the 5321.MailFrom <xref target="RFC5321" /> domain or,
+        if the 5321.MailFrom address is absent (as in the case of
+        "bounces"), the domain found in the HELO/EHLO SMTP command.
+        Achieving Identifier Alignment between the 5322.From domain
+        and the SPF-provided authenticated domain identifier
+        effectively requires the 5321.MailFrom domain to be related to
+        the 5322.From domain. An email operator seeking to transmit
+        DMARC compliant email faces the issue of configuring and
+        maintaining envelope addresses that previously did not require
+        any relationship to the content of emitted email.</t>
+
+        <t>DKIM provides a cryptographic means for a domain to be
+        associated with a particular message.  The domain validated by
+        DKIM is not required to be related the domain be contained in
+        the 5322.From field.  Section 3.1.4.1 of
+        <xref target="I-D.kucherawy-dmarc-base"/> recognizes this fact
+        by providing both strict and relaxed processing modes. Both of
+        these modes present certain challenges to operators. For
+        purposes of identifier alignment, "strict" alignment will
+        cause messages with valid DKIM signatures to be irrelevant to
+        the DMARC mechanism, whereas "relaxed" alignment may allow a
+        bad actor to sign a message that might mistakenly be
+        considered trustworthy. </t> 
+        <t> In addition, DKIM allows for the possibility of multiple valid signatures.  The DMARC mechanism will process Authenticated Identifiers that are based on DKIM signatures until an aligned Authenticated Identifier is found (if any).  However, operational experience has shown that some implementations have difficulty processing multiple signatures.  The impact on DMARC processing is clear: if an implementation cannot process multiple DKIM signatures it may lead to perfectly valid messages being flagged as not authentic. </t>
       </section>
-      <section title="Message Forwarding">
+      <section title="Message Forwarding"> 
         <t>Message forwarding is a generic concept encapsulating a variety of behaviors.  <xref target="IMA_DMARC" /> describes forwarding behavior as it relates to the components of the Internet Mail Architecture.</t>
-	<t>When a message has been transmitted through a forwarder,
-          there will be no such relationship.  With SPF, the domain of
-          the 5321.MailFrom or 5321.HELO/EHLO must match that of the
-          5322.From.  Because forwarders generally do not modify the
-          5322.From, this test will fail.  Thus a DMARC implementation
-          must rely on DKIM, if available, in these cases.
-	</t>
+        <t>DMARC offers both strict and relaxed modes of testing SPF
+        identity alignment.  Relaxed mode assumes that there is a
+        relationship between the organizational domain and any
+        subdomains.  Because the mailing list is generally not hosted
+        in the domain of the sender, 5321.MailFrom or 5321.HELO/EHLO
+        must match that of the 
+        5322.From.  Because forwarders generally do not modify the
+        5322.From, this test will fail.  Thus a DMARC implementation
+        must rely on DKIM, if available, in these cases. </t> 
       </section>
       <section title="Message Modification">
-        <t>Modification of email content invalidates most DKIM
-        signatures.  While DKIM provides a length flag so that content
-        can be appended (See Section 8.2
-        of <xref target="RFC6376">RFC6376</xref> for additional
-        discussion), in practice, particularly with MIME-encoded
-        messages, a mailing list processor will do more than append
-        (See Section 5.3 of <xref target="RFC5598"/> for
-        details). </t>  
+        <t>Modification of email content invalidates most DKIM signatures.  While DKIM provides a length flag so that content can be appended (See Section 8.2 of <xref target="RFC6376">RFC6376</xref> for additional discussion), in practice, particularly with MIME-encoded messages, a mailing list processor will do more than append (See Section 5.3 of <xref target="RFC5598"/> for details). </t> 
       </section>
+      <section title="Implications of Identity Alignment Failure">
+        <t>As described in <xref target="IMA_DMARC" />, email processing contexts where both forwarding and message modification are present are common in some use cases. In such contexts where reliable authenticated domain identifiers are not present the DMARC mechanism may produce unwanted results.</t>
+    </section>
       </section>
     <section title="Internet Mail Architecture, DMARC, and Indirect Email Flows" anchor="IMA_DMARC">
       <t>This section describes components within the Internet Mail Architecture <xref target="RFC5598" /> where interoperability issues between DMARC and indirect email flows can be found.</t>
@@ -275,14 +253,13 @@
              </list></t>
         </section>
         <section title="Message Transfer Agent">
-          <t>MTAs relay a message until the message reaches a
-          destination MDA.</t> 
+          <t>MTAs relay a message until the message reaches a destination MDA.</t>
           <section title="Message Encoding">
             <t>An MTA may change the message encoding. For instance it may convert 8bits mail sections to quoted-printable 7bits sections, or just change the character set from US-ASCII to ISO-8859-4. Such transformations invalidate any present DKIM signature.</t>
           </section>
           <section title="Anti-spam">
             <t>To keep its reputation, an MTA that transfers message,
-            may block or otherwise remove harmful content
+            may block or otherwise removal harmful content
             from messages that are likely to be unwanted by the next
             MTA. Any such modifications would invalidate a DKIM signature.
 	    </t>
@@ -340,13 +317,9 @@
           <t>Boundary Filters share the same DMARC interoperability issues as ReSenders.</t>
           <t>Examples of Boundary Filters include:
              <list style="symbols">
-               <t>Antispam services that remove or modify content.</t>
-	       <t>Any service that reformulates the 5322.body for any
-		 other reason.</t>
-	       <t>Secondary MX services.  In this case, however, it is
-	       inappropriate for a primary MX server to perform an SPF
-	       check against its own secondaries.  Rather, the
-		 secondary MX should perform this function.</t>
+               <t>"MX backup" services.</t>
+               <t>Antispam services that operate by acting as a domain's primary MX, often inserting footers such as "Scanned by Company".</t>
+               <t>Email servers that that perform filtering functions.</t>
              </list></t>
         </section>
       </section>
@@ -357,14 +330,8 @@
 
     <section title="Possible Solutions to Interoperability Issues">
       <t>Solutions to interoperability issues between DMARC and indirect email flows vary from improving of underlying processors, such as proper handling multiple DKIM signatures, to more radical approaches to the messaging architecture.  This section decribes possible ways to address interoperability issues.</t> 
-      <t> Through external knowledge it may be possible to determinine that the DMARC mechanism cannot be applied to a particular message because modification and/or forwarding is to be expected through the normal course of operations for a given sender.  This is known as an "override".
-	</t>
+      <t> Through external knowledge it may be possible to determinine that the DMARC mechanism cannot be applied to a particular message because modification and/or forwarding is to be expected through the normal course of operations for a given sender.  This is known as an "override" and is not discussed further in this memo. </t>
       <section title="Identifier Alignment">
-	<t>In the case of forwarders, identity alignment poses a
-	substantial concern.  A receiving ADMD may track subscriptions
-	to mailing lists, so that different processing may be applied
-	to those messages.
-	</t>
         <t>Various proposals have been submitted to provide either some form of transitive trust between an email sender, a realy and an email receiver, or to allow a modified version of DKIM to survive light transformation to the message.
           <list style="symbols">
             <t>DKIM conditional signatures, <xref target="I-D.levine-dkim-conditional" /></t>
