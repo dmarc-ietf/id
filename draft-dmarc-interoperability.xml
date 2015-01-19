@@ -20,6 +20,7 @@
 <!ENTITY I-D.otis-tpa-label SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-otis-tpa-label-00.xml">
 <!ENTITY I-D.kucherawy-dkim-list-canon SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-dkim-list-canon-00.xml">
 <!ENTITY I-D.kucherawy-dkim-delegate SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-dkim-delegate-01.xml">
+<!ENTITY I-D.kucherawy-original-authres SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-original-authres-00.xml">
 
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
@@ -174,76 +175,21 @@
     </section>
 
     <section title="Causes of Interoperability Issues">
-      <t>What do we mean by "interoperability issues"?  We say that
-      DMARC introduces interoperability issues or problems, when
-      conformance to the DMARC specification leads an implementation
-      to reject a message that is both compliant with the architecture as
-      specified in <xref target="RFC5598"/> and would have been viewed as
-      legitimate in the eyes of the intended recipient.  This the
-      secondary effects of behaviors caused by that rejection.
-      Therefore, we can already conclude that DMARC poses no
-      interoperability problems when messages properly validate
-      through its specified processes.  The rest of this section,
-      therefore, delves into how legitimate messages may get
-      rejected.
-      </t>
+      <t>What do we mean by "interoperability issues"?  We say that DMARC introduces interoperability issues or problems, when conformance to the DMARC specification leads an implementation to reject a message that is both compliant with the architecture as specified in <xref target="RFC5598"/> and would have been viewed as legitimate in the eyes of the intended recipient.  This the secondary effects of behaviors caused by that rejection. Therefore, we can already conclude that DMARC poses no interoperability problems when messages properly validate through its specified processes.  The rest of this section, therefore, delves into how legitimate messages may get rejected. </t>
       <section title="Identifier Alignment">
-        <t>A fundamental aspect of message source validation is
-        understanding how the originator of a message is validated.
-        Each of the underlying mechanisms that DMARC uses
-        (<xref target="RFC6376">DKIM</xref>
-        or <xref target="RFC7208">SPF</xref>) takes a different
-        approach. Therefore,
-        the <xref target="I-D.kucherawy-dmarc-base">DMARC</xref>
-        mechanism attempts to predictably specify the domain of the
-        originator that will
-        be used for its purposes (reporting/message disposition).
-        This step is referred to as Identifier Alignment.</t>
-	<t>DKIM provides a cryptographic means for a
-	  domain to be associated with a particular message.  However,
-	  the the signing domain is not required to be related to
-	  the domain be contained in the 5322.From field.  The DMARC
-	  identifier alignment process posits just such a relationship.
-	  For an identifier to align in DKIM, the signing domain must
-	  be found in the domain in the 5322.From field, and the
-	  signature must be valid.
-	</t>
-       <t>In addition, DKIM allows for the
-	possibility of multiple valid signatures.  The DMARC mechanism
-	will process Authenticated Identifiers that are based on DKIM
-	signatures until an aligned Authenticated Identifier is found
-	(if any).  However, operational experience has shown that some
-	implementations have difficulty processing multiple
-	signatures.  The impact on DMARC processing is clear: if an
-	implementation cannot process multiple DKIM signatures it may
-	lead to perfectly valid messages being flagged as not
-	authentic. </t> 
-	<t>SPF provides authenticated domain identifiers based on
-        either the 5321.MailFrom domain or, if the 5321.MailFrom
-        address is absent (as in the case of "bounces"), the domain
-        found in the HELO/EHLO SMTP command.</t>
+        <t>A fundamental aspect of message source validation is understanding how the originator of a message is validated. Each of the underlying mechanisms that DMARC uses (<xref target="RFC6376">DKIM</xref> or <xref target="RFC7208">SPF</xref>) takes a different approach. Therefore, the <xref target="I-D.kucherawy-dmarc-base">DMARC</xref> mechanism attempts to predictably specify the domain of the originator that will be used for its purposes (reporting/message disposition). This step is referred to as Identifier Alignment.</t>
+        <t>DKIM provides a cryptographic means for a domain to be associated with a particular message.  However, the signing domain is not required to be related to the domain contained in the 5322.From field <xref target="RFC5322" />.  The DMARC identifier alignment process posits just such a relationship. For an identifier to align in DKIM, the signing domain must be part of the same organizational domain as the domain in the 5322.From field, and the signature must be valid. </t>
+        <t>In addition, DKIM allows for the possibility of multiple valid signatures.  The DMARC mechanism will process Authenticated Identifiers that are based on DKIM signatures until an aligned Authenticated Identifier is found (if any).  However, operational experience has shown that some implementations have difficulty processing multiple signatures.  The impact on DMARC processing is clear: if an implementation cannot process multiple DKIM signatures it may lead to perfectly valid messages being flagged as not authentic. </t>
+        <t>SPF provides authenticated domain identifiers based on either the 5321.MailFrom <xref target="RFC5321" /> domain or, if the 5321.MailFrom address is absent (as in the case of "bounces"), the domain found in the HELO/EHLO SMTP command. More often than not operators have not put an SPF record on domains found in the HELO/EHLO SMTP command and when present, it could be difficult to change this domain to the domain in the 5322.From, especially when several mail streams share the same sending IP address.</t>
       </section>
       <section title="Message Forwarding">
         <t>Message forwarding is a generic concept encapsulating a variety of behaviors.  <xref target="IMA_DMARC" /> describes forwarding behavior as it relates to the components of the Internet Mail Architecture.</t>
-	<t>When a message has been transmitted through a forwarder,
-          there will be no such relationship.  With SPF, the domain of
-          the 5321.MailFrom or 5321.HELO/EHLO must match that of the
-          5322.From.  Because forwarders generally do not modify the
-          5322.From, this test will fail.  Thus a DMARC implementation
-          must rely on DKIM, if available, in these cases.
-	</t>
+        <t>When a message has been transmitted through a forwarder, there will be no such relationship.  With SPF, the domain of the 5321.MailFrom or 5321.HELO/EHLO must match that of the 5322.From.  Because forwarders generally do not modify the 5322.From, this test will fail.  Thus a DMARC implementation must rely on DKIM, if available, in these cases. </t> 
       </section>
       <section title="Message Modification">
-        <t>Modification of email content invalidates most DKIM
-        signatures.  While DKIM provides a length flag so that content
-        can be appended (See Section 8.2
-        of <xref target="RFC6376">RFC6376</xref> for additional
-        discussion), in practice, particularly with MIME-encoded
-        messages, a mailing list processor will do more than append
-        (See Section 5.3 of <xref target="RFC5598"/> for
-        details). </t>  
-      </section>
-      </section>
+        <t>Modification of email content invalidates most DKIM signatures.  While DKIM provides a length flag so that content can be appended (See Section 8.2 of <xref target="RFC6376">RFC6376</xref> for additional discussion), in practice, particularly with MIME-encoded messages, a mailing list processor will do more than append (See Section 5.3 of <xref target="RFC5598"/> for details). </t>
+      </section> 
+    </section>
     <section title="Internet Mail Architecture, DMARC, and Indirect Email Flows" anchor="IMA_DMARC">
       <t>This section describes components within the Internet Mail Architecture <xref target="RFC5598" /> where interoperability issues between DMARC and indirect email flows can be found.</t>
       <section title="Message Handling System">
@@ -258,7 +204,7 @@
            </list>
            Of these components MSA, MTA, and MDA are discussed in relation to interoperability with DMARC.</t>
         <t>A Mediator is a special class of MUA that is given special consideration in this section due to the unique issues Mediators face when attempting to interoperate with DMARC.</t>
-        <section title="Message Submission Agent">
+        <section title="Message Submission Agents">
           <t>An MSA accepts messages submitted by a Message User Agent (MUA) and enforces the policies of the hosting ADministrative Management Domain (ADMD) and the requirements of Internet standards.</t>
           <t>MSAs are split into two sub-components:
             <list style="symbols">
@@ -274,25 +220,20 @@
                <t>Calendaring software - an invited member of an event modifies the event causing calendaring software to emit an update that appears to come from the creator of the event.</t>
              </list></t>
         </section>
-        <section title="Message Transfer Agent">
-          <t>MTAs relay a message until the message reaches a
-          destination MDA.</t> 
+        <section title="Message Transfer Agents" anchor="mta">
+          <t>MTAs relay a message until the message reaches a destination MDA.</t> 
           <section title="Message Encoding">
             <t>An MTA may change the message encoding. For instance it may convert 8bits mail sections to quoted-printable 7bits sections, or just change the character set from US-ASCII to ISO-8859-4. Such transformations invalidate any present DKIM signature.</t>
           </section>
           <section title="Anti-spam">
-            <t>To keep its reputation, an MTA that transfers message,
-            may block or otherwise remove harmful content
-            from messages that are likely to be unwanted by the next
-            MTA. Any such modifications would invalidate a DKIM signature.
-	    </t>
+            <t>To keep its reputation, an MTA that transfers message, may block or otherwise remove harmful content from messages that are likely to be unwanted by the next MTA. Any such modifications would invalidate a DKIM signature. </t> 
           </section>
           <section title="Email Address Internationalization">
             <t>A DMARC interoperability issue arises in the context of Email Address Internationalization <xref target="RFC6530" />.  <xref target="RFC6854" /> allows group syntax in the 5322.From header during the transition period to SMTPUTF8.  In the case where an EAI/SMTPUTF8-aware MTA relays a message to a non-aware MTA, the EAI/SMTPUTF8-aware MTA may transform the 5322.From header of the message to include group syntax that allows the non-aware MTA to process the email.</t>
-            <t>This transformation modifies the content of the message and will invalide any DKIM signatures and possibly remove the ability for the DMARC mechanism to receive an autheticated domain identifier from a DKIM module.</t>
+            <t>This transformation modifies the content of the message and will invalide any DKIM signatures and possibly remove the ability for the DMARC mechanism to receive an authenticated domain identifier from a DKIM module.</t>
           </section>
         </section>
-        <section title="Message Delivery Agent">
+        <section title="Message Delivery Agents">
           <t>The MDA transfers a message from the MHS to a mailbox.  Like the MSA, the MDA consists of two sub-components:
              <list style="symbols">
                <t>MHS-focused MDA functions (hMDA)</t>
@@ -313,29 +254,19 @@
              <list style="symbols">
                <t>Forwarding email between freemail providers to try different interfaces while maintaining an original email address.</t>
                <t>Consolidating many email addresses into a single acccount to centralize processing.</t>
-               <t>Services that provides "activity based", "role based" or "temporary" email addresses such as universities and professional associations.</t>
+               <t>Services that provides "activity based", "role based" , "vanity" or "temporary" email addresses such as universities and professional associations.</t>
              </list></t>
-	  <t>A fundamental challenge in dealing with workarounds
-	  involving Aliases is that in many instances, the aMSA has no
-	  administrative relationship to the ADMD of the alias.
-	  Another challenge is that the underlying
-	  mechanisms upon which DMARC relies do not consider the
-	  local-part of the addr-spec.  While normally considered a
-	  perfectly reasonable scaling feature, the underlying
-	  assumption is that Authors will make use of aMSAs that are
-	  always authorized for a given domain.  For vanity domains,
-	  this assumption turns out to not hold.
-	    </t>
+          <t>A fundamental challenge in dealing with workarounds involving Aliases is that in many instances, the aMSA has no administrative relationship to the ADMD of the alias. Another challenge is that the underlying mechanisms upon which DMARC relies do not consider the local-part of the addr-spec.  While normally considered a perfectly reasonable scaling feature, the underlying assumption is that Authors will make use of aMSAs that are always authorized for a given domain.  For vanity domains, this assumption turns out to not hold. </t>
         </section>
-        <section title="ReSender">
+        <section title="ReSenders" anchor="resenders">
           <t>ReSenders "splice" a message's addressing information to connect the Author of the original message with the Recipient of the new message.  The new Recipient sees the message as being from the original Author, even if the Mediator adds commentary.</t>
-          <t>ReSenders introduce DMARC interoperability issues as content modification invalidates DKIM signatures.  SPF's ability to grant authorization is removed as the new Recipient receives the message from the Mediator.</t>
+          <t>ReSenders introduce DMARC interoperability issues as content modification invalidates DKIM signatures.  SPF's ability to grant authorization via alignement is removed as the new Recipient receives the message from the Mediator.</t>
           <t>Without an ability to produce authenticated domain identifiers relevant to the Author's 5322.From domain using either DKIM or SPF, the new Recipient has almost no chance of successfully applying the DMARC mechanism.</t>
-          <t>Examples of ReSenders include MUA-level forwarding by resending a message to a new recipient or by forwarding a message "inline" to a new recipient (this does not include forwarding a message "as an attachment").  An additional example comes in the form of calendering software that allows a meeting attendee (not the meeting organizer) to modify the content of an invite causing the invitations to be appear to be reissued from the meeting organizer.</t>
+          <t>Examples of ReSenders include MUA-level forwarding by resending a message to a new recipient or by forwarding a message "inline" to a new recipient (this does not include forwarding a message "as an attachment").  An additional example comes in the form of calendering software that allows a meeting attendee (not the meeting organizer) to modify the content of an invite causing the invitations to appear to be reissued from the meeting organizer.</t>
         </section>
         <section title="Mailing Lists">
           <t>A Mailing List receives messages as an explicit addressee and then re-posts them to a list of subscribed members.  The Mailing List performs a task that can be viewed as an elaboration of the ReSender.</t>
-          <t>Mailing Lists share the same DMARC interoperability issues as ReSenders, plus the following:
+          <t>Mailing Lists share the same DMARC interoperability issues as <xref target="resenders" >ReSenders</xref>, plus the following:
              <list style="symbols">
                <t>Subscribed members may not receive email from members that post using domains that publish a DMARC "p=reject" policy.</t>
                <t>Mailing Lists may interpret DMARC-related email rejection as an inability to deliver email to the recipients that are checking and enforcing DMARC policy.  This processing may cause subscribed members to be suspended or removed from the Mailing List.</t>
@@ -343,64 +274,61 @@
         </section>
         <section title="Gateways">
           <t>A Gateway performs the basic routing and transfer work of message relaying, but it also is permitted to modify content, structure, address, or attributes as needed to send the message into a messaging environment that operates under different standards or potentially incompatible policies.</t>
-          <t>Gateways share the same DMARC interoperability issues as ReSenders.</t>
+          <t>Gateways share the same DMARC interoperability issues as <xref target="resenders" >ReSenders</xref>.</t>
+          <t>Gateways may share also the same DMARC interopreability issues as <xref target="mta" >MTAs</xref>.</t>
           <t>Gateway-level forwarding can introduce DMARC interoperability issues if the Gateway is configured to rewrite the message to map between recipient domains.  For example, an acquisition may lead the acquiring company to decide to decommission the acquired companies domains by rewriting messages to use the domain of the acquiring company.</t>
         </section>
-        <section title="Boundary Filter">
+        <section title="Boundary Filters">
           <t>To enforce security boundaries, organizations can subject messages to analysis for conformance with its safety policies.  A filter might alter the content to render it safe, such as by removing content deemed unacceptable.</t>
           <t>Boundary Filters share the same DMARC interoperability issues as ReSenders.</t>
           <t>Examples of Boundary Filters include:
-             <list style="symbols">
-               <t>Antispam services that remove or modify content.</t>
-	       <t>Any service that reformulates the 5322.body for any
-		 other reason.</t>
-	       <t>Secondary MX services.  In this case, however, it is
-	       inappropriate for a primary MX server to perform an SPF
-	       check against its own secondaries.  Rather, the
-		 secondary MX should perform this function.</t>
-             </list></t>
+            <list style="symbols">
+              <t>Antispam services that remove or modify content.</t>
+              <t>Any service that reformulates the 5322.body for any other reason.</t>
+              <t>Secondary MX services.  In this case, however, it is inappropriate for a primary MX server to perform an SPF check against its own secondaries.  Rather, the secondary MX should perform this function.</t>
+            </list></t>
         </section>
       </section>
       <section title="Combinations">
         <t>The causes of indirect email flows can be combined.  For example, a university student may subscribe to a mailing list (using his university email address) while this university email address is configured to forward all emails to a freemail provider where a more permanent email address for this student exists. </t>
+        <t>Within an organisation the message may passes through various <xref target="mta" >MTAs</xref> that performs each one a different function, authentication, filtering, distribution,...</t> 
       </section>
     </section>
 
     <section title="Possible Solutions to Interoperability Issues">
       <t>Solutions to interoperability issues between DMARC and indirect email flows vary from improving of underlying processors, such as proper handling multiple DKIM signatures, to more radical approaches to the messaging architecture.  This section decribes possible ways to address interoperability issues.</t> 
-      <t> Through external knowledge it may be possible to determinine that the DMARC mechanism cannot be applied to a particular message because modification and/or forwarding is to be expected through the normal course of operations for a given sender.  This is known as an "override".
-	</t>
+      <t> Through external knowledge it may be possible to determinine that the DMARC mechanism cannot be applied to a particular message because modification and/or forwarding is to be expected through the normal course of operations for a given sender.  This is known as an "override".</t>
       <section title="Identifier Alignment">
-	<t>In the case of forwarders, identity alignment poses a
-	substantial concern.  A receiving ADMD may track subscriptions
-	to mailing lists, so that different processing may be applied
-	to those messages.
-p	</t>
-        <t>Various proposals have been submitted to provide either some form of transitive trust between an email sender, a realy and an email receiver, or to allow a modified version of DKIM to survive light transformation to the message.
+	     <t>In the case of forwarders, identity alignment poses a substantial concern.  A receiving ADMD may track subscriptions to mailing lists, so that different processing may be applied to those messages. </t>
+        <t>Various proposals have been submitted to provide either some form of transitive trust between an email sender, a realy and an email receiver, or to allow a modified version of DKIM to survive light transformation to the message:
           <list style="symbols">
             <t>DKIM conditional signatures, <xref target="I-D.levine-dkim-conditional" /></t>
-            <t>Third party authorization, <xref target="RFC6541"/>,
-            <xref target="I-D.otis-tpa-label" /> and
-            <xref target="I-D.kucherawy-dkim-delegate"/></t>
+            <t>Third party authorization, <xref target="RFC6541"/>, <xref target="I-D.otis-tpa-label" /> and <xref target="I-D.kucherawy-dkim-delegate"/></t>
             <t>DKIM with light transformations, <xref target="I-D.kucherawy-dkim-list-canon"/></t>
           </list>
         </t>
       </section>
       <section title="Message Modification">
-        <t>Message modification invalidates DKIM signatures and complicates a receiver's ability to generate authenticated domain identifiers from a message.</t>
+        <t>Message modification invalidates DKIM signatures and complicates a receiver's ability to generate authenticated domain identifiers from a message. It is therefore important to review the <xref target="mta" >MTAs</xref> configuration to ensure no modification of the message is done when simply forwarding the message. Furthermore Filters should not add to or modify the body of the message, but either rejecting the message or adding email headers to indicate the result of the filter.</t>
       </section>
       <section title="Message Forwarding">
         <t>Forwarding messages without modification is referred to as "transparent forwarding", and is a way to preserve the validity of DKIM signatures.</t>
         <t>The X-Original-From header is used in various contexts.</t>
         <t>Note that Original-From is merely adding complexity to the 'who was the author of this message' assessment, very possibly creating yet-another security hole.</t>
         <section title="Original-Authentication-Results">
-          <t>Mentioned in early drafts as a way to pass along Original Authentication Results to "downstream" receivers.</t>
+          <t>Mentioned in early drafts <xref target="I-D.kucherawy-original-authres"/> as a way to pass along Original Authentication Results to "downstream" receivers.</t>
         </section>
       </section>
       <section title="Message Handling Services">
-        <section title="MTA">
+        <section title="Message Transfer Agents">
+          <section title="Encoding">
+            <t>There is very little reason to modify the encoding of the message, compatibility issues between international character sets are few nowadays. No modification of the message should be done when simply forwarding the message.</t>
+          </section>
+          <section title="Filters">
+            <t>Filters should not add to or modify the body of the message, but either should reject the message or add new email headers (not under DKIM) to indicate the result of the filter.</t>
+          </section>
           <section title="Email Address Internationalization">
-            <t>The postmaster will choose the solution best for its users but really to avoid DMARC being rendered useless (and DKIM and other anti-spam techniques) the real solution is to upgrade your MTAs, if you want to do DMARC, to support EAI so that the group syntax in the 5322.From is not needed for interoperability issues during transition. </t>
+            <t>The postmaster will choose the solution best for its users but really to avoid DMARC not finding a single useable domain in the 5322.From, the real solution is to upgrade your MTAs, if you want to do DMARC, to support EAI (SMTPUTF8) so that the group syntax in the 5322.From is not needed for interoperability issues during transition, and such syntax be considered at least as suspicious when present. </t>
           </section>
         </section>
       </section>
@@ -408,15 +336,17 @@ p	</t>
         <section title="Mailing Lists">
           <t>
             <list style="symbols">
-              <t>One common mitigation policy is to configure the MLM to alter the RFC5322.From field to use the domain of the MLM. Since most list subscribers prefer to know the identity of the author of the original message, typically this information may be provided in the display name part of the RFC5322.From field. This display name needs to be carefully crafted as to not collide with the original display name of the author, nor contain something that looks like an email address or domain name. These modification may to some extent defeats the purpose of DMARC itself. It may make it difficult to ensure that users of all email clients can easily reply to author, list, or all using the email client features provided for that purpose. Use of "Reply-To" can alleviate this problem depending if the mailing list is configured to reply-to-list, reply-to-author or reply-to-fixed-address. </t>
+              <t>One common mitigation policy is to configure the Mailing List Manager (MLM) to alter the RFC5322.From field to use the domain of the MLM. Since most list subscribers prefer to know the identity of the author of the original message, typically this information may be provided in the display name part of the RFC5322.From field. This display name needs to be carefully crafted as to not collide with the original display name of the author, nor contain something that looks like an email address or domain name. These modification may to some extent defeats the purpose of DMARC itself. It may make it difficult to ensure that users of all email clients can easily reply to author, list, or all using the email client features provided for that purpose. Use of "Reply-To" can alleviate this problem depending if the mailing list is configured to reply-to-list, reply-to-author or reply-to-fixed-address. </t>
               <t>Another common mitigation policy is to configure the MLM to "wrap" the message in a MIME message/rfc822 part. This completely bypasses the DMARC policy in clients that allow reading the part as a message. Many email clients (as of August 2014) have difficulty reading such messages. </t>
               <t>Finally a less common mitigation policy, is to configure the MLM to not modify the message so that the DKIM signature remains valid.</t>
               <t>To alleviate unsubscribes to the mailing list due to the messages bouncing because of DMARC, the MLM needs to not act on bounces due to Message Authentication issues. Correctly interpreting Extended SMTP error messages is useful in this case.</t>
-            </list></t>
+            </list>
+            All these techniques may provide some specific challenges in MUAs and different operational usages for end users (like rewriting filters to sort emails in folders). There will be some time before all implications are understood and alleviated. </t>
         </section>
       </section>
       <section title="Getting More Radical: Requiring New Communication Paths Between MUA and the Message Store">
-	<t>In practice a number of operators are using strict mode in DMARC in order to avoid receiving new and innovative forms of unwanted and unauthentic mail through systems purporting to be mailing list handlers.  The receiving ADMD has no knowledge of which lists the user has subscribed to and which they have not.  One avenue of exploration would be for the user to authorize mailing lists as proxies for authentication, at which point the receiving ADMD would be vesting some trust in the mailing list service.  The creators of DKIM foresaw precisely this possibility at the time by not tightly binding any semantics to the 5322.From.  Some experimental work has taken place in this area, as mentioned above.  Additional work might examine a new communication path to the user to authorize third party signatures.</t> </section>
+        <t>In practice a number of operators are using strict alignement mode in DMARC in order to avoid receiving new and innovative forms of unwanted and unauthentic mail through systems purporting to be mailing list handlers.  The receiving ADMD has no knowledge of which lists the user has subscribed to and which they have not.  One avenue of exploration would be for the user to authorize mailing lists as proxies for authentication, at which point the receiving ADMD would be vesting some trust in the mailing list service.  The creators of DKIM foresaw precisely this possibility at the time by not tightly binding any semantics to the 5322.From.  Some experimental work has taken place in this area, as mentioned above.  Additional work might examine a new communication path to the user to authorize third party signatures.</t> 
+      </section>
     </section>
 
     <!-- Possibly a 'Contributors' section ... -->
@@ -472,6 +402,7 @@ p	</t>
       &I-D.otis-tpa-label;
       &I-D.kucherawy-dkim-list-canon;
       &I-D.kucherawy-dkim-delegate;
+      &I-D.kucherawy-original-authres;
     </references>
 
   </back>
