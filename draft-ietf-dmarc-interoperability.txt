@@ -5,14 +5,14 @@
 DMARC Working Group                                       F. Martin, Ed.
 Internet-Draft                                                  LinkedIn
 Intended status: Informational                              E. Lear, Ed.
-Expires: July 23, 2015                                Cisco Systems GmbH
+Expires: August 2, 2015                               Cisco Systems GmbH
                                                          T. Draegen, Ed.
                                                                 Eudaemon
-                                                        January 19, 2015
+                                                        January 29, 2015
 
 
      Interoperability Issues Between DMARC and Indirect Email Flows
-                    draft-dmarc-interoperability-00
+                  draft-ietf-dmarc-interoperability-00
 
 Abstract
 
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on July 23, 2015.
+   This Internet-Draft will expire on August 2, 2015.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Martin, et al.            Expires July 23, 2015                 [Page 1]
+Martin, et al.           Expires August 2, 2015                 [Page 1]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Martin, et al.            Expires July 23, 2015                 [Page 2]
+Martin, et al.           Expires August 2, 2015                 [Page 2]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -165,7 +165,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
 
-Martin, et al.            Expires July 23, 2015                 [Page 3]
+Martin, et al.           Expires August 2, 2015                 [Page 3]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -221,7 +221,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
 
-Martin, et al.            Expires July 23, 2015                 [Page 4]
+Martin, et al.           Expires August 2, 2015                 [Page 4]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -277,7 +277,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
 
-Martin, et al.            Expires July 23, 2015                 [Page 5]
+Martin, et al.           Expires August 2, 2015                 [Page 5]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -333,7 +333,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
 
-Martin, et al.            Expires July 23, 2015                 [Page 6]
+Martin, et al.           Expires August 2, 2015                 [Page 6]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -389,7 +389,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
 
-Martin, et al.            Expires July 23, 2015                 [Page 7]
+Martin, et al.           Expires August 2, 2015                 [Page 7]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -445,7 +445,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
 
-Martin, et al.            Expires July 23, 2015                 [Page 8]
+Martin, et al.           Expires August 2, 2015                 [Page 8]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -501,7 +501,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
 
-Martin, et al.            Expires July 23, 2015                 [Page 9]
+Martin, et al.           Expires August 2, 2015                 [Page 9]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -557,7 +557,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
 
-Martin, et al.            Expires July 23, 2015                [Page 10]
+Martin, et al.           Expires August 2, 2015                [Page 10]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -613,7 +613,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
 
-Martin, et al.            Expires July 23, 2015                [Page 11]
+Martin, et al.           Expires August 2, 2015                [Page 11]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -669,7 +669,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
 
-Martin, et al.            Expires July 23, 2015                [Page 12]
+Martin, et al.           Expires August 2, 2015                [Page 12]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -725,7 +725,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
 
-Martin, et al.            Expires July 23, 2015                [Page 13]
+Martin, et al.           Expires August 2, 2015                [Page 13]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -781,7 +781,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
 
-Martin, et al.            Expires July 23, 2015                [Page 14]
+Martin, et al.           Expires August 2, 2015                [Page 14]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -837,7 +837,7 @@ Authors' Addresses
 
 
 
-Martin, et al.            Expires July 23, 2015                [Page 15]
+Martin, et al.           Expires August 2, 2015                [Page 15]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -893,4 +893,4 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
 
-Martin, et al.            Expires July 23, 2015                [Page 16]
+Martin, et al.           Expires August 2, 2015                [Page 16]
