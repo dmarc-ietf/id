@@ -5,10 +5,10 @@
 DMARC Working Group                                       F. Martin, Ed.
 Internet-Draft                                                  LinkedIn
 Intended status: Informational                              E. Lear, Ed.
-Expires: August 2, 2015                               Cisco Systems GmbH
+Expires: August 3, 2015                               Cisco Systems GmbH
                                                          T. Draegen, Ed.
                                                                 Eudaemon
-                                                        January 29, 2015
+                                                        January 30, 2015
 
 
      Interoperability Issues Between DMARC and Indirect Email Flows
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 2, 2015.
+   This Internet-Draft will expire on August 3, 2015.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Martin, et al.           Expires August 2, 2015                 [Page 1]
+Martin, et al.           Expires August 3, 2015                 [Page 1]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
@@ -76,48 +76,48 @@ Table of Contents
      2.3.  Message Modification  . . . . . . . . . . . . . . . . . .   5
    3.  Internet Mail Architecture, DMARC, and Indirect Email Flows .   5
      3.1.  Message Handling System . . . . . . . . . . . . . . . . .   5
-       3.1.1.  Message Submission Agents . . . . . . . . . . . . . .   5
+       3.1.1.  Message Submission Agents . . . . . . . . . . . . . .   6
        3.1.2.  Message Transfer Agents . . . . . . . . . . . . . . .   6
-         3.1.2.1.  Message Encoding  . . . . . . . . . . . . . . . .   6
+         3.1.2.1.  Message Encoding  . . . . . . . . . . . . . . . .   7
          3.1.2.2.  Anti-spam . . . . . . . . . . . . . . . . . . . .   7
          3.1.2.3.  Email Address Internationalization  . . . . . . .   7
        3.1.3.  Message Delivery Agents . . . . . . . . . . . . . . .   7
-     3.2.  Mediators . . . . . . . . . . . . . . . . . . . . . . . .   7
+     3.2.  Mediators . . . . . . . . . . . . . . . . . . . . . . . .   8
        3.2.1.  Alias . . . . . . . . . . . . . . . . . . . . . . . .   8
-       3.2.2.  ReSenders . . . . . . . . . . . . . . . . . . . . . .   8
+       3.2.2.  ReSenders . . . . . . . . . . . . . . . . . . . . . .   9
        3.2.3.  Mailing Lists . . . . . . . . . . . . . . . . . . . .   9
-       3.2.4.  Gateways  . . . . . . . . . . . . . . . . . . . . . .   9
+       3.2.4.  Gateways  . . . . . . . . . . . . . . . . . . . . . .  10
        3.2.5.  Boundary Filters  . . . . . . . . . . . . . . . . . .  10
-     3.3.  Combinations  . . . . . . . . . . . . . . . . . . . . . .  10
-   4.  Possible Solutions to Interoperability Issues . . . . . . . .  10
+     3.3.  Combinations  . . . . . . . . . . . . . . . . . . . . . .  11
+   4.  Possible Solutions to Interoperability Issues . . . . . . . .  11
      4.1.  Identifier Alignment  . . . . . . . . . . . . . . . . . .  11
-     4.2.  Message Modification  . . . . . . . . . . . . . . . . . .  11
-     4.3.  Message Forwarding  . . . . . . . . . . . . . . . . . . .  11
+     4.2.  Message Modification  . . . . . . . . . . . . . . . . . .  12
+     4.3.  Message Forwarding  . . . . . . . . . . . . . . . . . . .  12
        4.3.1.  Original-Authentication-Results . . . . . . . . . . .  12
      4.4.  Message Handling Services . . . . . . . . . . . . . . . .  12
        4.4.1.  Message Transfer Agents . . . . . . . . . . . . . . .  12
          4.4.1.1.  Encoding  . . . . . . . . . . . . . . . . . . . .  12
-         4.4.1.2.  Filters . . . . . . . . . . . . . . . . . . . . .  12
-         4.4.1.3.  Email Address Internationalization  . . . . . . .  12
-     4.5.  Mediators . . . . . . . . . . . . . . . . . . . . . . . .  12
-       4.5.1.  Mailing Lists . . . . . . . . . . . . . . . . . . . .  12
+         4.4.1.2.  Filters . . . . . . . . . . . . . . . . . . . . .  13
+         4.4.1.3.  Email Address Internationalization  . . . . . . .  13
+     4.5.  Mediators . . . . . . . . . . . . . . . . . . . . . . . .  13
+       4.5.1.  Mailing Lists . . . . . . . . . . . . . . . . . . . .  13
      4.6.  Getting More Radical: Requiring New Communication Paths
-           Between MUA and the Message Store . . . . . . . . . . . .  13
-   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  13
+           Between MUA and the Message Store . . . . . . . . . . . .  14
+   5.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  14
    6.  Security Considerations . . . . . . . . . . . . . . . . . . .  14
-   7.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  14
+   7.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  15
 
 
 
-Martin, et al.           Expires August 2, 2015                 [Page 2]
+Martin, et al.           Expires August 3, 2015                 [Page 2]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
-   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
-     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
-     8.2.  Informative References  . . . . . . . . . . . . . . . . .  15
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  15
+   8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  15
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . .  15
+     8.2.  Informative References  . . . . . . . . . . . . . . . . .  16
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  17
 
 1.  Introduction
 
@@ -149,6 +149,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
    Notation regarding structured fields is taken from [RFC5598].
 
+   Organizational Domain and Authenticated Identifiers are specified in
+   DMARC [I-D.kucherawy-dmarc-base].
+
 2.  Causes of Interoperability Issues
 
    What do we mean by "interoperability issues"?  We say that DMARC
@@ -159,34 +162,35 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    intended recipient.  This the secondary effects of behaviors caused
    by that rejection.  Therefore, we can already conclude that DMARC
    poses no interoperability problems when messages properly validate
-   through its specified processes.  The rest of this section,
-   therefore, delves into how legitimate messages may get rejected.
 
 
 
-
-Martin, et al.           Expires August 2, 2015                 [Page 3]
+Martin, et al.           Expires August 3, 2015                 [Page 3]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
+   through its specified processes.  The rest of this section,
+   therefore, delves into how legitimate messages may get rejected.
+
 2.1.  Identifier Alignment
 
    A fundamental aspect of message source validation is understanding
-   how the originator of a message is validated.  Each of the underlying
-   mechanisms that DMARC uses (DKIM [RFC6376] or SPF [RFC7208]) takes a
-   different approach.  Therefore, the DMARC [I-D.kucherawy-dmarc-base]
-   mechanism attempts to predictably specify the domain of the
-   originator that will be used for its purposes (reporting/message
-   disposition).  This step is referred to as Identifier Alignment.
+   what validates the message.  Each of the underlying mechanisms that
+   DMARC uses (DKIM [RFC6376] and SPF [RFC7208]) takes a different
+   approach.  Therefore, the DMARC [I-D.kucherawy-dmarc-base] mechanism
+   attempts to predictably specify the domain of the originator that
+   will be used for its purposes (reporting/message disposition).  This
+   step is referred to as Identifier Alignment.
 
    DKIM provides a cryptographic means for a domain to be associated
    with a particular message.  However, the signing domain is not
-   required to be related to the domain contained in the 5322.From field
-   [RFC5322].  The DMARC identifier alignment process posits just such a
-   relationship.  For an identifier to align in DKIM, the signing domain
-   must be part of the same organizational domain as the domain in the
-   5322.From field, and the signature must be valid.
+   required to be aligned with the domain contained in the RFC5322.From
+   header field [RFC5322].  The DMARC identifier alignment process
+   posits just such a relationship.  For an identifier to align in DKIM,
+   the signing domain must be part of the same Organizational Domain as
+   the domain in the RFC5322.From header field, and the signature must
+   be valid.
 
    In addition, DKIM allows for the possibility of multiple valid
    signatures.  The DMARC mechanism will process Authenticated
@@ -198,14 +202,14 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    it may lead to perfectly valid messages being flagged as not
    authentic.
 
-   SPF provides authenticated domain identifiers based on either the
-   5321.MailFrom [RFC5321] domain or, if the 5321.MailFrom address is
-   absent (as in the case of "bounces"), the domain found in the HELO/
-   EHLO SMTP command.  More often than not operators have not put an SPF
-   record on domains found in the HELO/EHLO SMTP command and when
+   SPF provides Authenticated Identifiers based on either the
+   RFC5321.MailFrom [RFC5321] domain or, if the RFC5321.MailFrom address
+   is absent (as in the case of "bounces"), the domain found in the
+   HELO/EHLO SMTP command.  More often than not operators have not put
+   an SPF record on domains found in the HELO/EHLO SMTP command and when
    present, it could be difficult to change this domain to the domain in
-   the 5322.From, especially when several mail streams share the same
-   sending IP address.
+   the RFC5322.From header field, especially when several mail streams
+   share the same sending IP address.
 
 2.2.  Message Forwarding
 
@@ -213,30 +217,30 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    behaviors.  Section 3 describes forwarding behavior as it relates to
    the components of the Internet Mail Architecture.
 
-   When a message has been transmitted through a forwarder, there will
-   be no such relationship.  With SPF, the domain of the 5321.MailFrom
-   or 5321.HELO/EHLO must match that of the 5322.From.  Because
-   forwarders generally do not modify the 5322.From, this test will
 
 
 
 
-Martin, et al.           Expires August 2, 2015                 [Page 4]
+Martin, et al.           Expires August 3, 2015                 [Page 4]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
-   fail.  Thus a DMARC implementation must rely on DKIM, if available,
-   in these cases.
+   When a message has been transmitted through a forwarder, there will
+   be no such relationship.  With SPF, the domain of the
+   RFC5321.MailFrom or RFC5321.HELO/EHLO must match that of the
+   RFC5322.From header field.  Because forwarders generally do not
+   modify the RFC5322.From header field, this test will fail.  Thus a
+   DMARC implementation must rely on DKIM, if available, in these cases.
 
 2.3.  Message Modification
 
    Modification of email content invalidates most DKIM signatures.
    While DKIM provides a length flag so that content can be appended
    (See Section 8.2 of RFC6376 [RFC6376] for additional discussion), in
-   practice, particularly with MIME-encoded messages, a mailing list
-   processor will do more than append (See Section 5.3 of [RFC5598] for
-   details).
+   practice, particularly with MIME-encoded [RFC2045] messages, a
+   mailing list processor will do more than append (See Section 5.3 of
+   [RFC5598] for details).
 
 3.  Internet Mail Architecture, DMARC, and Indirect Email Flows
 
@@ -268,19 +272,21 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    consideration in this section due to the unique issues Mediators face
    when attempting to interoperate with DMARC.
 
+
+
+
+
+
+Martin, et al.           Expires August 3, 2015                 [Page 5]
+
+Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
+
+
 3.1.1.  Message Submission Agents
 
    An MSA accepts messages submitted by a Message User Agent (MUA) and
    enforces the policies of the hosting ADministrative Management Domain
    (ADMD) and the requirements of Internet standards.
-
-
-
-
-Martin, et al.           Expires August 2, 2015                 [Page 5]
-
-Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
-
 
    MSAs are split into two sub-components:
 
@@ -289,20 +295,21 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    o  MHS-focused MSA functions (hMSA)
 
    MSA interoperability issues with DMARC begin when an aMSA accepts a
-   message where the 5322.From header contains a domain that is outside
-   of the ADMD of the MSA.  The ADMD will almost certainly not be
-   capable of sending email that yields authenticated domain identifiers
-   related to the domain found in the 5322.From header.  Examples of
-   this issue include "forward-to-friend" functionality commonly found
-   on news/article websites or "send-as" functionality present on some
-   MUAs.
+   message where the RFC5322.From header field contains a domain that is
+   outside of the ADMD of the MSA.  The ADMD will almost certainly not
+   be capable of sending email that yields Authenticated Identifiers
+   aligned with the domain found in the RFC5322.From header field.
+   Examples of this issue include "forward-to-friend" functionality
+   commonly found on news/article websites or "send-as" functionality
+   present on some MUAs.
 
    When an hMSA takes responsibility for transit of a message containing
-   a domain in the 5322.From header that is outside of the hMSA's ADMD,
-   the hMSA faces DMARC interoperability issues if the domain publishes
-   a DMARC policy of "quarantine" or "reject".  These issues are marked
-   by an inherent difficulty in modifying the domain present in a
-   message's 5322.From header.  Examples of this issue include:
+   a domain in the RFC5322.From header field that is outside of the
+   hMSA's ADMD, the hMSA faces DMARC interoperability issues if the
+   domain publishes a DMARC policy of "quarantine" or "reject".  These
+   issues are marked by an inherent difficulty in modifying the domain
+   present in a message's RFC5322.From header field.  Examples of this
+   issue include:
 
    o  Pseudo-open relays - a residential ISP that allows its customers
       to relay any domains through its infrastructure.
@@ -322,25 +329,25 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
    MTAs relay a message until the message reaches a destination MDA.
 
-3.1.2.1.  Message Encoding
-
-   An MTA may change the message encoding.  For instance it may convert
-   8bits mail sections to quoted-printable 7bits sections, or just
-   change the character set from US-ASCII to ISO-8859-4.  Such
-   transformations invalidate any present DKIM signature.
 
 
 
 
-
-Martin, et al.           Expires August 2, 2015                 [Page 6]
+Martin, et al.           Expires August 3, 2015                 [Page 6]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
+3.1.2.1.  Message Encoding
+
+   An MTA may change the message encoding.  For instance it may convert
+   8-bit mail sections to quoted-printable 7-bit sections, or just
+   change the character set from US-ASCII to ISO-8859-4.  Such
+   transformations invalidate any present DKIM signature.
+
 3.1.2.2.  Anti-spam
 
-   To keep its reputation, an MTA that transfers message, may block or
+   To keep its reputation, an MTA that transfers a message, may block or
    otherwise remove harmful content from messages that are likely to be
    unwanted by the next MTA.  Any such modifications would invalidate a
    DKIM signature.
@@ -349,16 +356,22 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
    A DMARC interoperability issue arises in the context of Email Address
    Internationalization [RFC6530].  [RFC6854] allows group syntax in the
-   5322.From header during the transition period to SMTPUTF8.  In the
-   case where an EAI/SMTPUTF8-aware MTA relays a message to a non-aware
-   MTA, the EAI/SMTPUTF8-aware MTA may transform the 5322.From header of
-   the message to include group syntax that allows the non-aware MTA to
-   process the email.
+   RFC5322.From header field during the transition period to SMTPUTF8.
+   In the case where an EAI/SMTPUTF8-aware MTA relays a message to a
+   non-aware MTA, the EAI/SMTPUTF8-aware MTA may transform the
+   RFC5322.From header field of the message to include group syntax that
+   allows the non-aware MTA to process the email.
 
-   This transformation modifies the content of the message and will
-   invalide any DKIM signatures and possibly remove the ability for the
-   DMARC mechanism to receive an authenticated domain identifier from a
-   DKIM module.
+   This transformation will modify the original content of the message
+   and may invalidate any DKIM signatures if the transformation is not
+   done by the MSA or MUA.  It will remove the ability for the DMARC
+   mechanism to find an Organizational Domain to align with any
+   authenticated domain identifier from SPF or DKIM.
+
+   If the receiving MTA pays particular attention to the vailidity and
+   reputation of domains in the RFC5322.From header field, as to avoid
+   common easy workarounds to DMARC, the group syntax could be
+   problematic.
 
 3.1.3.  Message Delivery Agents
 
@@ -373,11 +386,19 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    address.  DMARC interoperability issues related to redirecting of
    messages are described in Section 3.2.
 
+
+
+
+Martin, et al.           Expires August 3, 2015                 [Page 7]
+
+Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
+
+
    SIEVE [RFC5228] functionality often lives in the rMDA sub-component
    and can cause DMARC interoperability issues.  The SIEVE 'addheader'
    and 'deleteheader' filtering actions can modify messages and
-   invalidate DKIM signatures, removing DKIM- supplied authenticated
-   domain identifiers as inputs to the DMARC mechanism.
+   invalidate DKIM signatures, removing DKIM- supplied Authenticated
+   Identifiers as inputs to the DMARC mechanism.
 
 3.2.  Mediators
 
@@ -386,13 +407,6 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    Mediators forward messages through a re-posting process.  Mediators
    share some functionality with basic MTA relaying, but have greater
    flexibility in both addressing and content modifications.
-
-
-
-Martin, et al.           Expires August 2, 2015                 [Page 7]
-
-Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
-
 
    DMARC interoperability issues are prevalent within the context of
    Mediators, as Mediators represent a class of transformations that
@@ -403,13 +417,13 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    An Alias is a simple re-addressing facility that provides one or more
    new Internet Mail addresses, rather than a single, internal one.  A
    message continues through the transfer service for delivery to one or
-   more alternate addresses.
+   more alternative addresses.
 
    Aliases can be implemented by mailbox-level forwarding (e.g. through
    "dot-forwarding") or SIEVE-level forwarding (through the SIEVE
-   'redirect' action).  When an Alias preserves message content, DKIM
-   signatures may remain valid.  However, Aliases extend the delivery
-   path beyond SPF's ability to grant authorization.
+   'redirect' action) or other methods.  When an Alias preserves message
+   content, DKIM signatures may remain valid.  However, Aliases extend
+   the delivery path beyond SPF's ability to grant authorization.
 
    Examples of Aliasing include:
 
@@ -427,10 +441,20 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    is that in many instances, the aMSA has no administrative
    relationship to the ADMD of the alias.  Another challenge is that the
    underlying mechanisms upon which DMARC relies do not consider the
-   local-part of the addr-spec.  While normally considered a perfectly
-   reasonable scaling feature, the underlying assumption is that Authors
-   will make use of aMSAs that are always authorized for a given domain.
-   For vanity domains, this assumption turns out to not hold.
+   local-part of the addr-spec in case the original and final email
+
+
+
+Martin, et al.           Expires August 3, 2015                 [Page 8]
+
+Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
+
+
+   addresses share the same local-part.  While normally considered a
+   perfectly reasonable scaling feature, the underlying assumption is
+   that Authors will make use of aMSAs that are always authorized for a
+   given domain.  For vanity domains, this assumption turns out to not
+   hold.
 
 3.2.2.  ReSenders
 
@@ -441,22 +465,13 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
    ReSenders introduce DMARC interoperability issues as content
    modification invalidates DKIM signatures.  SPF's ability to grant
-
-
-
-
-Martin, et al.           Expires August 2, 2015                 [Page 8]
-
-Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
-
-
-   authorization via alignement is removed as the new Recipient receives
+   authorization via alignment is removed as the new Recipient receives
    the message from the Mediator.
 
-   Without an ability to produce authenticated domain identifiers
-   relevant to the Author's 5322.From domain using either DKIM or SPF,
-   the new Recipient has almost no chance of successfully applying the
-   DMARC mechanism.
+   Without an ability to produce Authenticated Identifiers relevant to
+   the Author's RFC5322.From header field domain using either DKIM or
+   SPF, the new Recipient has almost no chance of successfully applying
+   the DMARC mechanism.
 
    Examples of ReSenders include MUA-level forwarding by resending a
    message to a new recipient or by forwarding a message "inline" to a
@@ -482,6 +497,17 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
       inability to deliver email to the recipients that are checking and
       enforcing DMARC policy.  This processing may cause subscribed
       members to be suspended or removed from the Mailing List.
+      [RFC3463] specifies Enhanced Mail System Status Codes which helps
+
+
+
+Martin, et al.           Expires August 3, 2015                 [Page 9]
+
+Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
+
+
+      differentiate between various bounces.  DMARC even defines
+      specific codes to be used.
 
 3.2.4.  Gateways
 
@@ -496,15 +522,6 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
    Gateways may share also the same DMARC interopreability issues as
    MTAs (Section 3.1.2).
-
-
-
-
-
-Martin, et al.           Expires August 2, 2015                 [Page 9]
-
-Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
-
 
    Gateway-level forwarding can introduce DMARC interoperability issues
    if the Gateway is configured to rewrite the message to map between
@@ -527,12 +544,23 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
    o  Antispam services that remove or modify content.
 
-   o  Any service that reformulates the 5322.body for any other reason.
+   o  Any service that reformulates the RFC5322.body for any other
+      reason.
 
    o  Secondary MX services.  In this case, however, it is inappropriate
       for a primary MX server to perform an SPF check against its own
       secondaries.  Rather, the secondary MX should perform this
       function.
+
+
+
+
+
+
+Martin, et al.           Expires August 3, 2015                [Page 10]
+
+Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
+
 
 3.3.  Combinations
 
@@ -544,7 +572,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
    Within an organisation the message may passes through various MTAs
    (Section 3.1.2) that performs each one a different function,
-   authentication, filtering, distribution,...
+   authentication, filtering, distribution, etc.
 
 4.  Possible Solutions to Interoperability Issues
 
@@ -554,13 +582,13 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    messaging architecture.  This section decribes possible ways to
    address interoperability issues.
 
-
-
-
-Martin, et al.           Expires August 2, 2015                [Page 10]
-
-Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
-
+   Mail systems are diverse and widely deployed and are expected to work
+   still with old systems.  For instance, Qmail is still used and the
+   base code has not been updated since 1998.  Ezmlm a once popular
+   mailing list manager is still deployed and has not been updated since
+   1997, althought a new version, Ezmlm-idx exists.  Some solutions may
+   take longer times to be implemented than others and could be
+   disruptive.
 
    Through external knowledge it may be possible to determinine that the
    DMARC mechanism cannot be applied to a particular message because
@@ -581,16 +609,26 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
    o  DKIM conditional signatures, [I-D.levine-dkim-conditional]
 
+
+
+
+
+Martin, et al.           Expires August 3, 2015                [Page 11]
+
+Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
+
+
    o  Third party authorization, [RFC6541], [I-D.otis-tpa-label] and
       [I-D.kucherawy-dkim-delegate]
 
-   o  DKIM with light transformations, [I-D.kucherawy-dkim-list-canon]
+   o  DKIM with constrained transformations,
+      [I-D.kucherawy-dkim-list-canon]
 
 4.2.  Message Modification
 
    Message modification invalidates DKIM signatures and complicates a
-   receiver's ability to generate authenticated domain identifiers from
-   a message.  It is therefore important to review the MTAs
+   receiver's ability to generate Authenticated Identifiers from a
+   message.  It is therefore important to review the MTAs
    (Section 3.1.2) configuration to ensure no modification of the
    message is done when simply forwarding the message.  Furthermore
    Filters should not add to or modify the body of the message, but
@@ -603,26 +641,19 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    "transparent forwarding", and is a way to preserve the validity of
    DKIM signatures.
 
-   The X-Original-From header is used in various contexts.
+   The Original-From [RFC5703] (or X-Original-From) header is used in
+   various contexts (X- header fields name are discouraged by
+   [RFC6648]).
 
-   Note that Original-From is merely adding complexity to the 'who was
-   the author of this message' assessment, very possibly creating yet-
-   another security hole.
-
-
-
-
-
-Martin, et al.           Expires August 2, 2015                [Page 11]
-
-Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
-
+   Note that Original-From (or X-Original-From) is merely adding
+   complexity to the 'who was the author of this message' assessment,
+   very possibly creating yet-another security hole.
 
 4.3.1.  Original-Authentication-Results
 
-   Mentioned in early drafts [I-D.kucherawy-original-authres] as a way
-   to pass along Original Authentication Results to "downstream"
-   receivers.
+   [I-D.kucherawy-original-authres] has been mentioned in early DMARC
+   drafts as a way to pass along Original Authentication Results to
+   "downstream" receivers.
 
 4.4.  Message Handling Services
 
@@ -635,6 +666,14 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    nowadays.  No modification of the message should be done when simply
    forwarding the message.
 
+
+
+
+Martin, et al.           Expires August 3, 2015                [Page 12]
+
+Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
+
+
 4.4.1.2.  Filters
 
    Filters should not add to or modify the body of the message, but
@@ -643,44 +682,54 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 4.4.1.3.  Email Address Internationalization
 
-   The postmaster will choose the solution best for its users but really
-   to avoid DMARC not finding a single useable domain in the 5322.From,
-   the real solution is to upgrade your MTAs, if you want to do DMARC,
-   to support EAI (SMTPUTF8) so that the group syntax in the 5322.From
-   is not needed for interoperability issues during transition, and such
-   syntax be considered at least as suspicious when present.
+   During the transition from email systems that do not allow EAI
+   (SMTPUTF8) to email system that allows it, [RFC6854] allows using the
+   group syntax for the RFC5322.From header field rather than rejecting
+   the message (if RFC5322 is implemented strictly).  Allowing the group
+   syntax is at the appreciation of the postmaster, that will always
+   choose the solution best for its user, but really to avoid DMARC not
+   finding a single useable domain in the RFC5322.From header field, the
+   real solution is to upgrade your MTAs, to support EAI (SMTPUTF8).  In
+   that case a sending SMTPUTF8 MTA does not need to require a downgrade
+   of the message to ASCII identifiers.  Encouraging, by rejection or
+   reputation scoring, the presence of a domain in the RFC5322.From
+   header field is easier.
 
 4.5.  Mediators
 
 4.5.1.  Mailing Lists
 
+   [RFC6377] provides some guidance on using DKIM with Mailing lists.
+   Here are some other remediations techniques:
+
    o  One common mitigation policy is to configure the Mailing List
-      Manager (MLM) to alter the RFC5322.From field to use the domain of
-      the MLM.  Since most list subscribers prefer to know the identity
-      of the author of the original message, typically this information
-      may be provided in the display name part of the RFC5322.From
-      field.  This display name needs to be carefully crafted as to not
-      collide with the original display name of the author, nor contain
-      something that looks like an email address or domain name.  These
-      modification may to some extent defeats the purpose of DMARC
-      itself.  It may make it difficult to ensure that users of all
-      email clients can easily reply to author, list, or all using the
-      email client features provided for that purpose.  Use of "Reply-
-
-
-
-Martin, et al.           Expires August 2, 2015                [Page 12]
-
-Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
-
-
-      To" can alleviate this problem depending if the mailing list is
-      configured to reply-to-list, reply-to-author or reply-to-fixed-
-      address.
+      Manager (MLM) to alter the RFC5322.From header field to use the
+      domain of the MLM.  Since most list subscribers prefer to know the
+      identity of the author of the original message, typically this
+      information may be provided in the display name part of the
+      RFC5322.From header field.  This display name needs to be
+      carefully crafted as to not collide with the original display name
+      of the author, nor contain something that looks like an email
+      address or domain name.  These modification may to some extent
+      defeats the purpose of DMARC itself.  It may make it difficult to
+      ensure that users of all email clients can easily reply to author,
+      list, or all using the email client features provided for that
+      purpose.  Use of "Reply-To" can alleviate this problem depending
+      if the mailing list is configured to reply-to-list, reply-to-
+      author or reply-to-fixed-address.
 
    o  Another common mitigation policy is to configure the MLM to "wrap"
       the message in a MIME message/rfc822 part.  This completely
       bypasses the DMARC policy in clients that allow reading the part
+
+
+
+
+Martin, et al.           Expires August 3, 2015                [Page 13]
+
+Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
+
+
       as a message.  Many email clients (as of August 2014) have
       difficulty reading such messages.
 
@@ -691,7 +740,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    o  To alleviate unsubscribes to the mailing list due to the messages
       bouncing because of DMARC, the MLM needs to not act on bounces due
       to Message Authentication issues.  Correctly interpreting Extended
-      SMTP error messages is useful in this case.
+      SMTP error messages is useful in this case ([RFC7372]).
 
    All these techniques may provide some specific challenges in MUAs and
    different operational usages for end users (like rewriting filters to
@@ -710,29 +759,32 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    proxies for authentication, at which point the receiving ADMD would
    be vesting some trust in the mailing list service.  The creators of
    DKIM foresaw precisely this possibility at the time by not tightly
-   binding any semantics to the 5322.From.  Some experimental work has
-   taken place in this area, as mentioned above.  Additional work might
-   examine a new communication path to the user to authorize third party
-   signatures.
+   binding any semantics to the RFC5322.From header field.  Some
+   experimental work has taken place in this area, as mentioned above.
+   Additional work might examine a new communication path to the user to
+   authorize third party signatures.
 
 5.  IANA Considerations
 
-   No IANA considerations.
-
-
-
-
-
-
-
-Martin, et al.           Expires August 2, 2015                [Page 13]
-
-Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
-
+   This document contains no actions for IANA.  [RFC Editor: Please
+   delete this section prior to publication.]
 
 6.  Security Considerations
 
-   No Security considerations.
+   This document is an analysis of DMARC's impact on indirect email
+   flows.  It describes the possibility of accidental denial-of-service
+   that can be created by rejections of messages by DMARC-aware Mail
+   Receivers.  However, it introduces no new security issues to Internet
+   messaging.
+
+
+
+
+
+Martin, et al.           Expires August 3, 2015                [Page 14]
+
+Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
+
 
 7.  Acknowledgments
 
@@ -749,6 +801,13 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 8.1.  Normative References
 
+   [RFC2045]  Freed, N. and N. Borenstein, "Multipurpose Internet Mail
+              Extensions (MIME) Part One: Format of Internet Message
+              Bodies", RFC 2045, November 1996.
+
+   [RFC3463]  Vaudreuil, G., "Enhanced Mail System Status Codes", RFC
+              3463, January 2003.
+
    [RFC5228]  Guenther, P. and T. Showalter, "Sieve: An Email Filtering
               Language", RFC 5228, January 2008.
 
@@ -761,34 +820,46 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
    [RFC5598]  Crocker, D., "Internet Mail Architecture", RFC 5598, July
               2009.
 
+   [RFC5703]  Hansen, T. and C. Daboo, "Sieve Email Filtering: MIME Part
+              Tests, Iteration, Extraction, Replacement, and Enclosure",
+              RFC 5703, October 2009.
+
    [RFC6376]  Crocker, D., Hansen, T., and M. Kucherawy, "DomainKeys
               Identified Mail (DKIM) Signatures", STD 76, RFC 6376,
               September 2011.
 
+   [RFC6377]  Kucherawy, M., "DomainKeys Identified Mail (DKIM) and
+              Mailing Lists", BCP 167, RFC 6377, September 2011.
+
    [RFC6530]  Klensin, J. and Y. Ko, "Overview and Framework for
               Internationalized Email", RFC 6530, February 2012.
+
+
+
+
+Martin, et al.           Expires August 3, 2015                [Page 15]
+
+Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
+
 
    [RFC6541]  Kucherawy, M., "DomainKeys Identified Mail (DKIM)
               Authorized Third-Party Signatures", RFC 6541, February
               2012.
 
+   [RFC6648]  Saint-Andre, P., Crocker, D., and M. Nottingham,
+              "Deprecating the "X-" Prefix and Similar Constructs in
+              Application Protocols", BCP 178, RFC 6648, June 2012.
+
    [RFC6854]  Leiba, B., "Update to Internet Message Format to Allow
               Group Syntax in the "From:" and "Sender:" Header Fields",
               RFC 6854, March 2013.
 
-
-
-
-
-
-Martin, et al.           Expires August 2, 2015                [Page 14]
-
-Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
-
-
    [RFC7208]  Kitterman, S., "Sender Policy Framework (SPF) for
               Authorizing Use of Domains in Email, Version 1", RFC 7208,
               April 2014.
+
+   [RFC7372]  Kucherawy, M., "Email Authentication Status Codes", RFC
+              7372, September 2014.
 
 8.2.  Informative References
 
@@ -820,6 +891,13 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
               Otis, D. and D. Black, "Third-Party Authorization Label",
               draft-otis-tpa-label-00 (work in progress), May 2014.
 
+
+
+Martin, et al.           Expires August 3, 2015                [Page 16]
+
+Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
+
+
 Authors' Addresses
 
    Franck Martin (editor)
@@ -828,18 +906,6 @@ Authors' Addresses
    USA
 
    Email: fmartin@linkedin.com
-
-
-
-
-
-
-
-
-
-Martin, et al.           Expires August 2, 2015                [Page 15]
-
-Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
    Eliot Lear (editor)
@@ -883,14 +949,4 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2015
 
 
 
-
-
-
-
-
-
-
-
-
-
-Martin, et al.           Expires August 2, 2015                [Page 16]
+Martin, et al.           Expires August 3, 2015                [Page 17]
