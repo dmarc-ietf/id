@@ -191,10 +191,11 @@
       </section>
       <section title="Message Forwarding">
         <t>Message forwarding is a generic concept encapsulating a variety of behaviors.  <xref target="IMA_DMARC" /> describes forwarding behavior as it relates to the components of the Internet Mail Architecture.</t>
-        <t>When a message has been transmitted through a forwarder, there will be no such relationship.  With SPF, the domain of the RFC5321.MailFrom or RFC5321.HELO/EHLO must match that of the RFC5322.From header field.  Because forwarders generally do not modify the RFC5322.From header field, this test will fail.  Thus a DMARC implementation must rely on DKIM, if available, in these cases. </t> 
+        <t>When a message has been transmitted through a forwarder, there will be no such relationship.  With SPF, the domain of the RFC5321.MailFrom or RFC5321.HELO/EHLO must be aligned with that of the RFC5322.From header field. So either the forwarder keeps the RFC5321.MailFrom and in that case SPF fails (the list of allowed IPs does not includes the forwarders usually) or the forwarder uses its own domain in the RFC5321.MailFrom and/or RFC5321.HELO/EHLO and the alignement with RFC5322.From header field fails.  Thus a DMARC implementation must rely on DKIM, if available, in these cases. </t> 
       </section>
       <section title="Message Modification">
-        <t>Modification of email content invalidates most DKIM signatures.  While DKIM provides a length flag so that content can be appended (See Section 8.2 of <xref target="RFC6376">RFC6376</xref> for additional discussion), in practice, particularly with <xref target="RFC2045">MIME-encoded</xref> messages, a mailing list processor will do more than append (See Section 5.3 of <xref target="RFC5598"/> for details). </t>
+        <t>Modification of email content invalidates most DKIM signatures. For instance while DKIM provides a length flag so that content can be appended (See Section 8.2 of <xref target="RFC6376">RFC6376</xref> for additional security considerations), in practice, particularly with <xref target="RFC2045">MIME-encoded</xref> messages, a mailing list processor will do more than append (See Section 5.3 of <xref target="RFC5598"/> for details). </t>
+        <t>DKIM has two canonicalizations: simple and relaxed. The later allows some modest in transit modifications that do not change the interpretation of the content of the email. The relaxed canonicalization used to be computing intensive and may not have been preferred in the early deployment of DKIM.</t>
       </section> 
     </section>
     <section title="Internet Mail Architecture, DMARC, and Indirect Email Flows" anchor="IMA_DMARC">
@@ -230,13 +231,10 @@
         <section title="Message Transfer Agents" anchor="mta">
           <t>MTAs relay a message until the message reaches a destination MDA.</t> 
           <section title="Message Encoding">
-            <t>An MTA may change the message encoding. For instance it may convert 8-bit mail sections to quoted-printable 7-bit sections, or just change the character set from US-ASCII to ISO-8859-4. Such transformations invalidate any present DKIM signature.</t>
-          </section>
-          <section title="Anti-spam">
-            <t>To keep its reputation, an MTA that transfers a message, may block or otherwise remove harmful content from messages that are likely to be unwanted by the next MTA. Any such modifications would invalidate a DKIM signature. </t> 
+            <t>An MTA may change the message encoding. For instance it may convert 8-bit mail sections to quoted-printable 7-bit sections. Such transformation invalidates any present DKIM signature.</t>
           </section>
           <section title="Email Address Internationalization">
-            <t>A DMARC interoperability issue arises in the context of Email Address Internationalization <xref target="RFC6530" />.  <xref target="RFC6854" /> allows group syntax in the RFC5322.From header field during the transition period to SMTPUTF8.  In the case where an EAI/SMTPUTF8-aware MTA relays a message to a non-aware MTA, the EAI/SMTPUTF8-aware MTA may transform the RFC5322.From header field of the message to include group syntax that allows the non-aware MTA to process the email.</t>
+            <t>A DMARC interoperability issue arises in the context of Email Address Internationalization <xref target="RFC6530" />.  <xref target="RFC6854" /> allows group syntax in the RFC5322.From header field during the transition period to SMTPUTF8.  In the case where in the trasport chaing an EAI/SMTPUTF8-aware MTA needs to transmit a message to a non-aware MTA, the EAI/SMTPUTF8-aware Message System may transform the RFC5322.From header field of the message to include group syntax as to allow the non-aware MTA to receive the email.</t>
             <t>This transformation will modify the original content of the message and may invalidate any DKIM signatures if the transformation is not done by the MSA or MUA. It will remove the ability for the DMARC mechanism to find an Organizational Domain to align with any authenticated domain identifier from SPF or DKIM.</t>
             <t>If the receiving MTA pays particular attention to the vailidity and reputation of domains in the RFC5322.From header field, as to avoid common easy workarounds to DMARC, the group syntax could be problematic.</t>
           </section>
@@ -248,11 +246,11 @@
                <t>Recipient-focused MDA functions (rMDA)</t>
              </list></t>
           <t>Both the hMDA and the rMDA can redirect a message to an alternative address.  DMARC interoperability issues related to redirecting of messages are described in <xref target="mediators" />.</t>
-          <t>SIEVE <xref target="RFC5228" /> functionality often lives in the rMDA sub-component and can cause DMARC interoperability issues. The SIEVE 'addheader' and 'deleteheader' filtering actions can modify messages and invalidate DKIM signatures, removing DKIM- supplied Authenticated Identifiers as inputs to the DMARC mechanism.</t>
+          <t>SIEVE <xref target="RFC5228" /> functionality often lives in the rMDA sub-component and can cause DMARC interoperability issues. The SIEVE 'addheader' and 'deleteheader' filtering actions can modify messages and invalidate DKIM signatures, removing DKIM- supplied Authenticated Identifiers as inputs to the DMARC mechanism. There are also SIEVE extensions that modiy the body. SIEVE may become an issue when the email is reintroduced in the transport infrastructure.</t>
         </section>
       </section>
       <section title="Mediators" anchor="mediators">
-        <t>Descriptions of Mediators are largely imported from <xref target="RFC5598" />.</t>
+        <t>See <xref target="RFC5598" /> for a complete definition of Mediators.</t>
         <t>Mediators forward messages through a re-posting process.  Mediators share some functionality with basic MTA relaying, but have greater flexibility in both addressing and content modifications.</t>
         <t>DMARC interoperability issues are prevalent within the context of Mediators, as Mediators represent a class of transformations that mirror the concept of "indirect email flows".</t>
         <section title="Alias">
@@ -262,7 +260,7 @@
              <list style="symbols">
                <t>Forwarding email between freemail providers to try different interfaces while maintaining an original email address.</t>
                <t>Consolidating many email addresses into a single acccount to centralize processing.</t>
-               <t>Services that provides "activity based", "role based" , "vanity" or "temporary" email addresses such as universities and professional associations.</t>
+               <t>Services that provides "activity based", "role based" , "vanity" or "temporary" email addresses such as universities and professional associations. For instance professional or alumni institutions may offer to their members an alias for the duration of their membership but may not want to deal with the long term storage of emails.</t>
              </list></t>
           <t>A fundamental challenge in dealing with workarounds involving Aliases is that in many instances, the aMSA has no administrative relationship to the ADMD of the alias. Another challenge is that the underlying mechanisms upon which DMARC relies do not consider the local-part of the addr-spec in case the original and final email addresses share the same local-part.  While normally considered a perfectly reasonable scaling feature, the underlying assumption is that Authors will make use of aMSAs that are always authorized for a given domain.  For vanity domains, this assumption turns out to not hold. </t>
         </section>
@@ -274,16 +272,26 @@
         </section>
         <section title="Mailing Lists">
           <t>A Mailing List receives messages as an explicit addressee and then re-posts them to a list of subscribed members.  The Mailing List performs a task that can be viewed as an elaboration of the ReSender.</t>
-          <t>Mailing Lists share the same DMARC interoperability issues as <xref target="resenders" >ReSenders</xref>, plus the following:
-             <list style="symbols">
-               <t>Subscribed members may not receive email from members that post using domains that publish a DMARC "p=reject" policy.</t>
-               <t>Mailing Lists may interpret DMARC-related email rejection as an inability to deliver email to the recipients that are checking and enforcing DMARC policy.  This processing may cause subscribed members to be suspended or removed from the Mailing List. <xref target="RFC3463" /> specifies Enhanced Mail System Status Codes which helps differentiate between various bounces. DMARC even defines specific codes to be used.</t>
-             </list></t>
+         
+          <t>Mailing Lists share the same DMARC interoperability issues as <xref target="resenders" >ReSenders</xref>:
+            <list style="symbols">
+              <t>Mailing Lists may prepend the RFC5322.Subject header field with a tag, to allow the receiver to identify visually the mailing list.</t>
+              <t>Mailing Lists may add a footer to the email body to contain administrative instructions.</t>
+              <t>Mailing Lists may remove some MIME-parts from the email or convert the message to text only.</t>
+              <t>Other message modifications.</t>
+            </list>
+          Any such modifications would invalidate a DKIM signature.</t>
+          <t>Mailing Lists may add also the following DMARC interoperability issues:
+            <list style="symbols">
+              <t>Subscribed members may not receive email from members that post using domains that publish a DMARC "p=reject" policy.</t>
+              <t>Mailing Lists may interpret DMARC-related email rejection as an inability to deliver email to the recipients that are checking and enforcing DMARC policy.  This processing may cause subscribed members to be suspended or removed from the Mailing List. <xref target="RFC3463" /> specifies Enhanced Mail System Status Codes which helps differentiate between various bounces. DMARC even defines specific codes to be used.</t>
+            </list></t>
         </section>
         <section title="Gateways">
           <t>A Gateway performs the basic routing and transfer work of message relaying, but it also is permitted to modify content, structure, address, or attributes as needed to send the message into a messaging environment that operates under different standards or potentially incompatible policies.</t>
           <t>Gateways share the same DMARC interoperability issues as <xref target="resenders" >ReSenders</xref>.</t>
           <t>Gateways may share also the same DMARC interopreability issues as <xref target="mta" >MTAs</xref>.</t>
+          <t>Gateways may change the character encoding for instance change the character set from US-ASCII to ISO-8859-4.</t>
           <t>Gateway-level forwarding can introduce DMARC interoperability issues if the Gateway is configured to rewrite the message to map between recipient domains.  For example, an acquisition may lead the acquiring company to decide to decommission the acquired companies domains by rewriting messages to use the domain of the acquiring company.</t>
         </section>
         <section title="Boundary Filters">
@@ -291,8 +299,8 @@
           <t>Boundary Filters share the same DMARC interoperability issues as ReSenders.</t>
           <t>Examples of Boundary Filters include:
             <list style="symbols">
-              <t>Antispam services that remove or modify content.</t>
-              <t>Any service that reformulates the RFC5322.body for any other reason.</t>
+              <t>Anti-spam: To keep its reputation, an MTA that transfers a message, may remove harmful content from messages that are likely to be unwanted by the next MTA and/or add text in the body to indicate the message has been scanned. Any such modifications would invalidate a DKIM signature.</t>
+              <t>Any service that reformulates the RFC5322.body for any other reason, for instance adding an organizational disclaimer.</t>
               <t>Secondary MX services.  In this case, however, it is inappropriate for a primary MX server to perform an SPF check against its own secondaries.  Rather, the secondary MX should perform this function.</t>
             </list></t>
         </section>
@@ -331,7 +339,7 @@
       <section title="Message Handling Services">
         <section title="Message Transfer Agents">
           <section title="Encoding">
-            <t>There is very little reason to modify the encoding of the message, compatibility issues between international character sets are few nowadays. No modification of the message should be done when simply forwarding the message.</t>
+            <t>There are few reasons to modify the encoding of the message, compatibility issues between international character sets are few nowadays. More mail systems supports 8bitMIME, therefore the need for transport encoding changes are rarer. By default no modification of the message should be done when simply forwarding the message.</t>
           </section>
           <section title="Filters">
             <t>Filters should not add to or modify the body of the message, but either should reject the message or add new email headers (not under DKIM) to indicate the result of the filter.</t>
