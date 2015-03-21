@@ -385,7 +385,8 @@
 <link href="#rfc.section.3.1.1" rel="Chapter" title="3.1.1 Message Submission Agents"/>
 <link href="#rfc.section.3.1.2" rel="Chapter" title="3.1.2 Message Transfer Agents"/>
 <link href="#rfc.section.3.1.2.1" rel="Chapter" title="3.1.2.1 Message Encoding"/>
-<link href="#rfc.section.3.1.2.2" rel="Chapter" title="3.1.2.2 Email Address Internationalization"/>
+<link href="#rfc.section.3.1.2.2" rel="Chapter" title="3.1.2.2 Header Standardization"/>
+<link href="#rfc.section.3.1.2.3" rel="Chapter" title="3.1.2.3 Email Address Internationalization"/>
 <link href="#rfc.section.3.1.3" rel="Chapter" title="3.1.3 Message Delivery Agents"/>
 <link href="#rfc.section.3.2" rel="Chapter" title="3.2 Mediators"/>
 <link href="#rfc.section.3.2.1" rel="Chapter" title="3.2.1 Alias"/>
@@ -419,11 +420,11 @@
   <meta name="generator" content="xml2rfc version 2.4.8 - http://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
-  <meta name="dct.creator" content="Martin, F., Ed., Lear, E., Ed., and T. Draegen, Ed." />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-dmarc-interoperability-00" />
-  <meta name="dct.issued" scheme="ISO8601" content="2015-1" />
-  <meta name="dct.abstract" content="DMARC introduces a mechanism for expressing domain-level policies and preferences for message validation, disposition, and reporting.  The DMARC mechanism can encounter interoperability issues when messages originate from third party sources, are modified in transit, or are forwarded enroute to their final destination.  Collectively these email flows are referred to as indirect email flows.  This document describes interoperability issues between DMARC and indirect email flows.  Possible methods for addressing interoperability issues are presented." />
-  <meta name="description" content="DMARC introduces a mechanism for expressing domain-level policies and preferences for message validation, disposition, and reporting.  The DMARC mechanism can encounter interoperability issues when messages originate from third party sources, are modified in transit, or are forwarded enroute to their final destination.  Collectively these email flows are referred to as indirect email flows.  This document describes interoperability issues between DMARC and indirect email flows.  Possible methods for addressing interoperability issues are presented." />
+  <meta name="dct.creator" content="Martin, F., Ed., Lear, E., Ed., Draegen, T., Ed., and E. Zwicky, Ed." />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-dmarc-interoperability-01" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-3-20" />
+  <meta name="dct.abstract" content="DMARC introduces a mechanism for expressing domain-level policies and preferences for email message validation, disposition, and reporting.  The DMARC mechanism can encounter interoperability issues when messages originate from third party sources, are modified in transit, or are forwarded enroute to their final destination.  Collectively these email flows are referred to as indirect email flows.  This document describes interoperability issues between DMARC and indirect email flows.  Possible methods for addressing interoperability issues are presented." />
+  <meta name="description" content="DMARC introduces a mechanism for expressing domain-level policies and preferences for email message validation, disposition, and reporting.  The DMARC mechanism can encounter interoperability issues when messages originate from third party sources, are modified in transit, or are forwarded enroute to their final destination.  Collectively these email flows are referred to as indirect email flows.  This document describes interoperability issues between DMARC and indirect email flows.  Possible methods for addressing interoperability issues are presented." />
 
 </head>
 
@@ -445,7 +446,7 @@
   <td class="right">E. Lear, Ed.</td>
 </tr>
 <tr>
-  <td class="left">Expires: July 5, 2015</td>
+  <td class="left">Expires: September 21, 2015</td>
   <td class="right">Cisco Systems GmbH</td>
 </tr>
 <tr>
@@ -458,7 +459,15 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">January 2015</td>
+  <td class="right">E. Zwicky, Ed.</td>
+</tr>
+<tr>
+  <td class="left"></td>
+  <td class="right">Yahoo</td>
+</tr>
+<tr>
+  <td class="left"></td>
+  <td class="right">March 20, 2015</td>
 </tr>
 
     	
@@ -466,19 +475,19 @@
   </table>
 
   <p class="title">Interoperability Issues Between DMARC and Indirect Email Flows<br />
-  <span class="filename">draft-ietf-dmarc-interoperability-00</span></p>
+  <span class="filename">draft-ietf-dmarc-interoperability-01</span></p>
   
   <h1 id="rfc.abstract">
   <a href="#rfc.abstract">Abstract</a>
 </h1>
-<p>DMARC introduces a mechanism for expressing domain-level policies and preferences for message validation, disposition, and reporting.  The DMARC mechanism can encounter interoperability issues when messages originate from third party sources, are modified in transit, or are forwarded enroute to their final destination.  Collectively these email flows are referred to as indirect email flows.  This document describes interoperability issues between DMARC and indirect email flows.  Possible methods for addressing interoperability issues are presented.</p>
+<p>DMARC introduces a mechanism for expressing domain-level policies and preferences for email message validation, disposition, and reporting.  The DMARC mechanism can encounter interoperability issues when messages originate from third party sources, are modified in transit, or are forwarded enroute to their final destination.  Collectively these email flows are referred to as indirect email flows.  This document describes interoperability issues between DMARC and indirect email flows.  Possible methods for addressing interoperability issues are presented.</p>
 <h1 id="rfc.status">
   <a href="#rfc.status">Status of This Memo</a>
 </h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on July 5, 2015.</p>
+<p>This Internet-Draft will expire on September 21, 2015.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -501,7 +510,8 @@
 <li>3.1.1.   <a href="#rfc.section.3.1.1">Message Submission Agents</a></li>
 <li>3.1.2.   <a href="#rfc.section.3.1.2">Message Transfer Agents</a></li>
 <li>3.1.2.1.   <a href="#rfc.section.3.1.2.1">Message Encoding</a></li>
-<li>3.1.2.2.   <a href="#rfc.section.3.1.2.2">Email Address Internationalization</a></li>
+<li>3.1.2.2.   <a href="#rfc.section.3.1.2.2">Header Standardization</a></li>
+<li>3.1.2.3.   <a href="#rfc.section.3.1.2.3">Email Address Internationalization</a></li>
 <li>3.1.3.   <a href="#rfc.section.3.1.3">Message Delivery Agents</a></li>
 <li>3.2.   <a href="#rfc.section.3.2">Mediators</a></li>
 <li>3.2.1.   <a href="#rfc.section.3.2.1">Alias</a></li>
@@ -535,30 +545,30 @@
   </ul>
 
   <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> Introduction</h1>
-<p><a href="#I-D.kucherawy-dmarc-base">DMARC</a> <cite title="NONE">[I-D.kucherawy-dmarc-base]</cite> introduces a mechanism for expressing domain-level policies and preferences for message validation, disposition, and reporting.  DMARC is used to combat exact-domain phishing, to gain visibility into email infrastructure, and to provide email egress controls.  Due to wide adoption, the impact of DMARC-based email rejection policies on both direct and indirect email flows can be significant. </p>
-<p id="rfc.section.1.p.2">The DMARC mechanism can encounter several different types of interoperability issues due to message transformation or rerouting.  This is known collectively as indirect email flows.  In some of these cases, message content is modified as a result.</p>
+<p><a href="#RFC7489">DMARC</a> <cite title="NONE">[RFC7489]</cite> introduces a mechanism for expressing domain-level policies and preferences for message validation, disposition, and reporting.  DMARC is used to combat exact-domain phishing, to gain visibility into email infrastructure, and to provide email egress controls.  Due to wide adoption, the impact of DMARC-based email rejection policies on both direct and indirect email flows can be significant. </p>
+<p id="rfc.section.1.p.2">The DMARC mechanism can encounter several different types of interoperability issues due to third-party message sourcing, message transformation or rerouting.  These cases in which mail does not go directly from the author's administrative domain to the recipients are known collectively as indirect email flows. </p>
 <p id="rfc.section.1.p.3">The next section describes interoperability issues between DMARC and indirect email flows.  These issues are first described in the context of configuration behavior that DMARC requires from underlying authentication technology, and then described as they appear in context of the Internet Mail Architecture <a href="#RFC5598">[RFC5598]</a>.</p>
-<p id="rfc.section.1.p.4">Lastly, possible methods for addressing interoperability issues are presented.  There are often multiple ways to address any given interoperability issue.  Whereas this document strives to be comprehensive in its review, it should not be treated as complete.</p>
+<p id="rfc.section.1.p.4">Lastly, possible methods for addressing interoperability issues are presented.  There are often multiple ways to address any given interoperability issue.  While this document strives to be comprehensive in its review, it should not be treated as complete.</p>
 <h1 id="rfc.section.1.1"><a href="#rfc.section.1.1">1.1.</a> Document Conventions</h1>
 <p id="rfc.section.1.1.p.1">Notation regarding structured fields is taken from <a href="#RFC5598">[RFC5598]</a>.</p>
-<p id="rfc.section.1.1.p.2">Organizational Domain and Authenticated Identifiers are specified in <a href="#I-D.kucherawy-dmarc-base">DMARC</a> <cite title="NONE">[I-D.kucherawy-dmarc-base]</cite>.</p>
+<p id="rfc.section.1.1.p.2">Organizational Domain and Authenticated Identifiers are specified in <a href="#RFC7489">DMARC</a> <cite title="NONE">[RFC7489]</cite>.</p>
 <h1 id="rfc.section.2"><a href="#rfc.section.2">2.</a> Causes of Interoperability Issues</h1>
-<p id="rfc.section.2.p.1">What do we mean by "interoperability issues"?  We say that DMARC introduces interoperability issues or problems, when conformance to the DMARC specification leads an implementation to reject a message that is both compliant with the architecture as specified in <a href="#RFC5598">[RFC5598]</a> and would have been viewed as legitimate in the eyes of the intended recipient.  This the secondary effects of behaviors caused by that rejection. Therefore, we can already conclude that DMARC poses no interoperability problems when messages properly validate through its specified processes.  The rest of this section, therefore, delves into how legitimate messages may get rejected. </p>
+<p id="rfc.section.2.p.1">What do we mean by "interoperability issues"?  We say that DMARC introduces interoperability issues or problems, when conformance to the DMARC specification leads an implementation to reject a message that is both compliant with the architecture as specified in <a href="#RFC5598">[RFC5598]</a> and would have been viewed as legitimate in the eyes of the intended recipient.  Therefore, we can already conclude that DMARC poses no interoperability problems when legitimate messages properly validate through its specified processes.  The rest of this section delves into how legitimate messages may get rejected. </p>
 <h1 id="rfc.section.2.1"><a href="#rfc.section.2.1">2.1.</a> Identifier Alignment</h1>
-<p id="rfc.section.2.1.p.1">A fundamental aspect of message source validation is understanding what validates the message. Each of the underlying mechanisms that DMARC uses (<a href="#RFC6376">DKIM</a> <cite title="NONE">[RFC6376]</cite> and <a href="#RFC7208">SPF</a> <cite title="NONE">[RFC7208]</cite>) takes a different approach. Therefore, the <a href="#I-D.kucherawy-dmarc-base">DMARC</a> <cite title="NONE">[I-D.kucherawy-dmarc-base]</cite> mechanism attempts to predictably specify the domain of the originator that will be used for its purposes (reporting/message disposition). This step is referred to as Identifier Alignment.</p>
-<p id="rfc.section.2.1.p.2">DKIM provides a cryptographic means for a domain to be associated with a particular message.  However, the signing domain is not required to be aligned with the domain contained in the RFC5322.From header field <a href="#RFC5322">[RFC5322]</a>.  The DMARC identifier alignment process posits just such a relationship. For an identifier to align in DKIM, the signing domain must be part of the same Organizational Domain as the domain in the RFC5322.From header field, and the signature must be valid. </p>
+<p id="rfc.section.2.1.p.1">A fundamental aspect of message source validation is understanding what defines the source that is validated. Each of the underlying mechanisms that DMARC uses (<a href="#RFC6376">DKIM</a> <cite title="NONE">[RFC6376]</cite> and <a href="#RFC7208">SPF</a> <cite title="NONE">[RFC7208]</cite>) takes a different approach. Therefore, the <a href="#RFC7489">DMARC</a> <cite title="NONE">[RFC7489]</cite> mechanism attempts to predictably specify the domain of the originator that will be used for its purposes (reporting/message disposition). This step is referred to as Identifier Alignment.</p>
+<p id="rfc.section.2.1.p.2">DKIM provides a cryptographic means for a domain to be associated with a particular message. DKIM does not make any constraints on what domains may or must present this association. However, for a DKIM identifier to align in DMARC, the signing domain must be part of the same Organizational Domain as the domain in the RFC5322.From header field <a href="#RFC5322">[RFC5322]</a>, and the signature must be valid. </p>
 <p id="rfc.section.2.1.p.3">In addition, DKIM allows for the possibility of multiple valid signatures.  The DMARC mechanism will process Authenticated Identifiers that are based on DKIM signatures until an aligned Authenticated Identifier is found (if any).  However, operational experience has shown that some implementations have difficulty processing multiple signatures.  The impact on DMARC processing is clear: if an implementation cannot process multiple DKIM signatures it may lead to perfectly valid messages being flagged as not authentic. </p>
-<p id="rfc.section.2.1.p.4">SPF provides Authenticated Identifiers based on either the RFC5321.MailFrom <a href="#RFC5321">[RFC5321]</a> domain or, if the RFC5321.MailFrom address is absent (as in the case of "bounces"), the domain found in the HELO/EHLO SMTP command. More often than not operators have not put an SPF record on domains found in the HELO/EHLO SMTP command and when present, it could be difficult to change this domain to the domain in the RFC5322.From header field, especially when several mail streams share the same sending IP address.</p>
+<p id="rfc.section.2.1.p.4">SPF provides two Authenticated Identifiers the first one is <a href="#RFC7208">RFC7208.HELO</a> <cite title="NONE">[RFC7208]</cite> based on RFC5321.HELO/EHLO and the second one is <a href="#RFC7208">RFC7208.MAILFROM</a> <cite title="NONE">[RFC7208]</cite>  based on the RFC5321.MailFrom <a href="#RFC5321">[RFC5321]</a> domain or, if the RFC5321.MailFrom address is absent (as in the case of "bounces"), on the domain found in the HELO/EHLO SMTP command. Local policies, as well as DMARC often only use the RFC7208.MAILFROM identifier. Again, for an SPF identifier to align in DMARC, the validated domain must be part of the same Organizational Domain as the domain in the RFC5322.From header field. Even when an SPF record exists for the domain in RFC5322.From, SPF will not authenticate it unless it is also the domain SPF checks. While aligning RFC5322.From and RFC5321.MailFrom is usually possible, it can be difficult to change the domain in the HELO/EHLO used for bounces to the domain in the RFC5322.From header field, especially when several mail streams share the same sending IP address.</p>
 <h1 id="rfc.section.2.2"><a href="#rfc.section.2.2">2.2.</a> Message Forwarding</h1>
 <p id="rfc.section.2.2.p.1">Message forwarding is a generic concept encapsulating a variety of behaviors.  <a href="#IMA_DMARC">Section 3</a> describes forwarding behavior as it relates to the components of the Internet Mail Architecture.</p>
-<p id="rfc.section.2.2.p.2">When a message has been transmitted through a forwarder, there will be no such relationship.  With SPF, the domain of the RFC5321.MailFrom or RFC5321.HELO/EHLO must be aligned with that of the RFC5322.From header field. So either the forwarder keeps the RFC5321.MailFrom and in that case SPF fails (the list of allowed IPs does not includes the forwarders usually) or the forwarder uses its own domain in the RFC5321.MailFrom and/or RFC5321.HELO/EHLO and the alignement with RFC5322.From header field fails.  Thus a DMARC implementation must rely on DKIM, if available, in these cases. </p>
+<p id="rfc.section.2.2.p.2">All of these behaviors involve mail being retransmitted by a new SMTP server. As discussed above, for SPF to cause a DMARC pass, the domain of the RFC5321.MailFrom or RFC5321.HELO/EHLO must be aligned with that of the RFC5322.From header field. If the forwarder keeps the RFC5321.MailFrom, the SPF validation will fail altogether unless the forwarder is an authorized part of the originator's mail sending infrastructure.  If the forwarder uses its own domain in the RFC5321.MailFrom and/or RFC5321.HELO/EHLO, SPF passes but the alignment with the RFC5322.From header field fails. In either case, SPF cannot produce a DMARC pass, and DKIM will be required to get DMARC to pass. </p>
 <h1 id="rfc.section.2.3"><a href="#rfc.section.2.3">2.3.</a> Message Modification</h1>
-<p id="rfc.section.2.3.p.1">Modification of email content invalidates most DKIM signatures. For instance while DKIM provides a length flag so that content can be appended (See Section 8.2 of <a href="#RFC6376">RFC6376</a> <cite title="NONE">[RFC6376]</cite> for additional security considerations), in practice, particularly with <a href="#RFC2045">MIME-encoded</a> <cite title="NONE">[RFC2045]</cite> messages, a mailing list processor will do more than append (See Section 5.3 of <a href="#RFC5598">[RFC5598]</a> for details). </p>
-<p id="rfc.section.2.3.p.2">DKIM has two canonicalizations: simple and relaxed. The later allows some modest in transit modifications that do not change the interpretation of the content of the email. The relaxed canonicalization used to be computing intensive and may not have been preferred in the early deployment of DKIM.</p>
+<p id="rfc.section.2.3.p.1">Modification of email content invalidates most DKIM signatures. For instance while DKIM provides a length flag so that content can be appended (See Section 8.2 of <a href="#RFC6376">RFC6376</a> <cite title="NONE">[RFC6376]</cite> for additional security considerations), in practice, particularly with <a href="#RFC2045">MIME-encoded</a> <cite title="NONE">[RFC2045]</cite> messages, a mailing list processor will do more than append (See Section 5.3 of <a href="#RFC5598">[RFC5598]</a> for details). Even forwarding systems make content modifications. Furthermore, the use of the length flag is by no means universal.</p>
+<p id="rfc.section.2.3.p.2">DKIM has two canonicalizations: simple and relaxed. The latter allows some modest in transit modifications that do not change the interpretation of the content of the email. The relaxed canonicalization used to be computing intensive and may not have been preferred in the early deployment of DKIM.</p>
 <h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> <a href="#IMA_DMARC" id="IMA_DMARC">Internet Mail Architecture, DMARC, and Indirect Email Flows</a></h1>
 <p id="rfc.section.3.p.1">This section describes components within the Internet Mail Architecture <a href="#RFC5598">[RFC5598]</a> where interoperability issues between DMARC and indirect email flows can be found.</p>
 <h1 id="rfc.section.3.1"><a href="#rfc.section.3.1">3.1.</a> Message Handling System</h1>
-<p id="rfc.section.3.1.p.1">Section 4 of <a href="#RFC5598">[RFC5598]</a> describes six basic components that fulfill the purpose of the Message Handling System (MHS): </p>
+<p id="rfc.section.3.1.p.1">Section 4 of <a href="#RFC5598">[RFC5598]</a> describes six basic components that make up the Message Handling System (MHS): </p>
 
 <ul>
   <li>Message</li>
@@ -585,17 +595,19 @@
 <ul>
   <li>Pseudo-open relays - a residential ISP that allows its customers to relay any domains through its infrastructure.</li>
   <li>Embedded devices - cable/dsl modems, firewalls, wireless access points that send email using hardcoded domains.</li>
-  <li>Email service providers - ESPs that service customers that are using freemail services where the freemail service publishes a DMARC "reject" policy.</li>
+  <li>Email service providers - ESPs that service customers that are using domains that publish a DMARC "reject" policy.</li>
   <li>Calendaring software - an invited member of an event modifies the event causing calendaring software to emit an update that appears to come from the creator of the event.</li>
 </ul>
 <h1 id="rfc.section.3.1.2"><a href="#rfc.section.3.1.2">3.1.2.</a> <a href="#mta" id="mta">Message Transfer Agents</a></h1>
 <p id="rfc.section.3.1.2.p.1">MTAs relay a message until the message reaches a destination MDA.</p>
 <h1 id="rfc.section.3.1.2.1"><a href="#rfc.section.3.1.2.1">3.1.2.1.</a> Message Encoding</h1>
-<p id="rfc.section.3.1.2.1.p.1">An MTA may change the message encoding. For instance it may convert 8-bit mail sections to quoted-printable 7-bit sections. Such transformation invalidates any present DKIM signature.</p>
-<h1 id="rfc.section.3.1.2.2"><a href="#rfc.section.3.1.2.2">3.1.2.2.</a> Email Address Internationalization</h1>
-<p id="rfc.section.3.1.2.2.p.1">A DMARC interoperability issue arises in the context of Email Address Internationalization <a href="#RFC6530">[RFC6530]</a>.  <a href="#RFC6854">[RFC6854]</a> allows group syntax in the RFC5322.From header field during the transition period to SMTPUTF8.  In the case where in the trasport chaing an EAI/SMTPUTF8-aware MTA needs to transmit a message to a non-aware MTA, the EAI/SMTPUTF8-aware Message System may transform the RFC5322.From header field of the message to include group syntax as to allow the non-aware MTA to receive the email.</p>
-<p id="rfc.section.3.1.2.2.p.2">This transformation will modify the original content of the message and may invalidate any DKIM signatures if the transformation is not done by the MSA or MUA. It will remove the ability for the DMARC mechanism to find an Organizational Domain to align with any authenticated domain identifier from SPF or DKIM.</p>
-<p id="rfc.section.3.1.2.2.p.3">If the receiving MTA pays particular attention to the vailidity and reputation of domains in the RFC5322.From header field, as to avoid common easy workarounds to DMARC, the group syntax could be problematic.</p>
+<p id="rfc.section.3.1.2.1.p.1">An MTA may change the message encoding, for instance by converting 8-bit mail sections to quoted-printable 7-bit sections. This is outside the scope of DKIM canonicalization and will invalidate DKIM signatures that include message content.</p>
+<h1 id="rfc.section.3.1.2.2"><a href="#rfc.section.3.1.2.2">3.1.2.2.</a> Header Standardization</h1>
+<p id="rfc.section.3.1.2.2.p.1">An MTA may standardize headers, usually in order to make non-RFC compliant headers properly compliant. For instance, some common MTAs will correct comprehensible but non-compliant date formats to compliant ones. Again, this is outside the scope of DKIM canonicalization and will invalidate DKIM signatures. </p>
+<h1 id="rfc.section.3.1.2.3"><a href="#rfc.section.3.1.2.3">3.1.2.3.</a> Email Address Internationalization</h1>
+<p id="rfc.section.3.1.2.3.p.1">A DMARC interoperability issue arises in the context of Email Address Internationalization <a href="#RFC6530">[RFC6530]</a>.  <a href="#RFC6854">[RFC6854]</a> allows group syntax in the RFC5322.From header field during the transition period to SMTPUTF8.  If an EAI/SMTPUTF8-aware MTA needs to transmit a message to a non-aware MTA, the EAI/SMTPUTF8-aware system may transform the RFC5322.From header field of the message to include group syntax to allow the non-aware MTA to receive the email.</p>
+<p id="rfc.section.3.1.2.3.p.2">This transformation will modify the original content of the message and may invalidate any DKIM signatures if the transformation is not done by the MSA or MUA. In addition, group syntax will remove the ability for the DMARC mechanism to find an Organizational Domain that aligns with any authenticated domain identifier from SPF or DKIM.</p>
+<p id="rfc.section.3.1.2.3.p.3">In addition, the group syntax will result in an invalid domain in the RFC5322.From header field. If the receiving MTA pays attention to the validity and reputation of domains, this may present its own set of delivery problems.</p>
 <h1 id="rfc.section.3.1.3"><a href="#rfc.section.3.1.3">3.1.3.</a> Message Delivery Agents</h1>
 <p id="rfc.section.3.1.3.p.1">The MDA transfers a message from the MHS to a mailbox.  Like the MSA, the MDA consists of two sub-components: </p>
 
@@ -604,14 +616,14 @@
   <li>Recipient-focused MDA functions (rMDA)</li>
 </ul>
 <p id="rfc.section.3.1.3.p.2">Both the hMDA and the rMDA can redirect a message to an alternative address.  DMARC interoperability issues related to redirecting of messages are described in <a href="#mediators">Section 3.2</a>.</p>
-<p id="rfc.section.3.1.3.p.3">SIEVE <a href="#RFC5228">[RFC5228]</a> functionality often lives in the rMDA sub-component and can cause DMARC interoperability issues. The SIEVE 'addheader' and 'deleteheader' filtering actions can modify messages and invalidate DKIM signatures, removing DKIM- supplied Authenticated Identifiers as inputs to the DMARC mechanism. There are also SIEVE extensions that modiy the body. SIEVE may become an issue when the email is reintroduced in the transport infrastructure.</p>
+<p id="rfc.section.3.1.3.p.3">SIEVE <a href="#RFC5228">[RFC5228]</a> functionality often lives in the rMDA sub-component and can cause DMARC interoperability issues. The SIEVE 'addheader' and 'deleteheader' filtering actions can modify messages and invalidate DKIM signatures, removing DKIM-supplied Authenticated Identifiers as inputs to the DMARC mechanism. There are also SIEVE extensions that modify the body. SIEVE may become an issue when the email is reintroduced in the transport infrastructure.</p>
 <h1 id="rfc.section.3.2"><a href="#rfc.section.3.2">3.2.</a> <a href="#mediators" id="mediators">Mediators</a></h1>
 <p id="rfc.section.3.2.p.1">See <a href="#RFC5598">[RFC5598]</a> for a complete definition of Mediators.</p>
 <p id="rfc.section.3.2.p.2">Mediators forward messages through a re-posting process.  Mediators share some functionality with basic MTA relaying, but have greater flexibility in both addressing and content modifications.</p>
-<p id="rfc.section.3.2.p.3">DMARC interoperability issues are prevalent within the context of Mediators, as Mediators represent a class of transformations that mirror the concept of "indirect email flows".</p>
+<p id="rfc.section.3.2.p.3">DMARC interoperability issues are prevalent within the context of Mediators, which are often used precisely for their ability to modify messages.</p>
 <h1 id="rfc.section.3.2.1"><a href="#rfc.section.3.2.1">3.2.1.</a> Alias</h1>
 <p id="rfc.section.3.2.1.p.1">An Alias is a simple re-addressing facility that provides one or more new Internet Mail addresses, rather than a single, internal one.  A message continues through the transfer service for delivery to one or more alternative addresses.</p>
-<p id="rfc.section.3.2.1.p.2">Aliases can be implemented by mailbox-level forwarding (e.g. through "dot-forwarding") or SIEVE-level forwarding (through the SIEVE 'redirect' action) or other methods.  When an Alias preserves message content, DKIM signatures may remain valid.  However, Aliases extend the delivery path beyond SPF's ability to grant authorization.</p>
+<p id="rfc.section.3.2.1.p.2">Aliases can be implemented by mailbox-level forwarding (e.g. through "dot-forwarding") or SIEVE-level forwarding (through the SIEVE 'redirect' action) or other methods.  When an Alias preserves message content and does not make significant header changes, DKIM signatures may remain valid.  However, Aliases often extend the delivery path beyond SPF's ability to grant authorization.</p>
 <p id="rfc.section.3.2.1.p.3">Examples of Aliasing include: </p>
 
 <ul>
@@ -619,70 +631,107 @@
   <li>Consolidating many email addresses into a single acccount to centralize processing.</li>
   <li>Services that provides "activity based", "role based" , "vanity" or "temporary" email addresses such as universities and professional associations. For instance professional or alumni institutions may offer to their members an alias for the duration of their membership but may not want to deal with the long term storage of emails.</li>
 </ul>
-<p id="rfc.section.3.2.1.p.4">A fundamental challenge in dealing with workarounds involving Aliases is that in many instances, the aMSA has no administrative relationship to the ADMD of the alias. Another challenge is that the underlying mechanisms upon which DMARC relies do not consider the local-part of the addr-spec in case the original and final email addresses share the same local-part.  While normally considered a perfectly reasonable scaling feature, the underlying assumption is that Authors will make use of aMSAs that are always authorized for a given domain.  For vanity domains, this assumption turns out to not hold. </p>
+<p id="rfc.section.3.2.1.p.4">In most cases, the aMSA providing Alias services has no administrative relationship to the ADMD of the final recipient, so solutions to Alias-related DMARC failure should not assume such a relationship.</p>
 <h1 id="rfc.section.3.2.2"><a href="#rfc.section.3.2.2">3.2.2.</a> <a href="#resenders" id="resenders">ReSenders</a></h1>
 <p id="rfc.section.3.2.2.p.1">ReSenders "splice" a message's addressing information to connect the Author of the original message with the Recipient of the new message.  The new Recipient sees the message as being from the original Author, even if the Mediator adds commentary.</p>
 <p id="rfc.section.3.2.2.p.2">ReSenders introduce DMARC interoperability issues as content modification invalidates DKIM signatures.  SPF's ability to grant authorization via alignment is removed as the new Recipient receives the message from the Mediator.</p>
 <p id="rfc.section.3.2.2.p.3">Without an ability to produce Authenticated Identifiers relevant to the Author's RFC5322.From header field domain using either DKIM or SPF, the new Recipient has almost no chance of successfully applying the DMARC mechanism.</p>
-<p id="rfc.section.3.2.2.p.4">Examples of ReSenders include MUA-level forwarding by resending a message to a new recipient or by forwarding a message "inline" to a new recipient (this does not include forwarding a message "as an attachment").  An additional example comes in the form of calendering software that allows a meeting attendee (not the meeting organizer) to modify the content of an invite causing the invitations to appear to be reissued from the meeting organizer.</p>
+<p id="rfc.section.3.2.2.p.4">Examples of ReSenders include MUA-level forwarding by resending a message to a new recipient or by forwarding a message "inline" to a new recipient (this does not include forwarding a message "as an attachment").  An additional example comes in the form of calendaring software that allows a meeting attendee (not the meeting organizer) to modify the content of an invite causing the invitations to appear to be reissued from the meeting organizer.</p>
 <h1 id="rfc.section.3.2.3"><a href="#rfc.section.3.2.3">3.2.3.</a> Mailing Lists</h1>
 <p id="rfc.section.3.2.3.p.1">A Mailing List receives messages as an explicit addressee and then re-posts them to a list of subscribed members.  The Mailing List performs a task that can be viewed as an elaboration of the ReSender.</p>
-<p id="rfc.section.3.2.3.p.2">Mailing Lists share the same DMARC interoperability issues as <a href="#resenders">ReSenders</a> <cite title="NONE">[resenders]</cite>: </p>
+<p id="rfc.section.3.2.3.p.2">Mailing Lists share the same DMARC interoperability issues as <a href="#resenders">ReSenders</a> <cite title="NONE">[resenders]</cite>, and very commonly modify headers or message content in ways that will cause DKIM to fail, including: </p>
 
 <ul>
-  <li>Mailing Lists may prepend the RFC5322.Subject header field with a tag, to allow the receiver to identify visually the mailing list.</li>
-  <li>Mailing Lists may add a footer to the email body to contain administrative instructions.</li>
-  <li>Mailing Lists may remove some MIME-parts from the email or convert the message to text only.</li>
-  <li>Other message modifications.</li>
+  <li>prepending the RFC5322.Subject header field with a tag, to allow the receiver to identify visually the mailing list.</li>
+  <li>adding a footer to the email body to contain administrative instructions.</li>
+  <li>removing some MIME-parts from the email or converting the message to text only.</li>
+  <li>PGP-encrypting the body to the receiver's key.</li>
+  <li>enforcing community standards by rewriting banned words.</li>
+  <li>allowing moderators to add arbitrary commentary to messages.</li>
 </ul>
 
 <p> Any such modifications would invalidate a DKIM signature.</p>
-<p id="rfc.section.3.2.3.p.3">Mailing Lists may add also the following DMARC interoperability issues: </p>
+<p id="rfc.section.3.2.3.p.3">Mailing Lists may also have the following DMARC interoperability issues: </p>
 
 <ul>
   <li>Subscribed members may not receive email from members that post using domains that publish a DMARC "p=reject" policy.</li>
-  <li>Mailing Lists may interpret DMARC-related email rejection as an inability to deliver email to the recipients that are checking and enforcing DMARC policy.  This processing may cause subscribed members to be suspended or removed from the Mailing List. <a href="#RFC3463">[RFC3463]</a> specifies Enhanced Mail System Status Codes which helps differentiate between various bounces. DMARC even defines specific codes to be used.</li>
+  <li>Mailing Lists may interpret DMARC-related email rejection as an inability to deliver email to the recipients that are checking and enforcing DMARC policy.  This processing may cause subscribed members to be suspended or removed from the Mailing List. <a href="#RFC3463">[RFC3463]</a> specifies Enhanced Mail System Status Codes which help differentiate between various bounces. DMARC even defines specific codes to be used.</li>
 </ul>
 <h1 id="rfc.section.3.2.4"><a href="#rfc.section.3.2.4">3.2.4.</a> Gateways</h1>
 <p id="rfc.section.3.2.4.p.1">A Gateway performs the basic routing and transfer work of message relaying, but it also is permitted to modify content, structure, address, or attributes as needed to send the message into a messaging environment that operates under different standards or potentially incompatible policies.</p>
 <p id="rfc.section.3.2.4.p.2">Gateways share the same DMARC interoperability issues as <a href="#resenders">ReSenders</a> <cite title="NONE">[resenders]</cite>.</p>
-<p id="rfc.section.3.2.4.p.3">Gateways may share also the same DMARC interopreability issues as <a href="#mta">MTAs</a> <cite title="NONE">[mta]</cite>.</p>
-<p id="rfc.section.3.2.4.p.4">Gateways may change the character encoding for instance change the character set from US-ASCII to ISO-8859-4.</p>
-<p id="rfc.section.3.2.4.p.5">Gateway-level forwarding can introduce DMARC interoperability issues if the Gateway is configured to rewrite the message to map between recipient domains.  For example, an acquisition may lead the acquiring company to decide to decommission the acquired companies domains by rewriting messages to use the domain of the acquiring company.</p>
+<p id="rfc.section.3.2.4.p.3">Gateways may share also the same DMARC interoperability issues as <a href="#mta">MTAs</a> <cite title="NONE">[mta]</cite>.</p>
+<p id="rfc.section.3.2.4.p.4">Gateway-level forwarding can introduce DMARC interoperability issues if the Gateway is configured to rewrite the message to map between recipient domains.  For example, an acquisition may lead the acquiring company to decide to decommission the acquired companies domains by rewriting messages to use the domain of the acquiring company. Since the To: header is usually DKIM-signed, this kind of rewriting will also cause DKIM signatures to fail.</p>
 <h1 id="rfc.section.3.2.5"><a href="#rfc.section.3.2.5">3.2.5.</a> Boundary Filters</h1>
-<p id="rfc.section.3.2.5.p.1">To enforce security boundaries, organizations can subject messages to analysis for conformance with its safety policies.  A filter might alter the content to render it safe, such as by removing content deemed unacceptable.</p>
+<p id="rfc.section.3.2.5.p.1">To enforce security boundaries, organizations can subject messages to analysis for conformance with their safety policies.  A filter might alter the content to render it safe, such as by removing content deemed unacceptable.</p>
 <p id="rfc.section.3.2.5.p.2">Boundary Filters share the same DMARC interoperability issues as ReSenders.</p>
 <p id="rfc.section.3.2.5.p.3">Examples of Boundary Filters include: </p>
 
 <ul>
-  <li>Anti-spam: To keep its reputation, an MTA that transfers a message, may remove harmful content from messages that are likely to be unwanted by the next MTA and/or add text in the body to indicate the message has been scanned. Any such modifications would invalidate a DKIM signature.</li>
+  <li>Anti-spam: To keep its reputation, an MTA that transfers a message may remove harmful content from messages that are likely to be unwanted by the next MTA and/or add text in the body to indicate the message has been scanned. Any such modifications would invalidate a DKIM signature.</li>
   <li>Any service that reformulates the RFC5322.body for any other reason, for instance adding an organizational disclaimer.</li>
   <li>Secondary MX services.  In this case, however, it is inappropriate for a primary MX server to perform an SPF check against its own secondaries.  Rather, the secondary MX should perform this function.</li>
 </ul>
 <h1 id="rfc.section.3.3"><a href="#rfc.section.3.3">3.3.</a> Combinations</h1>
 <p id="rfc.section.3.3.p.1">The causes of indirect email flows can be combined.  For example, a university student may subscribe to a mailing list (using his university email address) while this university email address is configured to forward all emails to a freemail provider where a more permanent email address for this student exists. </p>
-<p id="rfc.section.3.3.p.2">Within an organisation the message may passes through various <a href="#mta">MTAs</a> <cite title="NONE">[mta]</cite> that performs each one a different function, authentication, filtering, distribution, etc.</p>
+<p id="rfc.section.3.3.p.2">Within an organization the message may pass through various <a href="#mta">MTAs</a> <cite title="NONE">[mta]</cite>, each of which performs a different function (authentication, filtering, distribution, etc.) </p>
 <h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> Possible Solutions to Interoperability Issues</h1>
-<p id="rfc.section.4.p.1">Solutions to interoperability issues between DMARC and indirect email flows vary from improving of underlying processors, such as proper handling multiple DKIM signatures, to more radical approaches to the messaging architecture.  This section decribes possible ways to address interoperability issues.</p>
-<p id="rfc.section.4.p.2">Mail systems are diverse and widely deployed and are expected to work still with old systems. For instance, Qmail is still used and the base code has not been updated since 1998. Ezmlm a once popular mailing list manager is still deployed and has not been updated since 1997, althought a new version, Ezmlm-idx exists. Some solutions may take longer times to be implemented than others and could be disruptive.</p>
-<p id="rfc.section.4.p.3">Through external knowledge it may be possible to determinine that the DMARC mechanism cannot be applied to a particular message because modification and/or forwarding is to be expected through the normal course of operations for a given sender.  This is known as an "override".</p>
+<p id="rfc.section.4.p.1">Solutions to interoperability issues between DMARC and indirect email flows vary widely in their scope and implications. They range from improvements to underlying processors, such as proper handling multiple DKIM signatures, to more radical approaches to the messaging architecture.  This section describes possible ways to address interoperability issues.</p>
+<p id="rfc.section.4.p.2">Mail systems are diverse and widely deployed and are expected to continue to work with old systems. For instance, Qmail is still used and the base code has not been updated since 1998. Ezmlm, a once popular mailing list manager, is still deployed and has not been updated since 1997, although a new version, Ezmlm-idx exists. In this constrained environment, some solutions may be time-consuming and/or disruptive to implement.</p>
+<p id="rfc.section.4.p.3">DMARC provides for receivers to make decisions about identity alignment acceptability based on information outside the DMARC headers and communicate those decisions as "overrides" to the sender. This facility can be used to ease some interoperability issues, although care is needed to ensure that this does not create loopholes that abusers can use arbitrarily.  </p>
 <h1 id="rfc.section.4.1"><a href="#rfc.section.4.1">4.1.</a> Identifier Alignment</h1>
-<p id="rfc.section.4.1.p.1">In the case of forwarders, identity alignment poses a substantial concern.  A receiving ADMD may track subscriptions to mailing lists, so that different processing may be applied to those messages. </p>
-<p id="rfc.section.4.1.p.2">Various proposals have been submitted to provide either some form of transitive trust between an email sender, a realy and an email receiver, or to allow a modified version of DKIM to survive light transformation to the message: </p>
+<p id="rfc.section.4.1.p.1">Currently used work-arounds and fixes to identifier alignment issues: </p>
 
 <ul>
-  <li>DKIM conditional signatures, <a href="#I-D.levine-dkim-conditional">[I-D.levine-dkim-conditional]</a></li>
-  <li>Third party authorization, <a href="#RFC6541">[RFC6541]</a>, <a href="#I-D.otis-tpa-label">[I-D.otis-tpa-label]</a> and <a href="#I-D.kucherawy-dkim-delegate">[I-D.kucherawy-dkim-delegate]</a></li>
-  <li>DKIM with constrained transformations, <a href="#I-D.kucherawy-dkim-list-canon">[I-D.kucherawy-dkim-list-canon]</a></li>
+  <li>MTAs handling multiple domains may choose to change RFC5321.MailFrom to align with RFC5322.From to improve SPF usability for DMARC.</li>
+  <li>MTAs handling multiple domains may also choose to align HELO/EHLO to RFC5322.From, particularly when sending bounce messages.</li>
+  <li>MTAs may choose to DKIM sign bounces to allow DKIM-based DMARC pass.</li>
+  <li>MTAs handling multiple domains may require DMARC-using senders to provide DKIM keys and use DKIM to avoid SPF alignment issues.</li>
+  <li>ReSenders may choose to change RFC5322.From to one under the ReSender's control, avoiding alignment issues with the original.</li>
+  <li>Receivers should update DKIM handling libraries to ensure that they process all valid DKIM signatures and check them for alignment.</li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.4.1.p.2">Proposed and in-progress work-arounds and fixes to identifier alignment issues: </p>
+
+<ul>
+  <li>Third party authorization, <a href="#RFC6541">[RFC6541]</a>, <a href="#I-D.otis-tpa-label">[I-D.otis-tpa-label]</a> and <a href="#I-D.kucherawy-dkim-delegate">[I-D.kucherawy-dkim-delegate]</a> provide ways to extend identifier alignment under the control of the domain owner.</li>
 </ul>
 
 <p> </p>
 <h1 id="rfc.section.4.2"><a href="#rfc.section.4.2">4.2.</a> Message Modification</h1>
-<p id="rfc.section.4.2.p.1">Message modification invalidates DKIM signatures and complicates a receiver's ability to generate Authenticated Identifiers from a message. It is therefore important to review the <a href="#mta">MTAs</a> <cite title="NONE">[mta]</cite> configuration to ensure no modification of the message is done when simply forwarding the message. Furthermore Filters should not add to or modify the body of the message, but either rejecting the message or adding email headers to indicate the result of the filter.</p>
+<p id="rfc.section.4.2.p.1">Message modification invalidates DKIM signatures and complicates a receiver's ability to generate Authenticated Identifiers from a message. Avoiding message modification wherever possible is therefore desirable.</p>
+<p id="rfc.section.4.2.p.2">Currently used work-arounds and fixes to message modification issues: </p>
+
+<ul>
+  <li>Senders can maximize survivability of DKIM signatures by limiting the header fields they sign, using relaxed canonicalization and by using length to allow appended signatures.</li>
+  <li>Senders can also maximize survivability by starting with RFC-compliant headers and common body formats. </li>
+  <li>Forwarders can choose to add email headers instead of modifying existing headers or bodies. </li>
+  <li>Forwarders can minimize the circumstances in which they choose to fix messages, preferring preserving non-compliant headers to creating DKIM failures.</li>
+  <li>Forwarders can choose to reject messages with suspect or harmful content instead of modifying them.</li>
+  <li>If message modification is required, the RFC5322.From may be changed. </li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.4.2.p.3">Proposed and in-progress work-arounds and fixes to message modification issues: </p>
+
+<ul>
+  <li>DKIM with constrained transformations, <a href="#I-D.kucherawy-dkim-list-canon">[I-D.kucherawy-dkim-list-canon]</a></li>
+</ul>
+
+<p> </p>
 <h1 id="rfc.section.4.3"><a href="#rfc.section.4.3">4.3.</a> Message Forwarding</h1>
 <p id="rfc.section.4.3.p.1">Forwarding messages without modification is referred to as "transparent forwarding", and is a way to preserve the validity of DKIM signatures.</p>
-<p id="rfc.section.4.3.p.2">The <a href="#RFC5703">Original-From</a> <cite title="NONE">[RFC5703]</cite> (or X-Original-From) header is used in various contexts (X- header fields name are discouraged by <a href="#RFC6648">[RFC6648]</a>).</p>
-<p id="rfc.section.4.3.p.3">Note that Original-From (or X-Original-From) is merely adding complexity to the 'who was the author of this message' assessment, very possibly creating yet-another security hole.</p>
+<p id="rfc.section.4.3.p.2">Currently used work-arounds and fixes to message forwarding issues: </p>
+
+<ul>
+  <li>Senders should use DKIM signing to allow transparent forwarding to succeed.</li>
+  <li>ReSenders may choose to change RFC5322.From to one under the ReSender's control, avoiding alignment issues with the original.</li>
+</ul>
+
+<p> </p>
+<p id="rfc.section.4.3.p.3">The <a href="#RFC5703">Original-From</a> <cite title="NONE">[RFC5703]</cite> (or X-Original-From) header is used in various contexts (X- header fields name are discouraged by <a href="#RFC6648">[RFC6648]</a>).</p>
+<p id="rfc.section.4.3.p.4">Note that Original-From (or X-Original-From) is merely adding complexity to the 'who was the author of this message' assessment, very possibly creating yet-another security hole.</p>
 <h1 id="rfc.section.4.3.1"><a href="#rfc.section.4.3.1">4.3.1.</a> Original-Authentication-Results</h1>
 <p><a href="#I-D.kucherawy-original-authres">[I-D.kucherawy-original-authres]</a> has been mentioned in early DMARC drafts as a way to pass along Original Authentication Results to "downstream" receivers.</p>
 <h1 id="rfc.section.4.4"><a href="#rfc.section.4.4">4.4.</a> Message Handling Services</h1>
@@ -827,12 +876,6 @@
     </tr>
     <tr>
       <td class="reference">
-        <b id="I-D.kucherawy-dmarc-base">[I-D.kucherawy-dmarc-base]</b>
-      </td>
-      <td class="top"><a>Kucherawy, M.</a> and <a>E. Zwicky</a>, "<a href="http://tools.ietf.org/html/draft-kucherawy-dmarc-base-11">Domain-based Message Authentication, Reporting and Conformance (DMARC)</a>", Internet-Draft draft-kucherawy-dmarc-base-11, January 2015.</td>
-    </tr>
-    <tr>
-      <td class="reference">
         <b id="I-D.kucherawy-original-authres">[I-D.kucherawy-original-authres]</b>
       </td>
       <td class="top"><a>Chew, M.</a> and <a>M. Kucherawy</a>, "<a href="http://tools.ietf.org/html/draft-kucherawy-original-authres-00">Original-Authentication-Results Header Field</a>", Internet-Draft draft-kucherawy-original-authres-00, February 2012.</td>
@@ -848,6 +891,12 @@
         <b id="I-D.otis-tpa-label">[I-D.otis-tpa-label]</b>
       </td>
       <td class="top"><a>Otis, D.</a> and <a>D. Black</a>, "<a href="http://tools.ietf.org/html/draft-otis-tpa-label-00">Third-Party Authorization Label</a>", Internet-Draft draft-otis-tpa-label-00, May 2014.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="RFC7489">[RFC7489]</b>
+      </td>
+      <td class="top"><a>Kucherawy, M.</a> and <a>E. Zwicky</a>, "<a href="http://tools.ietf.org/html/rfc7489">Domain-based Message Authentication, Reporting, and Conformance (DMARC)</a>", RFC 7489, March 2015.</td>
     </tr>
   </tbody>
 </table>
@@ -918,6 +967,27 @@
 	  <span class="country-name vcardline">USA</span>
 	</span>
 	<span class="vcardline">EMail: <a href="mailto:tim@eudaemon.net">tim@eudaemon.net</a></span>
+
+  </address>
+</div><div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Elizabeth Zwicky</span> (editor)
+	  <span class="n hidden">
+		<span class="family-name">Zwicky</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Yahoo</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality">Sunnyvale</span>,  
+		<span class="region">CA</span> 
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline">USA</span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:zwicky@yahoo-inc.com">zwicky@yahoo-inc.com</a></span>
 
   </address>
 </div>
