@@ -5,16 +5,16 @@
 DMARC Working Group                                       F. Martin, Ed.
 Internet-Draft                                                  LinkedIn
 Intended status: Informational                              E. Lear, Ed.
-Expires: October 31, 2015                             Cisco Systems GmbH
+Expires: November 23, 2015                            Cisco Systems GmbH
                                                          T. Draegen, Ed.
                                               Eudaemonic Development LLC
                                                           E. Zwicky, Ed.
                                                                    Yahoo
-                                                          April 29, 2015
+                                                            May 22, 2015
 
 
      Interoperability Issues Between DMARC and Indirect Email Flows
-                  draft-ietf-dmarc-interoperability-02
+                  draft-ietf-dmarc-interoperability-03
 
 Abstract
 
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 31, 2015.
+   This Internet-Draft will expire on November 23, 2015.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Martin, et al.          Expires October 31, 2015                [Page 1]
+Martin, et al.          Expires November 23, 2015               [Page 1]
 
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -84,7 +84,7 @@ Table of Contents
          3.1.2.1.  Message Encoding  . . . . . . . . . . . . . . . .   8
          3.1.2.2.  Header Standardization  . . . . . . . . . . . . .   8
          3.1.2.3.  Email Address Internationalization  . . . . . . .   8
-       3.1.3.  Message Delivery Agents . . . . . . . . . . . . . . .   8
+       3.1.3.  Message Delivery Agents . . . . . . . . . . . . . . .   9
      3.2.  Mediators . . . . . . . . . . . . . . . . . . . . . . . .   9
        3.2.1.  Alias . . . . . . . . . . . . . . . . . . . . . . . .   9
        3.2.2.  ReSenders . . . . . . . . . . . . . . . . . . . . . .  10
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Martin, et al.          Expires October 31, 2015                [Page 2]
+Martin, et al.          Expires November 23, 2015               [Page 2]
 
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
 
 
        4.2.1.  Getting More Radical: Requiring New Communication
@@ -165,9 +165,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
 
 
 
-Martin, et al.          Expires October 31, 2015                [Page 3]
+Martin, et al.          Expires November 23, 2015               [Page 3]
 
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
 
 
 2.  Causes of Interoperability Issues
@@ -221,9 +221,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
 
 
 
-Martin, et al.          Expires October 31, 2015                [Page 4]
+Martin, et al.          Expires November 23, 2015               [Page 4]
 
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
 
 
    In addition, DKIM allows for the possibility of multiple valid
@@ -277,9 +277,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
 
 
 
-Martin, et al.          Expires October 31, 2015                [Page 5]
+Martin, et al.          Expires November 23, 2015               [Page 5]
 
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
 
 
 2.4.  Message Modification
@@ -333,9 +333,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
 
 
 
-Martin, et al.          Expires October 31, 2015                [Page 6]
+Martin, et al.          Expires November 23, 2015               [Page 6]
 
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
 
 
    A Mediator is a special class of MUA that is given special
@@ -389,9 +389,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
 
 
 
-Martin, et al.          Expires October 31, 2015                [Page 7]
+Martin, et al.          Expires November 23, 2015               [Page 7]
 
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
 
 
 3.1.2.  Message Transfer Agents
@@ -436,19 +436,26 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
    instance an MTA may refuse emails with no valid or emailable domain
    in the RFC5322.From as to avoid simple workarounds against DMARC.
 
+   This case is not an interoperability issue with DMARC, but with other
+   email policies an MTA may have to support DMARC.
+
+
+
+
+
+
+
+Martin, et al.          Expires November 23, 2015               [Page 8]
+
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
+
+
 3.1.3.  Message Delivery Agents
 
    The MDA transfers a message from the MHS to a mailbox.  Like the MSA,
    the MDA consists of two sub-components:
 
    o  MHS-focused MDA functions (hMDA)
-
-
-
-Martin, et al.          Expires October 31, 2015                [Page 8]
-
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
-
 
    o  Recipient-focused MDA functions (rMDA)
 
@@ -492,19 +499,18 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
 
    Examples of Aliasing include:
 
+
+
+Martin, et al.          Expires November 23, 2015               [Page 9]
+
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
+
+
    o  Forwarding email between freemail providers to try different
       interfaces while maintaining an original email address.
 
    o  Consolidating many email addresses into a single acccount to
       centralize processing.
-
-
-
-
-Martin, et al.          Expires October 31, 2015                [Page 9]
-
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
-
 
    o  Services that provides "activity based", "role based" , "vanity"
       or "temporary" email addresses such as universities and
@@ -549,18 +555,16 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
    re-posts them to a list of subscribed members.  The Mailing List
    performs a task that can be viewed as an elaboration of the ReSender.
 
+
+
+Martin, et al.          Expires November 23, 2015              [Page 10]
+
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
+
+
    Mailing Lists share the same DMARC interoperability issues as
    ReSenders (Section 3.2.2), and very commonly modify headers or
    message content in ways that will cause DKIM to fail, including:
-
-
-
-
-
-Martin, et al.          Expires October 31, 2015               [Page 10]
-
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
-
 
    o  prepending the RFC5322.Subject header field with a tag, to allow
       the receiver to identify visually the mailing list.
@@ -606,17 +610,16 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
    Gateways share the same DMARC interoperability issues as ReSenders
    (Section 3.2.2).
 
+
+
+
+Martin, et al.          Expires November 23, 2015              [Page 11]
+
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
+
+
    Gateways may share also the same DMARC interoperability issues as
    MTAs (Section 3.1.2).
-
-
-
-
-
-Martin, et al.          Expires October 31, 2015               [Page 11]
-
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
-
 
    Gateway-level forwarding can introduce DMARC interoperability issues
    if the Gateway is configured to rewrite the message to map between
@@ -663,16 +666,17 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
    configured to forward all emails to a freemail provider where a more
    permanent email address for this student exists.
 
+
+
+
+Martin, et al.          Expires November 23, 2015              [Page 12]
+
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
+
+
    Within an organization the message may pass through various MTAs
    (Section 3.1.2), each of which performs a different function
    (authentication, filtering, distribution, etc.)
-
-
-
-Martin, et al.          Expires October 31, 2015               [Page 12]
-
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
-
 
 4.  Possible Mitigations of Interoperability Issues
 
@@ -717,18 +721,17 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
       bounce messages.  Adjusting dynamically the RFC5321.HELO based on
       the RFC5322.From may not be possible for some MTA software.
 
+
+
+
+
+Martin, et al.          Expires November 23, 2015              [Page 13]
+
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
+
+
    o  MTAs may choose to DKIM sign bounces with an aligned domain to
       allow DKIM-based DMARC pass.
-
-
-
-
-
-
-Martin, et al.          Expires October 31, 2015               [Page 13]
-
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
-
 
    o  MTAs handling multiple domains may require DMARC-using senders to
       provide DKIM keys and use DKIM to avoid SPF alignment issues.
@@ -778,12 +781,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
 
 
 
-
-
-
-Martin, et al.          Expires October 31, 2015               [Page 14]
+Martin, et al.          Expires November 23, 2015              [Page 14]
 
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
 
 
 4.1.2.3.  Email Address Internationalization
@@ -800,7 +800,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
       then have to choose between EAI transitioning compliance
       (accepting the email without a domain in RFC5322.From) and
       security (rejecting RFC-compliant email for lack of a domain in
-      the RFC5322.From).  The real solution is to upgrade MTAs to
+      the RFC5322.From).  The practical solution is to upgrade MTAs to
       support EAI (SMTPUTF8), avoiding the transition issue.
 
 4.1.3.  Mitigations for ReSenders
@@ -837,9 +837,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
 
 
 
-Martin, et al.          Expires October 31, 2015               [Page 15]
+Martin, et al.          Expires November 23, 2015              [Page 15]
 
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
 
 
 4.1.3.3.  Mailing Lists
@@ -893,9 +893,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
 
 
 
-Martin, et al.          Expires October 31, 2015               [Page 16]
+Martin, et al.          Expires November 23, 2015              [Page 16]
 
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
 
 
    o  To alleviate unsubscribes to the Mailing List due to the messages
@@ -949,9 +949,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
 
 
 
-Martin, et al.          Expires October 31, 2015               [Page 17]
+Martin, et al.          Expires November 23, 2015              [Page 17]
 
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
 
 
 4.2.1.  Getting More Radical: Requiring New Communication Paths Between
@@ -1005,9 +1005,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
 
 
 
-Martin, et al.          Expires October 31, 2015               [Page 18]
+Martin, et al.          Expires November 23, 2015              [Page 18]
 
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
 
 
    [RFC3463]  Vaudreuil, G., "Enhanced Mail System Status Codes", RFC
@@ -1061,9 +1061,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
 
 
 
-Martin, et al.          Expires October 31, 2015               [Page 19]
+Martin, et al.          Expires November 23, 2015              [Page 19]
 
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
 
 
 8.2.  Informative References
@@ -1117,9 +1117,9 @@ Authors' Addresses
 
 
 
-Martin, et al.          Expires October 31, 2015               [Page 20]
+Martin, et al.          Expires November 23, 2015              [Page 20]
 
-Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
+Internet-Draft     DMARC Indirect Email Interop Issues          May 2015
 
 
    Eliot Lear (editor)
@@ -1173,4 +1173,4 @@ Internet-Draft     DMARC Indirect Email Interop Issues        April 2015
 
 
 
-Martin, et al.          Expires October 31, 2015               [Page 21]
+Martin, et al.          Expires November 23, 2015              [Page 21]

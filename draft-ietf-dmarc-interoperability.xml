@@ -55,7 +55,7 @@ please see http://xml.resource.org/authoring/README.html. -->
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-dmarc-interoperability-02" ipr="trust200902">
+<rfc category="info" docName="draft-ietf-dmarc-interoperability-03" ipr="trust200902">
 	<!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -129,7 +129,7 @@ please see http://xml.resource.org/authoring/README.html. -->
 				<!-- uri and facsimile elements may also be added -->
 			</address>
 		</author>
-		<date month="April" year="2015"/>
+		<date month="May" year="2015"/>
 		<!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
          in the current day for you. If only the current year is specified, xml2rfc will fill 
 	 in the current day and month for you. If the year is not the current one, it is 
@@ -238,6 +238,7 @@ please see http://xml.resource.org/authoring/README.html. -->
 						<t>A DMARC related issue may arise in the context of Email Address Internationalization <xref target="RFC6530"/>.  <xref target="RFC6854"/> allows group syntax in the RFC5322.From header field during the transition period to SMTPUTF8.  If an EAI/SMTPUTF8-aware MTA needs to transmit a message to a non-aware MTA, the non aware MTA will reject it. While an MTA will not downgrade a message. The MUA or MSA may resend the message using the group syntax to allow the non-aware MTA to receive the email.</t>
             <t>In another case, a MDA, may use the group syntax to pass a message to a non EAI/SMTPUTF8-aware MS (or user email client). This message could then be forwarded to another recipient.</t>
 						<t>For an MTA, the group syntax may result in the impossibility of finding a domain with a DMARC policy associated with it. If the receiving MTA pays attention to the validity and reputation of domains, this may present its own set of delivery problems. For instance an MTA may refuse emails with no valid or emailable domain in the RFC5322.From as to avoid simple workarounds against DMARC. </t>
+						<t>This case is not an interoperability issue with DMARC, but with other email policies an MTA may have to support DMARC.</t>
 					</section>
 				</section>
 				<section title="Message Delivery Agents">
@@ -357,7 +358,7 @@ please see http://xml.resource.org/authoring/README.html. -->
 					</section>
           <section title="Email Address Internationalization">
             <t><list style="symbols">
-              <t>During the transition from email systems that do not allow EAI (SMTPUTF8) to email systems that allow it, <xref target="RFC6854"/> allows the MUA or MSA to use the group syntax for the RFC5322.From header field to avoid a known MTA to reject the message (if RFC5322 is implemented strictly). While this will alleviate the EAI problem, it will allow a simple DMARC workaround since the message may no longer have a single usable domain in the RFC5322.From header field, making DMARC inapplicable. DMARC implementations that pay attention to the validity of the domains in the RFC5322.From may then have to choose between EAI transitioning compliance (accepting the email without a domain in RFC5322.From) and security (rejecting RFC-compliant email for lack of a domain in the RFC5322.From). The real solution is to upgrade MTAs to support EAI (SMTPUTF8), avoiding the transition issue.</t>
+              <t>During the transition from email systems that do not allow EAI (SMTPUTF8) to email systems that allow it, <xref target="RFC6854"/> allows the MUA or MSA to use the group syntax for the RFC5322.From header field to avoid a known MTA to reject the message (if RFC5322 is implemented strictly). While this will alleviate the EAI problem, it will allow a simple DMARC workaround since the message may no longer have a single usable domain in the RFC5322.From header field, making DMARC inapplicable. DMARC implementations that pay attention to the validity of the domains in the RFC5322.From may then have to choose between EAI transitioning compliance (accepting the email without a domain in RFC5322.From) and security (rejecting RFC-compliant email for lack of a domain in the RFC5322.From). The practical solution is to upgrade MTAs to support EAI (SMTPUTF8), avoiding the transition issue.</t>
             </list></t>
           </section>
 				</section>
