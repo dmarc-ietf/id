@@ -387,7 +387,6 @@
 <link href="#rfc.section.3.1.2" rel="Chapter" title="3.1.2 Message Transfer Agents"/>
 <link href="#rfc.section.3.1.2.1" rel="Chapter" title="3.1.2.1 Message Encoding"/>
 <link href="#rfc.section.3.1.2.2" rel="Chapter" title="3.1.2.2 Header Standardization"/>
-<link href="#rfc.section.3.1.2.3" rel="Chapter" title="3.1.2.3 Email Address Internationalization"/>
 <link href="#rfc.section.3.1.3" rel="Chapter" title="3.1.3 Message Delivery Agents"/>
 <link href="#rfc.section.3.2" rel="Chapter" title="3.2 Mediators"/>
 <link href="#rfc.section.3.2.1" rel="Chapter" title="3.2.1 Alias"/>
@@ -404,7 +403,6 @@
 <link href="#rfc.section.4.1.2" rel="Chapter" title="4.1.2 Mitigations for Receivers"/>
 <link href="#rfc.section.4.1.2.1" rel="Chapter" title="4.1.2.1 Identifier Alignment"/>
 <link href="#rfc.section.4.1.2.2" rel="Chapter" title="4.1.2.2 Policy Override"/>
-<link href="#rfc.section.4.1.2.3" rel="Chapter" title="4.1.2.3 Email Address Internationalization"/>
 <link href="#rfc.section.4.1.3" rel="Chapter" title="4.1.3 Mitigations for ReSenders"/>
 <link href="#rfc.section.4.1.3.1" rel="Chapter" title="4.1.3.1 Changes to the RFC5322.From"/>
 <link href="#rfc.section.4.1.3.2" rel="Chapter" title="4.1.3.2 Avoiding Message Modification"/>
@@ -424,8 +422,8 @@
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Martin, F., Ed., Lear, E., Ed., Draegen, T., Ed., and E. Zwicky, Ed." />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-dmarc-interoperability-03" />
-  <meta name="dct.issued" scheme="ISO8601" content="2015-5-22" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-dmarc-interoperability-04" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-6-9" />
   <meta name="dct.abstract" content="DMARC introduces a mechanism for expressing domain-level policies and preferences for email message validation, disposition, and reporting.  The DMARC mechanism can encounter interoperability issues when messages do not flow directly from the author's administrative domain to the final recipients. Collectively these email flows are referred to as indirect email flows.  This document describes interoperability issues between DMARC and indirect email flows. Possible methods for addressing interoperability issues are presented." />
   <meta name="description" content="DMARC introduces a mechanism for expressing domain-level policies and preferences for email message validation, disposition, and reporting.  The DMARC mechanism can encounter interoperability issues when messages do not flow directly from the author's administrative domain to the final recipients. Collectively these email flows are referred to as indirect email flows.  This document describes interoperability issues between DMARC and indirect email flows. Possible methods for addressing interoperability issues are presented." />
 
@@ -449,7 +447,7 @@
   <td class="right">E. Lear, Ed.</td>
 </tr>
 <tr>
-  <td class="left">Expires: November 23, 2015</td>
+  <td class="left">Expires: December 11, 2015</td>
   <td class="right">Cisco Systems GmbH</td>
 </tr>
 <tr>
@@ -470,7 +468,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">May 22, 2015</td>
+  <td class="right">June 9, 2015</td>
 </tr>
 
     	
@@ -478,7 +476,7 @@
   </table>
 
   <p class="title">Interoperability Issues Between DMARC and Indirect Email Flows<br />
-  <span class="filename">draft-ietf-dmarc-interoperability-03</span></p>
+  <span class="filename">draft-ietf-dmarc-interoperability-04</span></p>
   
   <h1 id="rfc.abstract">
   <a href="#rfc.abstract">Abstract</a>
@@ -490,7 +488,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 23, 2015.</p>
+<p>This Internet-Draft will expire on December 11, 2015.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -515,7 +513,6 @@
 <li>3.1.2.   <a href="#rfc.section.3.1.2">Message Transfer Agents</a></li>
 <li>3.1.2.1.   <a href="#rfc.section.3.1.2.1">Message Encoding</a></li>
 <li>3.1.2.2.   <a href="#rfc.section.3.1.2.2">Header Standardization</a></li>
-<li>3.1.2.3.   <a href="#rfc.section.3.1.2.3">Email Address Internationalization</a></li>
 <li>3.1.3.   <a href="#rfc.section.3.1.3">Message Delivery Agents</a></li>
 <li>3.2.   <a href="#rfc.section.3.2">Mediators</a></li>
 <li>3.2.1.   <a href="#rfc.section.3.2.1">Alias</a></li>
@@ -532,7 +529,6 @@
 <li>4.1.2.   <a href="#rfc.section.4.1.2">Mitigations for Receivers</a></li>
 <li>4.1.2.1.   <a href="#rfc.section.4.1.2.1">Identifier Alignment</a></li>
 <li>4.1.2.2.   <a href="#rfc.section.4.1.2.2">Policy Override</a></li>
-<li>4.1.2.3.   <a href="#rfc.section.4.1.2.3">Email Address Internationalization</a></li>
 <li>4.1.3.   <a href="#rfc.section.4.1.3">Mitigations for ReSenders</a></li>
 <li>4.1.3.1.   <a href="#rfc.section.4.1.3.1">Changes to the RFC5322.From</a></li>
 <li>4.1.3.2.   <a href="#rfc.section.4.1.3.2">Avoiding Message Modification</a></li>
@@ -626,11 +622,6 @@
 <p id="rfc.section.3.1.2.1.p.1">An MTA may modify the message encoding, for instance by converting 8-bit MIME sections to quoted-printable 7-bit sections. This modification is outside the scope of DKIM canonicalization and will invalidate DKIM signatures that include message content.</p>
 <h1 id="rfc.section.3.1.2.2"><a href="#rfc.section.3.1.2.2">3.1.2.2.</a> Header Standardization</h1>
 <p id="rfc.section.3.1.2.2.p.1">An MTA may standardize headers, usually in order to make non-RFC compliant headers properly compliant. For instance, some common MTAs will correct comprehensible but non-compliant date formats to compliant ones. This correction is outside the scope of DKIM canonicalization and will invalidate DKIM signatures. This correction is also outside the scope of this document in providing solutions for non RFC compliant emails.</p>
-<h1 id="rfc.section.3.1.2.3"><a href="#rfc.section.3.1.2.3">3.1.2.3.</a> Email Address Internationalization</h1>
-<p id="rfc.section.3.1.2.3.p.1">A DMARC related issue may arise in the context of Email Address Internationalization <a href="#RFC6530">[RFC6530]</a>.  <a href="#RFC6854">[RFC6854]</a> allows group syntax in the RFC5322.From header field during the transition period to SMTPUTF8.  If an EAI/SMTPUTF8-aware MTA needs to transmit a message to a non-aware MTA, the non aware MTA will reject it. While an MTA will not downgrade a message. The MUA or MSA may resend the message using the group syntax to allow the non-aware MTA to receive the email.</p>
-<p id="rfc.section.3.1.2.3.p.2">In another case, a MDA, may use the group syntax to pass a message to a non EAI/SMTPUTF8-aware MS (or user email client). This message could then be forwarded to another recipient.</p>
-<p id="rfc.section.3.1.2.3.p.3">For an MTA, the group syntax may result in the impossibility of finding a domain with a DMARC policy associated with it. If the receiving MTA pays attention to the validity and reputation of domains, this may present its own set of delivery problems. For instance an MTA may refuse emails with no valid or emailable domain in the RFC5322.From as to avoid simple workarounds against DMARC. </p>
-<p id="rfc.section.3.1.2.3.p.4">This case is not an interoperability issue with DMARC, but with other email policies an MTA may have to support DMARC.</p>
 <h1 id="rfc.section.3.1.3"><a href="#rfc.section.3.1.3">3.1.3.</a> Message Delivery Agents</h1>
 <p id="rfc.section.3.1.3.p.1">The MDA transfers a message from the MHS to a mailbox.  Like the MSA, the MDA consists of two sub-components: </p>
 
@@ -749,16 +740,11 @@
 <ul>
   <li>Receivers can amalgamate data from their user base to identify forwarders and use such list for a DMARC local policy override. This process may be easier for large receivers, where there is data and resources to create such lists, than for small receivers.</li>
 </ul>
-<h1 id="rfc.section.4.1.2.3"><a href="#rfc.section.4.1.2.3">4.1.2.3.</a> Email Address Internationalization</h1>
-<p/>
-
-<ul>
-  <li>During the transition from email systems that do not allow EAI (SMTPUTF8) to email systems that allow it, <a href="#RFC6854">[RFC6854]</a> allows the MUA or MSA to use the group syntax for the RFC5322.From header field to avoid a known MTA to reject the message (if RFC5322 is implemented strictly). While this will alleviate the EAI problem, it will allow a simple DMARC workaround since the message may no longer have a single usable domain in the RFC5322.From header field, making DMARC inapplicable. DMARC implementations that pay attention to the validity of the domains in the RFC5322.From may then have to choose between EAI transitioning compliance (accepting the email without a domain in RFC5322.From) and security (rejecting RFC-compliant email for lack of a domain in the RFC5322.From). The practical solution is to upgrade MTAs to support EAI (SMTPUTF8), avoiding the transition issue.</li>
-</ul>
 <h1 id="rfc.section.4.1.3"><a href="#rfc.section.4.1.3">4.1.3.</a> Mitigations for ReSenders</h1>
 <h1 id="rfc.section.4.1.3.1"><a href="#rfc.section.4.1.3.1">4.1.3.1.</a> Changes to the RFC5322.From</h1>
-<p id="rfc.section.4.1.3.1.p.1">Many ReSender issues can be avoided by using an RFC5322.From under the ReSender's control, instead of the initial RFC5322.From. This will correct identifier alignment issues and allow arbitrary message modification, for instance. When ReSenders change the RFC5322.From, it is desirable to preserve the information about the original initiator of the message. The <a href="#RFC5703">Original-From</a> <cite title="NONE">[RFC5703]</cite> (or X-Original-From) header field is used for this purpose in various contexts (X- header fields name are discouraged by <a href="#RFC6648">[RFC6648]</a>).</p>
-<p id="rfc.section.4.1.3.1.p.2">However, handling of Original-From (or X-Original-From) is not defined anywhere. It is not currently used consistently or displayed to the user, but in any situation where it is used, it is a new unauthenticated identifier available for exploitation.</p>
+<p id="rfc.section.4.1.3.1.p.1">Many ReSender issues can be avoided by using an RFC5322.From header field under the ReSender's control, instead of the initial RFC5322.From. This will correct identifier alignment issues and allow arbitrary message modification, for instance. When ReSenders change the RFC5322.From, it is desirable to preserve the information about the original initiator of the message.</p>
+<p id="rfc.section.4.1.3.1.p.2">A first option is to use the <a href="#RFC5703">Original-From</a> <cite title="NONE">[RFC5703]</cite> (or X-Original-From) header field for this purpose in various contexts (X- header fields name are discouraged by <a href="#RFC6648">[RFC6648]</a>). However, handling of Original-From (or X-Original-From) is not defined anywhere. It is not currently used consistently or displayed to the user, but in any situation where it is used, it is a new unauthenticated identifier available for exploitation.</p>
+<p id="rfc.section.4.1.3.1.p.3">Another option for ReSenders is to rewrite the RFC5322.From header field address to a valid forwarding address to the original sender, in a domain that the ReSender controls.</p>
 <h1 id="rfc.section.4.1.3.2"><a href="#rfc.section.4.1.3.2">4.1.3.2.</a> Avoiding Message Modification</h1>
 <p/>
 
@@ -860,12 +846,6 @@
     </tr>
     <tr>
       <td class="reference">
-        <b id="RFC6530">[RFC6530]</b>
-      </td>
-      <td class="top"><a>Klensin, J.</a> and <a>Y. Ko</a>, "<a href="http://tools.ietf.org/html/rfc6530">Overview and Framework for Internationalized Email</a>", RFC 6530, February 2012.</td>
-    </tr>
-    <tr>
-      <td class="reference">
         <b id="RFC6541">[RFC6541]</b>
       </td>
       <td class="top"><a>Kucherawy, M.</a>, "<a href="http://tools.ietf.org/html/rfc6541">DomainKeys Identified Mail (DKIM) Authorized Third-Party Signatures</a>", RFC 6541, February 2012.</td>
@@ -875,12 +855,6 @@
         <b id="RFC6648">[RFC6648]</b>
       </td>
       <td class="top"><a>Saint-Andre, P.</a>, <a>Crocker, D.</a> and <a>M. Nottingham</a>, "<a href="http://tools.ietf.org/html/rfc6648">Deprecating the "X-" Prefix and Similar Constructs in Application Protocols</a>", BCP 178, RFC 6648, June 2012.</td>
-    </tr>
-    <tr>
-      <td class="reference">
-        <b id="RFC6854">[RFC6854]</b>
-      </td>
-      <td class="top"><a>Leiba, B.</a>, "<a href="http://tools.ietf.org/html/rfc6854">Update to Internet Message Format to Allow Group Syntax in the "From:" and "Sender:" Header Fields</a>", RFC 6854, March 2013.</td>
     </tr>
     <tr>
       <td class="reference">

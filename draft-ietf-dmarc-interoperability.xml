@@ -16,10 +16,8 @@ An alternate method (rfc include) is described in the references. -->
 <!ENTITY RFC5703 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5703.xml">
 <!ENTITY RFC6376 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6376.xml">
 <!ENTITY RFC6377 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6377.xml">
-<!ENTITY RFC6530 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6530.xml">
 <!ENTITY RFC6541 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6541.xml">
 <!ENTITY RFC6648 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6648.xml">
-<!ENTITY RFC6854 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6854.xml">
 <!ENTITY RFC7208 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7208.xml">
 <!ENTITY RFC7372 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7372.xml">
 <!ENTITY RFC7489 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7489.xml">
@@ -55,7 +53,7 @@ please see http://xml.resource.org/authoring/README.html. -->
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-dmarc-interoperability-03" ipr="trust200902">
+<rfc category="info" docName="draft-ietf-dmarc-interoperability-04" ipr="trust200902">
 	<!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -129,7 +127,7 @@ please see http://xml.resource.org/authoring/README.html. -->
 				<!-- uri and facsimile elements may also be added -->
 			</address>
 		</author>
-		<date month="May" year="2015"/>
+		<date month="June" year="2015"/>
 		<!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
          in the current day for you. If only the current year is specified, xml2rfc will fill 
 	 in the current day and month for you. If the year is not the current one, it is 
@@ -233,12 +231,6 @@ please see http://xml.resource.org/authoring/README.html. -->
 					</section>
 					<section title="Header Standardization">
 						<t>An MTA may standardize headers, usually in order to make non-RFC compliant headers properly compliant. For instance, some common MTAs will correct comprehensible but non-compliant date formats to compliant ones. This correction is outside the scope of DKIM canonicalization and will invalidate DKIM signatures. This correction is also outside the scope of this document in providing solutions for non RFC compliant emails.</t>
-					</section>
-					<section title="Email Address Internationalization">
-						<t>A DMARC related issue may arise in the context of Email Address Internationalization <xref target="RFC6530"/>.  <xref target="RFC6854"/> allows group syntax in the RFC5322.From header field during the transition period to SMTPUTF8.  If an EAI/SMTPUTF8-aware MTA needs to transmit a message to a non-aware MTA, the non aware MTA will reject it. While an MTA will not downgrade a message. The MUA or MSA may resend the message using the group syntax to allow the non-aware MTA to receive the email.</t>
-            <t>In another case, a MDA, may use the group syntax to pass a message to a non EAI/SMTPUTF8-aware MS (or user email client). This message could then be forwarded to another recipient.</t>
-						<t>For an MTA, the group syntax may result in the impossibility of finding a domain with a DMARC policy associated with it. If the receiving MTA pays attention to the validity and reputation of domains, this may present its own set of delivery problems. For instance an MTA may refuse emails with no valid or emailable domain in the RFC5322.From as to avoid simple workarounds against DMARC. </t>
-						<t>This case is not an interoperability issue with DMARC, but with other email policies an MTA may have to support DMARC.</t>
 					</section>
 				</section>
 				<section title="Message Delivery Agents">
@@ -356,16 +348,12 @@ please see http://xml.resource.org/authoring/README.html. -->
 							<t>Receivers can amalgamate data from their user base to identify forwarders and use such list for a DMARC local policy override. This process may be easier for large receivers, where there is data and resources to create such lists, than for small receivers.</t>
 						</list></t>
 					</section>
-          <section title="Email Address Internationalization">
-            <t><list style="symbols">
-              <t>During the transition from email systems that do not allow EAI (SMTPUTF8) to email systems that allow it, <xref target="RFC6854"/> allows the MUA or MSA to use the group syntax for the RFC5322.From header field to avoid a known MTA to reject the message (if RFC5322 is implemented strictly). While this will alleviate the EAI problem, it will allow a simple DMARC workaround since the message may no longer have a single usable domain in the RFC5322.From header field, making DMARC inapplicable. DMARC implementations that pay attention to the validity of the domains in the RFC5322.From may then have to choose between EAI transitioning compliance (accepting the email without a domain in RFC5322.From) and security (rejecting RFC-compliant email for lack of a domain in the RFC5322.From). The practical solution is to upgrade MTAs to support EAI (SMTPUTF8), avoiding the transition issue.</t>
-            </list></t>
-          </section>
 				</section>
 				<section title="Mitigations for ReSenders">
 					<section title="Changes to the RFC5322.From">
-						<t>Many ReSender issues can be avoided by using an RFC5322.From under the ReSender's control, instead of the initial RFC5322.From. This will correct identifier alignment issues and allow arbitrary message modification, for instance. When ReSenders change the RFC5322.From, it is desirable to preserve the information about the original initiator of the message. The <xref target="RFC5703">Original-From</xref> (or X-Original-From) header field is used for this purpose in various contexts (X- header fields name are discouraged by <xref target="RFC6648"/>).</t>
-						<t>However, handling of Original-From (or X-Original-From) is not defined anywhere. It is not currently used consistently or displayed to the user, but in any situation where it is used, it is a new unauthenticated identifier available for exploitation.</t>
+						<t>Many ReSender issues can be avoided by using an RFC5322.From header field under the ReSender's control, instead of the initial RFC5322.From. This will correct identifier alignment issues and allow arbitrary message modification, for instance. When ReSenders change the RFC5322.From, it is desirable to preserve the information about the original initiator of the message.</t>
+						<t>A first option is to use the <xref target="RFC5703">Original-From</xref> (or X-Original-From) header field for this purpose in various contexts (X- header fields name are discouraged by <xref target="RFC6648"/>). However, handling of Original-From (or X-Original-From) is not defined anywhere. It is not currently used consistently or displayed to the user, but in any situation where it is used, it is a new unauthenticated identifier available for exploitation.</t>
+						<t>Another option for ReSenders is to rewrite the RFC5322.From header field address to a valid forwarding address to the original sender, in a domain that the ReSender controls.</t>
 					</section>
 					<section title="Avoiding Message Modification">
 						<t><list style="symbols">
@@ -439,10 +427,8 @@ please see http://xml.resource.org/authoring/README.html. -->
       &RFC5703;
       &RFC6376;
       &RFC6377;
-      &RFC6530;
       &RFC6541;
       &RFC6648;
-      &RFC6854;
       &RFC7208;
       &RFC7372;
     </references>
