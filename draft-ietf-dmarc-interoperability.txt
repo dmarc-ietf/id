@@ -5,14 +5,14 @@
 DMARC                                                     F. Martin, Ed.
 Internet-Draft                                                  LinkedIn
 Intended status: Informational                              E. Lear, Ed.
-Expires: February 17, 2016                            Cisco Systems GmbH
+Expires: February 18, 2016                            Cisco Systems GmbH
                                                          T. Draegen, Ed.
                                                           dmarcian, inc.
                                                           E. Zwicky, Ed.
                                                                    Yahoo
                                                         K. Andersen, Ed.
                                                                 LinkedIn
-                                                         August 16, 2015
+                                                         August 17, 2015
 
 
      Interoperability Issues Between DMARC and Indirect Email Flows
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on February 17, 2016.
+   This Internet-Draft will expire on February 18, 2016.
 
 
 
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Martin, et al.          Expires February 17, 2016               [Page 1]
+Martin, et al.          Expires February 18, 2016               [Page 1]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Martin, et al.          Expires February 17, 2016               [Page 2]
+Martin, et al.          Expires February 18, 2016               [Page 2]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -165,7 +165,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016               [Page 3]
+Martin, et al.          Expires February 18, 2016               [Page 3]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -221,7 +221,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016               [Page 4]
+Martin, et al.          Expires February 18, 2016               [Page 4]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -254,10 +254,11 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
    in RFC5322.From, SPF will not authenticate it unless it is also the
    domain which the SPF analysis has checked.  Also note that
    RFC7208.MAILFROM definition is different from RFC5321.MailFrom
-   [RFC5321] definition which was the Authenticated Identifier in the
-   earlier version [RFC4408] of the SPF specification.  Not all
-   implementations have updated to the [RFC7208] algorithm which can
-   lead to unexpected results.
+   [RFC5321] definition.  The RFC7208.MAILFROM definition has not
+   changed from the RFC4408.MAILFROM [RFC4408] definition, the earlier
+   version of the SPF specification, however, not all implementations
+   have updated to the [RFC7208] algorithm which can lead to unexpected
+   results.
 
 2.2.  Message Forwarding
 
@@ -272,16 +273,17 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
    field.  Forwarding introduces specific issues to the availability of
    SPF-based Authenticated Identifiers:
 
-   o  If the RFC5321.MailFrom is present and the forwarder maintains the
-      original RFC5321.MailFrom, SPF validation will fail unless the
 
 
 
-Martin, et al.          Expires February 17, 2016               [Page 5]
+
+Martin, et al.          Expires February 18, 2016               [Page 5]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
+   o  If the RFC5321.MailFrom is present and the forwarder maintains the
+      original RFC5321.MailFrom, SPF validation will fail unless the
       forwarder is an authorized part of the originator's email sending
       infrastructure.  If the forwarder replaces the RFC5321.MailFrom
       with its own domain, SPF may pass but Identifier Alignment with
@@ -319,7 +321,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
    relaxed canonicalization is more computationally intensive and may
    not have been preferred in the early deployment of DKIM, leaving some
    deployments using the less forgiving "simple" canonicalization.
-   While the prevalance is unknown, there are some DKIM checkers which
+   While the prevalence is unknown, there are some DKIM checkers which
    have problems evaluating relaxed canonicalization correctly.
 
 3.  Internet Mail Architecture, DMARC, and Indirect Email Flows
@@ -331,9 +333,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-
-
-Martin, et al.          Expires February 17, 2016               [Page 6]
+Martin, et al.          Expires February 18, 2016               [Page 6]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -389,7 +389,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016               [Page 7]
+Martin, et al.          Expires February 18, 2016               [Page 7]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -445,7 +445,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016               [Page 8]
+Martin, et al.          Expires February 18, 2016               [Page 8]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -501,7 +501,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016               [Page 9]
+Martin, et al.          Expires February 18, 2016               [Page 9]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -557,7 +557,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016              [Page 10]
+Martin, et al.          Expires February 18, 2016              [Page 10]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -613,7 +613,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016              [Page 11]
+Martin, et al.          Expires February 18, 2016              [Page 11]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -669,7 +669,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016              [Page 12]
+Martin, et al.          Expires February 18, 2016              [Page 12]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -725,7 +725,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016              [Page 13]
+Martin, et al.          Expires February 18, 2016              [Page 13]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -781,7 +781,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016              [Page 14]
+Martin, et al.          Expires February 18, 2016              [Page 14]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -837,7 +837,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016              [Page 15]
+Martin, et al.          Expires February 18, 2016              [Page 15]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -893,7 +893,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016              [Page 16]
+Martin, et al.          Expires February 18, 2016              [Page 16]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -949,7 +949,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016              [Page 17]
+Martin, et al.          Expires February 18, 2016              [Page 17]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -1005,7 +1005,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016              [Page 18]
+Martin, et al.          Expires February 18, 2016              [Page 18]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -1061,7 +1061,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-Martin, et al.          Expires February 17, 2016              [Page 19]
+Martin, et al.          Expires February 18, 2016              [Page 19]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
@@ -1083,78 +1083,59 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
    [RFC2045]  Freed, N. and N. Borenstein, "Multipurpose Internet Mail
               Extensions (MIME) Part One: Format of Internet Message
-              Bodies", RFC 2045, DOI 10.17487/RFC2045, November 1996,
-              <http://www.rfc-editor.org/info/rfc2045>.
+              Bodies", RFC 2045, November 1996.
 
-   [RFC3463]  Vaudreuil, G., "Enhanced Mail System Status Codes",
-              RFC 3463, DOI 10.17487/RFC3463, January 2003,
-              <http://www.rfc-editor.org/info/rfc3463>.
+   [RFC3463]  Vaudreuil, G., "Enhanced Mail System Status Codes", RFC
+              3463, January 2003.
 
    [RFC4408]  Wong, M. and W. Schlitt, "Sender Policy Framework (SPF)
-              for Authorizing Use of Domains in E-Mail, Version 1",
-              RFC 4408, DOI 10.17487/RFC4408, April 2006,
-              <http://www.rfc-editor.org/info/rfc4408>.
+              for Authorizing Use of Domains in E-Mail, Version 1", RFC
+              4408, April 2006.
 
-   [RFC5228]  Guenther, P., Ed. and T. Showalter, Ed., "Sieve: An Email
-              Filtering Language", RFC 5228, DOI 10.17487/RFC5228,
-              January 2008, <http://www.rfc-editor.org/info/rfc5228>.
+   [RFC5228]  Guenther, P. and T. Showalter, "Sieve: An Email Filtering
+              Language", RFC 5228, January 2008.
 
    [RFC5321]  Klensin, J., "Simple Mail Transfer Protocol", RFC 5321,
-              DOI 10.17487/RFC5321, October 2008,
-              <http://www.rfc-editor.org/info/rfc5321>.
+              October 2008.
 
    [RFC5322]  Resnick, P., Ed., "Internet Message Format", RFC 5322,
-              DOI 10.17487/RFC5322, October 2008,
-              <http://www.rfc-editor.org/info/rfc5322>.
+              October 2008.
 
-   [RFC5598]  Crocker, D., "Internet Mail Architecture", RFC 5598,
-              DOI 10.17487/RFC5598, July 2009,
-              <http://www.rfc-editor.org/info/rfc5598>.
+   [RFC5598]  Crocker, D., "Internet Mail Architecture", RFC 5598, July
+              2009.
+
+   [RFC5703]  Hansen, T. and C. Daboo, "Sieve Email Filtering: MIME Part
+              Tests, Iteration, Extraction, Replacement, and Enclosure",
+              RFC 5703, October 2009.
+
+   [RFC6376]  Crocker, D., Hansen, T., and M. Kucherawy, "DomainKeys
+              Identified Mail (DKIM) Signatures", STD 76, RFC 6376,
+              September 2011.
+
+   [RFC6377]  Kucherawy, M., "DomainKeys Identified Mail (DKIM) and
+              Mailing Lists", BCP 167, RFC 6377, September 2011.
 
 
 
-
-
-
-
-Martin, et al.          Expires February 17, 2016              [Page 20]
+Martin, et al.          Expires February 18, 2016              [Page 20]
 
 Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
-   [RFC5703]  Hansen, T. and C. Daboo, "Sieve Email Filtering: MIME Part
-              Tests, Iteration, Extraction, Replacement, and Enclosure",
-              RFC 5703, DOI 10.17487/RFC5703, October 2009,
-              <http://www.rfc-editor.org/info/rfc5703>.
-
-   [RFC6376]  Crocker, D., Ed., Hansen, T., Ed., and M. Kucherawy, Ed.,
-              "DomainKeys Identified Mail (DKIM) Signatures", STD 76,
-              RFC 6376, DOI 10.17487/RFC6376, September 2011,
-              <http://www.rfc-editor.org/info/rfc6376>.
-
-   [RFC6377]  Kucherawy, M., "DomainKeys Identified Mail (DKIM) and
-              Mailing Lists", BCP 167, RFC 6377, DOI 10.17487/RFC6377,
-              September 2011, <http://www.rfc-editor.org/info/rfc6377>.
-
    [RFC6541]  Kucherawy, M., "DomainKeys Identified Mail (DKIM)
-              Authorized Third-Party Signatures", RFC 6541,
-              DOI 10.17487/RFC6541, February 2012,
-              <http://www.rfc-editor.org/info/rfc6541>.
+              Authorized Third-Party Signatures", RFC 6541, February
+              2012.
 
    [RFC6648]  Saint-Andre, P., Crocker, D., and M. Nottingham,
               "Deprecating the "X-" Prefix and Similar Constructs in
-              Application Protocols", BCP 178, RFC 6648,
-              DOI 10.17487/RFC6648, June 2012,
-              <http://www.rfc-editor.org/info/rfc6648>.
+              Application Protocols", BCP 178, RFC 6648, June 2012.
 
    [RFC7208]  Kitterman, S., "Sender Policy Framework (SPF) for
               Authorizing Use of Domains in Email, Version 1", RFC 7208,
-              DOI 10.17487/RFC7208, April 2014,
-              <http://www.rfc-editor.org/info/rfc7208>.
+              April 2014.
 
-   [RFC7372]  Kucherawy, M., "Email Authentication Status Codes",
-              RFC 7372, DOI 10.17487/RFC7372, September 2014,
-              <http://www.rfc-editor.org/info/rfc7372>.
+   [RFC7372]  Kucherawy, M., "Email Authentication Status Codes", RFC
+              7372, September 2014.
 
 8.2.  Informative References
 
@@ -1167,16 +1148,6 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
               Kucherawy, M., "A List-safe Canonicalization for
               DomainKeys Identified Mail (DKIM)", draft-kucherawy-dkim-
               list-canon-00 (work in progress), June 2014.
-
-
-
-
-
-
-Martin, et al.          Expires February 17, 2016              [Page 21]
-
-Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
-
 
    [I-D.kucherawy-dkim-transform]
               Kucherawy, M., "Recognized Transformations of Messages
@@ -1197,10 +1168,19 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
               Otis, D. and D. Black, "Third-Party Authorization Label",
               draft-otis-tpa-label-00 (work in progress), May 2014.
 
-   [RFC7489]  Kucherawy, M., Ed. and E. Zwicky, Ed., "Domain-based
-              Message Authentication, Reporting, and Conformance
-              (DMARC)", RFC 7489, DOI 10.17487/RFC7489, March 2015,
-              <http://www.rfc-editor.org/info/rfc7489>.
+
+
+
+
+
+Martin, et al.          Expires February 18, 2016              [Page 21]
+
+Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
+
+
+   [RFC7489]  Kucherawy, M. and E. Zwicky, "Domain-based Message
+              Authentication, Reporting, and Conformance (DMARC)", RFC
+              7489, March 2015.
 
 Authors' Addresses
 
@@ -1220,18 +1200,6 @@ Authors' Addresses
 
    Phone: +41 44 878 9200
    Email: lear@cisco.com
-
-
-
-
-
-
-
-
-
-Martin, et al.          Expires February 17, 2016              [Page 22]
-
-Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
    Tim Draegen (editor)
@@ -1261,28 +1229,4 @@ Internet-Draft     DMARC Indirect Email Interop Issues       August 2015
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Martin, et al.          Expires February 17, 2016              [Page 23]
+Martin, et al.          Expires February 18, 2016              [Page 22]
