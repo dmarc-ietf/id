@@ -51,7 +51,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-dmarc-interoperability-06" ipr="trust200902">
+<rfc category="info" docName="draft-ietf-dmarc-interoperability-07" ipr="trust200902">
 	<!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -140,7 +140,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 				<!-- uri and facsimile elements may also be added -->
 			</address>
 		</author>
-		<date month="August" year="2015"/>
+		<date month="September" year="2015"/>
 		<!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
          in the current day for you. If only the current year is specified, xml2rfc will fill 
 	 in the current day and month for you. If the year is not the current one, it is 
@@ -188,7 +188,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 				<t>DMARC allows for Identifier Alignment to be achieved in two different modes: strict and relaxed. Strict mode requires an exact match of either of the Authenticated Identifiers to the message's RFC5322.From header field <xref target="RFC5322"/>. Relaxed mode allows for Identifier Alignment if Authenticated Identifiers and the message's RFC5322.From header field <xref target="RFC5322"/> share the same Organizational Domain. In general, interoperability issues between strict and relaxed modes are the same, with strict mode constraining the application of possible solutions. The mitigations described in this document generally require a relaxed mode of Identifier Alignment.</t>
 				<t>DKIM provides a cryptographic means for a domain identifier to be associated with a particular message. As a standalone technology DKIM identifiers are not required to be relevant to the content of a message. However, for a DKIM identifier to align in DMARC, the signing domain of a valid signature must be part of the same Organizational Domain as the domain in the RFC5322.From header field <xref target="RFC5322"/>. </t> 
 				<t>In addition, DKIM allows for the possibility of multiple valid signatures.  The DMARC mechanism will process Authenticated Identifiers that are based on DKIM signatures until an aligned Authenticated Identifier is found (if any). However, operational experience has shown that some implementations have difficulty processing multiple signatures.  The impact on DMARC processing is clear: implementations that cannot process multiple DKIM signatures may incorrectly flag messages as "failing DMARC" and erroneously apply DMARC based policy to otherwise conforming messages. </t> 
-				<t>SPF can provide two Authenticated Identifiers. The DMARC relevant Authenticated Identifiers that SPF provides is the <xref target="RFC7208">RFC7208.MAILFROM</xref> based on the <xref target="RFC5321">RFC5321.MailFrom</xref> domain, or, if the RFC5321.MailFrom address is absent (as in the case of "bounce" messages, on the domain found in the RFC5321.HELO/EHLO SMTP command. The SPF validated domain in RFC7208.MAILFROM must be part of the same Organizational Domain as the domain in the RFC5322.From header field to be aligned. It is important to note that even when an SPF record exists for the domain in RFC5322.From, SPF will not authenticate it unless it is also the domain which the SPF analysis has checked.  Also note that RFC7208.MAILFROM definition is different from <xref target="RFC5321">RFC5321.MailFrom</xref> definition. </t> 
+				<t>SPF can provide two Authenticated Identifiers. The DMARC relevant Authenticated Identifiers that SPF provides is the <xref target="RFC7208">RFC7208.MAILFROM</xref> based on the <xref target="RFC5321">RFC5321.MailFrom</xref> domain, or, if the RFC5321.MailFrom address is absent (as in the case of "bounce" messages), on the RFC5321.HELO/EHLO SMTP domain. The SPF validated domain in RFC7208.MAILFROM must be part of the same Organizational Domain as the domain in the RFC5322.From header field to be aligned. It is important to note that even when an SPF record exists for the domain in RFC5322.From, SPF will not authenticate it unless it is also the domain which the SPF analysis has checked.  Also note that RFC7208.MAILFROM definition is different from <xref target="RFC5321">RFC5321.MailFrom</xref> definition. </t> 
 			</section> 
 			<section title="Message Forwarding">
 				<t>Message forwarding is a generic concept encapsulating a variety of behaviors.  <xref target="IMA_DMARC"/> describes forwarding behavior as it relates to the components of the Internet Mail Architecture.</t>
@@ -348,7 +348,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 							<t> MTAs handling multiple domains may choose to change RFC5321.MailFrom to align with RFC5322.From to improve SPF usability for DMARC.</t>
 							<t> MTAs handling multiple domains may also choose to align RFC5321.HELO/EHLO to RFC5322.From, particularly when sending bounce messages. Dynamically adjusting the RFC5321.HELO based on the RFC5322.From may not be possible for some MTA software.</t>
 							<t> MTAs may choose to DKIM sign bounces with an aligned domain to allow DKIM-based DMARC pass.</t>
-							<t> MTAs sending email on behalf of multiple domains may require Domain Owners to provide DKIM keys to use DKIM to avoid DMARC alignment issues with SPF. Managing DKIM keys with a third party has security risks which should be carefully managed. Methods involving CNAMEs and/or subdomains may alleviate some risks.</t>
+							<t> MTAs sending email on behalf of multiple domains may require Domain Owners to provide DKIM keys to use DKIM to avoid SPF validation issues, given the requirement for DMARC alignment with the RFC5322.From header field. Managing DKIM keys with a third party has security risks which should be carefully managed. Methods involving CNAMEs and/or subdomains may alleviate some risks.</t>
 							<t>Senders who are sending on behalf of users in other Administrative Domains may choose to use an RFC5322.From under the sender's control. The new From can be either a forwarding address in a domain controlled by the Sender, or a placeholder address, with the original user's address in a RFC5322.Reply-to header field. However, performing this modification may cause the recipient's MUA to deviate from customary behavior.</t>
               				<t>Senders can use domains with distinct DMARC policies for email sent directly and email known to use indirect mail flows. However, for known brands, all active domains are likely to be targeted equally by abusers.</t>
 						</list></t>
