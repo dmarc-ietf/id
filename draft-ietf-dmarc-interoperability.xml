@@ -142,7 +142,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 				<!-- uri and facsimile elements may also be added -->
 			</address>
 		</author>
-		<date month="September" year="2015"/>
+		<date month="October" year="2015"/>
 		<!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
          in the current day for you. If only the current year is specified, xml2rfc will fill 
 	 in the current day and month for you. If the year is not the current one, it is 

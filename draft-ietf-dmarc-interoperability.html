@@ -1,5 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+Parsing file draft-ietf-dmarc-interoperability.xml
+Created file draft-ietf-dmarc-interoperability.html
+ict.dtd">
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
@@ -419,12 +420,12 @@
 <link href="#rfc.authors" rel="Chapter"/>
 
 
-  <meta name="generator" content="xml2rfc version 2.4.8 - http://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.5.0 - http://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Martin, F., Ed., Lear, E., Ed., Draegen, T., Ed., Zwicky, E., Ed., and K. Andersen, Ed." />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-dmarc-interoperability-07" />
-  <meta name="dct.issued" scheme="ISO8601" content="2015-9-28" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-dmarc-interoperability-08" />
+  <meta name="dct.issued" scheme="ISO8601" content="2015-10-19" />
   <meta name="dct.abstract" content="DMARC introduces a mechanism for expressing domain-level policies and preferences for email message validation, disposition, and reporting.  The DMARC mechanism can encounter interoperability issues when messages do not flow directly from the author's administrative domain to the final recipients. Collectively these email flows are referred to as indirect email flows.  This document describes interoperability issues between DMARC and indirect email flows. Possible methods for addressing interoperability issues are presented." />
   <meta name="description" content="DMARC introduces a mechanism for expressing domain-level policies and preferences for email message validation, disposition, and reporting.  The DMARC mechanism can encounter interoperability issues when messages do not flow directly from the author's administrative domain to the final recipients. Collectively these email flows are referred to as indirect email flows.  This document describes interoperability issues between DMARC and indirect email flows. Possible methods for addressing interoperability issues are presented." />
 
@@ -448,7 +449,7 @@
   <td class="right">E. Lear, Ed.</td>
 </tr>
 <tr>
-  <td class="left">Expires: March 31, 2016</td>
+  <td class="left">Expires: April 21, 2016</td>
   <td class="right">Cisco Systems GmbH</td>
 </tr>
 <tr>
@@ -477,7 +478,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">September 28, 2015</td>
+  <td class="right">October 19, 2015</td>
 </tr>
 
     	
@@ -485,7 +486,7 @@
   </table>
 
   <p class="title">Interoperability Issues Between DMARC and Indirect Email Flows<br />
-  <span class="filename">draft-ietf-dmarc-interoperability-07</span></p>
+  <span class="filename">draft-ietf-dmarc-interoperability-08</span></p>
   
   <h1 id="rfc.abstract">
   <a href="#rfc.abstract">Abstract</a>
@@ -497,7 +498,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on March 31, 2016.</p>
+<p>This Internet-Draft will expire on April 21, 2016.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
@@ -510,55 +511,55 @@
   <ul class="toc">
 
   	<li>1.   <a href="#rfc.section.1">Introduction</a></li>
-<li>1.1.   <a href="#rfc.section.1.1">Document Conventions</a></li>
-<li>2.   <a href="#rfc.section.2">Causes of Interoperability Issues</a></li>
-<li>2.1.   <a href="#rfc.section.2.1">Identifier Alignment</a></li>
+<ul><li>1.1.   <a href="#rfc.section.1.1">Document Conventions</a></li>
+</ul><li>2.   <a href="#rfc.section.2">Causes of Interoperability Issues</a></li>
+<ul><li>2.1.   <a href="#rfc.section.2.1">Identifier Alignment</a></li>
 <li>2.2.   <a href="#rfc.section.2.2">Message Forwarding</a></li>
 <li>2.3.   <a href="#rfc.section.2.3">Message Modification</a></li>
-<li>3.   <a href="#rfc.section.3">Internet Mail Architecture, DMARC, and Indirect Email Flows</a></li>
-<li>3.1.   <a href="#rfc.section.3.1">Message Handling System</a></li>
-<li>3.1.1.   <a href="#rfc.section.3.1.1">Message Submission Agents</a></li>
+</ul><li>3.   <a href="#rfc.section.3">Internet Mail Architecture, DMARC, and Indirect Email Flows</a></li>
+<ul><li>3.1.   <a href="#rfc.section.3.1">Message Handling System</a></li>
+<ul><li>3.1.1.   <a href="#rfc.section.3.1.1">Message Submission Agents</a></li>
 <li>3.1.2.   <a href="#rfc.section.3.1.2">Message Transfer Agents</a></li>
-<li>3.1.2.1.   <a href="#rfc.section.3.1.2.1">Message Encoding</a></li>
+<ul><li>3.1.2.1.   <a href="#rfc.section.3.1.2.1">Message Encoding</a></li>
 <li>3.1.2.2.   <a href="#rfc.section.3.1.2.2">Header Standardization</a></li>
 <li>3.1.2.3.   <a href="#rfc.section.3.1.2.3">Content Validation</a></li>
-<li>3.1.3.   <a href="#rfc.section.3.1.3">Message Delivery Agents</a></li>
-<li>3.2.   <a href="#rfc.section.3.2">Mediators</a></li>
-<li>3.2.1.   <a href="#rfc.section.3.2.1">Alias</a></li>
+</ul><li>3.1.3.   <a href="#rfc.section.3.1.3">Message Delivery Agents</a></li>
+</ul><li>3.2.   <a href="#rfc.section.3.2">Mediators</a></li>
+<ul><li>3.2.1.   <a href="#rfc.section.3.2.1">Alias</a></li>
 <li>3.2.2.   <a href="#rfc.section.3.2.2">ReSenders</a></li>
 <li>3.2.3.   <a href="#rfc.section.3.2.3">Mailing Lists</a></li>
-<li>3.2.3.1.   <a href="#rfc.section.3.2.3.1">Mailing List Operational Effects</a></li>
-<li>3.2.4.   <a href="#rfc.section.3.2.4">Gateways</a></li>
+<ul><li>3.2.3.1.   <a href="#rfc.section.3.2.3.1">Mailing List Operational Effects</a></li>
+</ul><li>3.2.4.   <a href="#rfc.section.3.2.4">Gateways</a></li>
 <li>3.2.5.   <a href="#rfc.section.3.2.5">Boundary Filters</a></li>
-<li>3.3.   <a href="#rfc.section.3.3">Combinations</a></li>
-<li>4.   <a href="#rfc.section.4">Possible Mitigations of Interoperability Issues</a></li>
-<li>4.1.   <a href="#rfc.section.4.1">Mitigations in Current Use</a></li>
-<li>4.1.1.   <a href="#rfc.section.4.1.1">Mitigations for Senders</a></li>
-<li>4.1.1.1.   <a href="#rfc.section.4.1.1.1">Identifier Alignment</a></li>
+</ul><li>3.3.   <a href="#rfc.section.3.3">Combinations</a></li>
+</ul><li>4.   <a href="#rfc.section.4">Possible Mitigations of Interoperability Issues</a></li>
+<ul><li>4.1.   <a href="#rfc.section.4.1">Mitigations in Current Use</a></li>
+<ul><li>4.1.1.   <a href="#rfc.section.4.1.1">Mitigations for Senders</a></li>
+<ul><li>4.1.1.1.   <a href="#rfc.section.4.1.1.1">Identifier Alignment</a></li>
 <li>4.1.1.2.   <a href="#rfc.section.4.1.1.2">Message Modification</a></li>
-<li>4.1.2.   <a href="#rfc.section.4.1.2">Mitigations for Receivers</a></li>
-<li>4.1.2.1.   <a href="#rfc.section.4.1.2.1">Identifier Alignment</a></li>
+</ul><li>4.1.2.   <a href="#rfc.section.4.1.2">Mitigations for Receivers</a></li>
+<ul><li>4.1.2.1.   <a href="#rfc.section.4.1.2.1">Identifier Alignment</a></li>
 <li>4.1.2.2.   <a href="#rfc.section.4.1.2.2">Policy Override</a></li>
-<li>4.1.3.   <a href="#rfc.section.4.1.3">Mitigations for ReSenders</a></li>
-<li>4.1.3.1.   <a href="#rfc.section.4.1.3.1">Changes to the RFC5322.From</a></li>
+</ul><li>4.1.3.   <a href="#rfc.section.4.1.3">Mitigations for ReSenders</a></li>
+<ul><li>4.1.3.1.   <a href="#rfc.section.4.1.3.1">Changes to the RFC5322.From</a></li>
 <li>4.1.3.2.   <a href="#rfc.section.4.1.3.2">Avoiding Message Modification</a></li>
 <li>4.1.3.3.   <a href="#rfc.section.4.1.3.3">Mailing Lists</a></li>
-<li>4.2.   <a href="#rfc.section.4.2">Proposed and In-Progress Mitigations</a></li>
-<li>4.2.1.   <a href="#rfc.section.4.2.1">Getting More Radical: Requiring New Communication Paths Between MUAs</a></li>
-<li>5.   <a href="#rfc.section.5">IANA Considerations</a></li>
+</ul></ul><li>4.2.   <a href="#rfc.section.4.2">Proposed and In-Progress Mitigations</a></li>
+<ul><li>4.2.1.   <a href="#rfc.section.4.2.1">Getting More Radical: Requiring New Communication Paths Between MUAs</a></li>
+</ul></ul><li>5.   <a href="#rfc.section.5">IANA Considerations</a></li>
 <li>6.   <a href="#rfc.section.6">Security Considerations</a></li>
 <li>7.   <a href="#rfc.section.7">Acknowledgments</a></li>
 <li>8.   <a href="#rfc.references">References</a></li>
-<li>8.1.   <a href="#rfc.references.1">Normative References</a></li>
+<ul><li>8.1.   <a href="#rfc.references.1">Normative References</a></li>
 <li>8.2.   <a href="#rfc.references.2">Informative References</a></li>
-<li><a href="#rfc.authors">Authors' Addresses</a></li>
+</ul><li><a href="#rfc.authors">Authors' Addresses</a></li>
 
 
   </ul>
 
   <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> Introduction</h1>
 <p><a href="#RFC7489">DMARC</a> <cite title="NONE">[RFC7489]</cite> introduces a mechanism for expressing domain-level policies and preferences for message validation, disposition, and reporting.  The DMARC mechanism can encounter several different types of interoperability issues due to third-party message sourcing, message transformation or rerouting.</p>
-<p id="rfc.section.1.p.2">At the time of the writing of this document, the DMARC base specification is published as an Informational RFC and has seen significant deployment within the email community.</p>
+<p id="rfc.section.1.p.2">At the time of the writing of this document, the DMARC base specification is published as Informational <a href="#RFC7489">RFC7489</a> <cite title="NONE">[RFC7489]</cite> and has seen significant deployment within the email community.</p>
 <p id="rfc.section.1.p.3">Cases in which email does not flow directly from the author's administrative domain to the recipient's domain(s) are collectively referred to in this document as indirect email flows.  Due to existing and increasing adoption of DMARC, the impact of DMARC-based email rejection policies on indirect email flows can be significant for a select subset of general email traffic. </p>
 <p id="rfc.section.1.p.4">Several known causes of interoperability issues are presented, followed by a description of components within the Internet Mail Architecture <a href="#RFC5598">[RFC5598]</a> where interoperability issues can arise.</p>
 <p id="rfc.section.1.p.5">Finally, known and possible methods for addressing interoperability issues are presented.  There are often multiple ways to address any given interoperability issue.  While this document strives to be comprehensive in its review, it should not be treated as complete. Also, some practices which are in use at the time of this document may or may not be "best practices" as future standards evolve.</p>
@@ -711,6 +712,7 @@
   <li>Malware scanning: To protect readers and its reputation, an MTA that transfers a message may remove content believed to be harmful from messages, reformulate content to canonical formats in order to make them more trustworthy or easier to scan, and/or add text in the body to indicate the message has been scanned. Any such modifications would invalidate a DKIM signature.</li>
   <li>Spam filtering: To protect reputation and assist other MTAs, an MTA may modify a message to indicate its decision that the message is likely to be unwanted, and/or add text in the body to indicate that such filtering has been done.</li>
   <li>Other text additions: An MTA may add an organizational disclaimer or advertisement, for instance.</li>
+  <li>URL alteration: Some systems will rewrite or alter embedded URLs as a way to control the potential threat form malware.</li>
   <li>Secondary MX services: The secondary MX for an organization may be external to the normal mail processing for the organization, and queue and forward to the primary when it becomes available. This will not invalidate DKIM but will prevent the primary from validating SPF normally. In this case, however, it is inappropriate for a primary MX server to perform an SPF check against its own secondaries.  Rather, the secondary MX should perform this function and employ some trusted mechanism to communicate the results of the SPF, DKIM and DMARC evaluation(s) to the primary MX server.</li>
 </ul>
 
@@ -795,6 +797,7 @@
   <li>DKIM with recorded transformations, <a href="#I-D.kucherawy-dkim-transform">[I-D.kucherawy-dkim-transform]</a> is proposed to indicate what limited transformations were done to the message so that a receiver could reverse them and confirm the validity of the orignal DKIM signature.</li>
   <li><a href="#I-D.kucherawy-original-authres">[I-D.kucherawy-original-authres]</a> is intended as a way to pass along Original Authentication Results to "downstream" receivers. It is not widely implemented and relies on a trust relationship between the forwarder and the other receivers.</li>
   <li><a href="#I-D.levine-dkim-conditional">[I-D.levine-dkim-conditional]</a> could be used to have the sender add a limited DKIM signature, that signs only a very limited set of header fields and not the body of the message. This DKIM signature would come with the condition that a subsequent known domain fully DKIM sign the message. For instance a Mailing List could transform the message, add its DKIM signature and there would be a valid DKIM signature aligned with the RFC5322.From that would satisfy DMARC while limiting the possibilities of replay attack.</li>
+  <li><a href="#I-D.andersen-arc">[I-D.andersen-arc]</a> (and the accompanying <a href="#I-D.jones-arc-usage">usage recommendations</a> <cite title="NONE">[I-D.jones-arc-usage]</cite>) provides a proposed mechanism to provide an authenticated channel for the initial received authentication results to be conveyed through multiple ReSenders ("intermediaries" in the terminology used in the draft) to the ultimate receiving system. This information is proposed as the basis for improved local policy decisions by the receiver.</li>
 </ul>
 
 <p> </p>
@@ -817,85 +820,97 @@
       <td class="reference">
         <b id="RFC2045">[RFC2045]</b>
       </td>
-      <td class="top"><a href="mailto:ned@innosoft.com" title="Innosoft International, Inc.">Freed, N.</a> and <a href="mailto:nsb@nsb.fv.com" title="First Virtual Holdings">N. Borenstein</a>, "<a href="http://tools.ietf.org/html/rfc2045">Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies</a>", RFC 2045, November 1996.</td>
+      <td class="top"><a>Freed, N.</a> and <a>N. Borenstein</a>, "<a href="http://tools.ietf.org/html/rfc2045">Multipurpose Internet Mail Extensions (MIME) Part One: Format of Internet Message Bodies</a>", RFC 2045, DOI 10.17487/RFC2045, November 1996.</td>
     </tr>
     <tr>
       <td class="reference">
         <b id="RFC3463">[RFC3463]</b>
       </td>
-      <td class="top"><a>Vaudreuil, G.</a>, "<a href="http://tools.ietf.org/html/rfc3463">Enhanced Mail System Status Codes</a>", RFC 3463, January 2003.</td>
+      <td class="top"><a>Vaudreuil, G.</a>, "<a href="http://tools.ietf.org/html/rfc3463">Enhanced Mail System Status Codes</a>", RFC 3463, DOI 10.17487/RFC3463, January 2003.</td>
     </tr>
     <tr>
       <td class="reference">
         <b id="RFC5228">[RFC5228]</b>
       </td>
-      <td class="top"><a>Guenther, P.</a> and <a>T. Showalter</a>, "<a href="http://tools.ietf.org/html/rfc5228">Sieve: An Email Filtering Language</a>", RFC 5228, January 2008.</td>
+      <td class="top"><a>Guenther, P.</a> and <a>T. Showalter</a>, "<a href="http://tools.ietf.org/html/rfc5228">Sieve: An Email Filtering Language</a>", RFC 5228, DOI 10.17487/RFC5228, January 2008.</td>
     </tr>
     <tr>
       <td class="reference">
         <b id="RFC5321">[RFC5321]</b>
       </td>
-      <td class="top"><a>Klensin, J.</a>, "<a href="http://tools.ietf.org/html/rfc5321">Simple Mail Transfer Protocol</a>", RFC 5321, October 2008.</td>
+      <td class="top"><a>Klensin, J.</a>, "<a href="http://tools.ietf.org/html/rfc5321">Simple Mail Transfer Protocol</a>", RFC 5321, DOI 10.17487/RFC5321, October 2008.</td>
     </tr>
     <tr>
       <td class="reference">
         <b id="RFC5322">[RFC5322]</b>
       </td>
-      <td class="top"><a href="mailto:presnick@qualcomm.com" title="Qualcomm Incorporated">Resnick, P.</a>, "<a href="http://tools.ietf.org/html/rfc5322">Internet Message Format</a>", RFC 5322, October 2008.</td>
+      <td class="top"><a>Resnick, P.</a>, "<a href="http://tools.ietf.org/html/rfc5322">Internet Message Format</a>", RFC 5322, DOI 10.17487/RFC5322, October 2008.</td>
     </tr>
     <tr>
       <td class="reference">
         <b id="RFC5598">[RFC5598]</b>
       </td>
-      <td class="top"><a>Crocker, D.</a>, "<a href="http://tools.ietf.org/html/rfc5598">Internet Mail Architecture</a>", RFC 5598, July 2009.</td>
+      <td class="top"><a>Crocker, D.</a>, "<a href="http://tools.ietf.org/html/rfc5598">Internet Mail Architecture</a>", RFC 5598, DOI 10.17487/RFC5598, July 2009.</td>
     </tr>
     <tr>
       <td class="reference">
         <b id="RFC5703">[RFC5703]</b>
       </td>
-      <td class="top"><a>Hansen, T.</a> and <a>C. Daboo</a>, "<a href="http://tools.ietf.org/html/rfc5703">Sieve Email Filtering: MIME Part Tests, Iteration, Extraction, Replacement, and Enclosure</a>", RFC 5703, October 2009.</td>
+      <td class="top"><a>Hansen, T.</a> and <a>C. Daboo</a>, "<a href="http://tools.ietf.org/html/rfc5703">Sieve Email Filtering: MIME Part Tests, Iteration, Extraction, Replacement, and Enclosure</a>", RFC 5703, DOI 10.17487/RFC5703, October 2009.</td>
     </tr>
     <tr>
       <td class="reference">
         <b id="RFC6376">[RFC6376]</b>
       </td>
-      <td class="top"><a>Crocker, D.</a>, <a>Hansen, T.</a> and <a>M. Kucherawy</a>, "<a href="http://tools.ietf.org/html/rfc6376">DomainKeys Identified Mail (DKIM) Signatures</a>", STD 76, RFC 6376, September 2011.</td>
+      <td class="top"><a>Crocker, D.</a>, <a>Hansen, T.</a> and <a>M. Kucherawy</a>, "<a href="http://tools.ietf.org/html/rfc6376">DomainKeys Identified Mail (DKIM) Signatures</a>", STD 76, RFC 6376, DOI 10.17487/RFC6376, September 2011.</td>
     </tr>
     <tr>
       <td class="reference">
         <b id="RFC6377">[RFC6377]</b>
       </td>
-      <td class="top"><a>Kucherawy, M.</a>, "<a href="http://tools.ietf.org/html/rfc6377">DomainKeys Identified Mail (DKIM) and Mailing Lists</a>", BCP 167, RFC 6377, September 2011.</td>
+      <td class="top"><a>Kucherawy, M.</a>, "<a href="http://tools.ietf.org/html/rfc6377">DomainKeys Identified Mail (DKIM) and Mailing Lists</a>", BCP 167, RFC 6377, DOI 10.17487/RFC6377, September 2011.</td>
     </tr>
     <tr>
       <td class="reference">
         <b id="RFC6541">[RFC6541]</b>
       </td>
-      <td class="top"><a>Kucherawy, M.</a>, "<a href="http://tools.ietf.org/html/rfc6541">DomainKeys Identified Mail (DKIM) Authorized Third-Party Signatures</a>", RFC 6541, February 2012.</td>
+      <td class="top"><a>Kucherawy, M.</a>, "<a href="http://tools.ietf.org/html/rfc6541">DomainKeys Identified Mail (DKIM) Authorized Third-Party Signatures</a>", RFC 6541, DOI 10.17487/RFC6541, February 2012.</td>
     </tr>
     <tr>
       <td class="reference">
         <b id="RFC6648">[RFC6648]</b>
       </td>
-      <td class="top"><a>Saint-Andre, P.</a>, <a>Crocker, D.</a> and <a>M. Nottingham</a>, "<a href="http://tools.ietf.org/html/rfc6648">Deprecating the "X-" Prefix and Similar Constructs in Application Protocols</a>", BCP 178, RFC 6648, June 2012.</td>
+      <td class="top"><a>Saint-Andre, P.</a>, <a>Crocker, D.</a> and <a>M. Nottingham</a>, "<a href="http://tools.ietf.org/html/rfc6648">Deprecating the "X-" Prefix and Similar Constructs in Application Protocols</a>", BCP 178, RFC 6648, DOI 10.17487/RFC6648, June 2012.</td>
     </tr>
     <tr>
       <td class="reference">
         <b id="RFC7208">[RFC7208]</b>
       </td>
-      <td class="top"><a>Kitterman, S.</a>, "<a href="http://tools.ietf.org/html/rfc7208">Sender Policy Framework (SPF) for Authorizing Use of Domains in Email, Version 1</a>", RFC 7208, April 2014.</td>
+      <td class="top"><a>Kitterman, S.</a>, "<a href="http://tools.ietf.org/html/rfc7208">Sender Policy Framework (SPF) for Authorizing Use of Domains in Email, Version 1</a>", RFC 7208, DOI 10.17487/RFC7208, April 2014.</td>
     </tr>
     <tr>
       <td class="reference">
         <b id="RFC7372">[RFC7372]</b>
       </td>
-      <td class="top"><a>Kucherawy, M.</a>, "<a href="http://tools.ietf.org/html/rfc7372">Email Authentication Status Codes</a>", RFC 7372, September 2014.</td>
+      <td class="top"><a>Kucherawy, M.</a>, "<a href="http://tools.ietf.org/html/rfc7372">Email Authentication Status Codes</a>", RFC 7372, DOI 10.17487/RFC7372, September 2014.</td>
     </tr>
   </tbody>
 </table>
 <h1 id="rfc.references.2"><a href="#rfc.references.2">8.2.</a> Informative References</h1>
 <table>
   <tbody>
+    <tr>
+      <td class="reference">
+        <b id="I-D.andersen-arc">[I-D.andersen-arc]</b>
+      </td>
+      <td class="top"><a>None, N.</a>, <a>Andersen, K.</a>, <a>JohnRG, J.</a>, <a>Long, B.</a>, <a>Adams, J.</a> and <a>S. Jones</a>, "<a href="http://tools.ietf.org/html/draft-andersen-arc-00">Authenticated Received Chain (ARC)</a>", Internet-Draft draft-andersen-arc-00, October 2015.</td>
+    </tr>
+    <tr>
+      <td class="reference">
+        <b id="I-D.jones-arc-usage">[I-D.jones-arc-usage]</b>
+      </td>
+      <td class="top"><a>None, N.</a>, <a>Jones, S.</a>, <a>JohnRG, J.</a>, <a>Adams, J.</a> and <a>K. Andersen</a>, "<a href="http://tools.ietf.org/html/draft-jones-arc-usage-00">Recommended Usage of the Authenticated Received Chain (ARC)</a>", Internet-Draft draft-jones-arc-usage-00, October 2015.</td>
+    </tr>
     <tr>
       <td class="reference">
         <b id="I-D.kucherawy-dkim-delegate">[I-D.kucherawy-dkim-delegate]</b>
@@ -936,7 +951,7 @@
       <td class="reference">
         <b id="RFC7489">[RFC7489]</b>
       </td>
-      <td class="top"><a>Kucherawy, M.</a> and <a>E. Zwicky</a>, "<a href="http://tools.ietf.org/html/rfc7489">Domain-based Message Authentication, Reporting, and Conformance (DMARC)</a>", RFC 7489, March 2015.</td>
+      <td class="top"><a>Kucherawy, M.</a> and <a>E. Zwicky</a>, "<a href="http://tools.ietf.org/html/rfc7489">Domain-based Message Authentication, Reporting, and Conformance (DMARC)</a>", RFC 7489, DOI 10.17487/RFC7489, March 2015.</td>
     </tr>
   </tbody>
 </table>
