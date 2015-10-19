@@ -25,6 +25,8 @@ which is available here: http://xml.resource.org. -->
 <!ENTITY I-D.kucherawy-dkim-list-canon SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-dkim-list-canon-00.xml">
 <!ENTITY I-D.kucherawy-dkim-delegate SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-dkim-delegate-01.xml">
 <!ENTITY I-D.kucherawy-original-authres SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-original-authres-00.xml">
+<!ENTITY I-D.andersen-arc SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-andersen-arc-00.xml">
+<!ENTITY I-D.jones-arc-usage SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-jones-arc-usage-00.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <!-- used by XSLT processors -->
@@ -51,7 +53,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-dmarc-interoperability-07" ipr="trust200902">
+<rfc category="info" docName="draft-ietf-dmarc-interoperability-08" ipr="trust200902">
 	<!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -140,7 +142,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 				<!-- uri and facsimile elements may also be added -->
 			</address>
 		</author>
-		<date month="September" year="2015"/>
+		<date month="October" year="2015"/>
 		<!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
          in the current day for you. If only the current year is specified, xml2rfc will fill 
 	 in the current day and month for you. If the year is not the current one, it is 
@@ -169,7 +171,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 	<middle>
 		<section title="Introduction">
 			<t><xref target="RFC7489">DMARC</xref> introduces a mechanism for expressing domain-level policies and preferences for message validation, disposition, and reporting.  The DMARC mechanism can encounter several different types of interoperability issues due to third-party message sourcing, message transformation or rerouting.</t>
-      <t>At the time of the writing of this document, the DMARC base specification is published as an Informational RFC and has seen significant deployment within the email community.</t>
+      <t>At the time of the writing of this document, the DMARC base specification is published as Informational <xref target="RFC7489">RFC7489</xref> and has seen significant deployment within the email community.</t>
 			<t>Cases in which email does not flow directly from the author's administrative domain to the recipient's domain(s) are collectively referred to in this document as indirect email flows.  Due to existing and increasing adoption of DMARC, the impact of DMARC-based email rejection policies on indirect email flows can be significant for a select subset of general email traffic. </t> 
 			<t>Several known causes of interoperability issues are presented, followed by a description of components within the Internet Mail Architecture <xref target="RFC5598"/> where interoperability issues can arise.</t>
 			<t>Finally, known and possible methods for addressing interoperability issues are presented.  There are often multiple ways to address any given interoperability issue.  While this document strives to be comprehensive in its review, it should not be treated as complete. Also, some practices which are in use at the time of this document may or may not be "best practices" as future standards evolve.</t>
@@ -324,6 +326,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
                                         <t>Malware scanning: To protect readers and its reputation, an MTA that transfers a message may remove content believed to be harmful from messages, reformulate content to canonical formats in order to make them more trustworthy or easier to scan, and/or add text in the body to indicate the message has been scanned. Any such modifications would invalidate a DKIM signature.</t>
                                         <t>Spam filtering: To protect reputation and assist other MTAs, an MTA may modify a message to indicate its decision that the message is likely to be unwanted, and/or add text in the body to indicate that such filtering has been done.</t>
                                         <t>Other text additions: An MTA may add an organizational disclaimer or advertisement, for instance.</t>
+                                        <t>URL alteration: Some systems will rewrite or alter embedded URLs as a way to control the potential threat form malware.</t>
                                         <t>Secondary MX services: The secondary MX for an organization may be external to the normal mail processing for the organization, and queue and forward to the primary when it becomes available. This will not invalidate DKIM but will prevent the primary from validating SPF normally. In this case, however, it is inappropriate for a primary MX server to perform an SPF check against its own secondaries.  Rather, the secondary MX should perform this function and employ some trusted mechanism to communicate the results of the SPF, DKIM and DMARC evaluation(s) to the primary MX server.</t>
                 		</list>
                 	</t>
@@ -416,6 +419,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 					<t>DKIM with recorded transformations, <xref target="I-D.kucherawy-dkim-transform"/> is proposed to indicate what limited transformations were done to the message so that a receiver could reverse them and confirm the validity of the orignal DKIM signature.</t>
 					<t><xref target="I-D.kucherawy-original-authres"/> is intended as a way to pass along Original Authentication Results to "downstream" receivers. It is not widely implemented and relies on a trust relationship between the forwarder and the other receivers.</t>
 					<t><xref target="I-D.levine-dkim-conditional"/> could be used to have the sender add a limited DKIM signature, that signs only a very limited set of header fields and not the body of the message. This DKIM signature would come with the condition that a subsequent known domain fully DKIM sign the message. For instance a Mailing List could transform the message, add its DKIM signature and there would be a valid DKIM signature aligned with the RFC5322.From that would satisfy DMARC while limiting the possibilities of replay attack.</t>
+                                        <t><xref target="I-D.andersen-arc"/> (and the accompanying <xref target="I-D.jones-arc-usage">usage recommendations</xref>) provides a proposed mechanism to provide an authenticated channel for the initial received authentication results to be conveyed through multiple ReSenders ("intermediaries" in the terminology used in the draft) to the ultimate receiving system. This information is proposed as the basis for improved local policy decisions by the receiver.</t>
 					</list>
 				</t>
 				<section title="Getting More Radical: Requiring New Communication Paths Between MUAs">
@@ -474,6 +478,8 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
       &I-D.kucherawy-dkim-list-canon;
       &I-D.kucherawy-dkim-delegate;
       &I-D.kucherawy-original-authres;
+      &I-D.andersen-arc;
+      &I-D.jones-arc-usage;
     </references>
 	</back>
 </rfc>
