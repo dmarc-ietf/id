@@ -20,10 +20,10 @@ which is available here: http://xml.resource.org. -->
 <!ENTITY RFC7372 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7372.xml">
 <!ENTITY RFC7489 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7489.xml">
 <!ENTITY I-D.kucherawy-dkim-transform SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.kucherawy-dkim-transform.xml">
-<!ENTITY I-D.levine-dkim-conditional SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-levine-dkim-conditional-00.xml">
-<!ENTITY I-D.otis-tpa-label SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-otis-tpa-label-00.xml">
-<!ENTITY I-D.kucherawy-dkim-list-canon SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-dkim-list-canon-00.xml">
-<!ENTITY I-D.kucherawy-dkim-delegate SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-dkim-delegate-01.xml">
+<!ENTITY I-D.levine-dkim-conditional SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-levine-dkim-conditional-02.xml">
+<!ENTITY I-D.otis-tpa-label SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-otis-tpa-label-08.xml">
+<!ENTITY I-D.kucherawy-dkim-list-canon SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-dkim-list-canon-01.xml">
+<!ENTITY I-D.kucherawy-dkim-delegate SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-dkim-delegate-02.xml">
 <!ENTITY I-D.kucherawy-original-authres SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-original-authres-00.xml">
 <!ENTITY I-D.andersen-arc SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-andersen-arc-00.xml">
 <!ENTITY I-D.jones-arc-usage SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-jones-arc-usage-00.xml">
