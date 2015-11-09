@@ -19,6 +19,7 @@ which is available here: http://xml.resource.org. -->
 <!ENTITY RFC7208 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7208.xml">
 <!ENTITY RFC7372 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7372.xml">
 <!ENTITY RFC7489 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7489.xml">
+<!ENTITY RFC7601 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7601.xml">
 <!ENTITY I-D.kucherawy-dkim-transform SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.kucherawy-dkim-transform.xml">
 <!ENTITY I-D.levine-dkim-conditional SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-levine-dkim-conditional-02.xml">
 <!ENTITY I-D.otis-tpa-label SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-otis-tpa-label-08.xml">
@@ -53,7 +54,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-dmarc-interoperability-09" ipr="trust200902">
+<rfc category="info" docName="draft-ietf-dmarc-interoperability-10" ipr="trust200902">
 	<!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -412,14 +413,13 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 				</section>
 			</section>
 			<section title="Proposed and In-Progress Mitigations">
-				<t>The following mitigations are based on Internet Drafts which have not yet received broad consensus. They are described here to offer exploratory path for solutions. These solutions should not be used in a production environment.
+				<t>The following mitigations are based on Internet Drafts (I-Ds) which have not yet received broad consensus. They are described here to offer exploratory path for solutions. These solutions should not be used in a production environment. Because of the transient nature of I-Ds, specific citations are not included because a number of them will inevitably become obsolete and those which gain concensus in the community will become RFCs and should be discovered as such.
 					<list style="symbols">
-					<t>Third party authorization, <xref target="RFC6541"/>, <xref target="I-D.otis-tpa-label"/> and <xref target="I-D.kucherawy-dkim-delegate"/> provide ways to extend identifier alignment under the control of the domain owner.</t>
-					<t>DKIM with constrained transformations, <xref target="I-D.kucherawy-dkim-list-canon"/> is proposed to record a canonical list posting format for signing, so that typical MLM changes do not invalidate signatures.</t>
-					<t>DKIM with recorded transformations, <xref target="I-D.kucherawy-dkim-transform"/> is proposed to indicate what limited transformations were done to the message so that a receiver could reverse them and confirm the validity of the orignal DKIM signature.</t>
-					<t><xref target="I-D.kucherawy-original-authres"/> is intended as a way to pass along Original Authentication Results to "downstream" receivers. It is not widely implemented and relies on a trust relationship between the forwarder and the other receivers.</t>
-					<t><xref target="I-D.levine-dkim-conditional"/> could be used to have the sender add a limited DKIM signature, that signs only a very limited set of header fields and not the body of the message. If accompanied by suitable other DKIM signature(s) it may be possible to achieve DMARC alignment while limiting the possibilities of replay attack.</t>
-                                        <t><xref target="I-D.andersen-arc"/> (and the accompanying <xref target="I-D.jones-arc-usage">usage recommendations</xref>) proposes a mechanism to provide an authenticated channel for the initial received authentication results to be conveyed through multiple ReSenders ("intermediaries" in the terminology used in the draft) to the ultimate receiving system. This information is proposed as the basis for improved local policy decisions by the receiver.</t>
+                                            <t>Third party authorization schemes provide ways to extend identifier alignment under control of the domain owner.</t>
+                                            <t>Ways to canonicalize messages that transit mailing lists so that their alterations can be isolated from the original signed content.</t>
+                                            <t>Mechanisms to record message transformations applied at each hop so they can be reversed and the original signed content recovered.</t>
+                                            <t>"Conditional" DKIM signatures, whereby the author domain indicates its signature is only good if accompanied by a signature from an expected downstream relay.</t>
+                                            <t>Mechanisms to extend <xref target="RFC7601">Authentication-Results</xref> to multiple hops, creating a provable chain of custody as well as a view of message authentication results at each handling step.</t>
 					</list>
 				</t>
 				<section title="Getting More Radical: Requiring New Communication Paths Between MUAs">
@@ -465,21 +465,13 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
       &RFC5703;
       &RFC6376;
       &RFC6377;
-      &RFC6541;
       &RFC6648;
       &RFC7208;
       &RFC7372;
     </references>
 		<references title="Informative References">
       &RFC7489;
-      &I-D.kucherawy-dkim-transform;
-      &I-D.levine-dkim-conditional;
-      &I-D.otis-tpa-label;
-      &I-D.kucherawy-dkim-list-canon;
-      &I-D.kucherawy-dkim-delegate;
-      &I-D.kucherawy-original-authres;
-      &I-D.andersen-arc;
-      &I-D.jones-arc-usage;
+      &RFC7601;
     </references>
 	</back>
 </rfc>

@@ -3,6 +3,7 @@ id
 
 This repository is to store working internet drafts for the IETF dmarc WG
 
+* version 10 - 2015-11-09 revised section 4.2 to remove I-D citations
 * version 09 - 2015-11-05 based on nits found by MSK
 * version 08 - 2015-10-19
 * version 07 - 2015-09-20
