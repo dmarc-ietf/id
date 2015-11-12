@@ -54,7 +54,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-dmarc-interoperability-10" ipr="trust200902">
+<rfc category="info" docName="draft-ietf-dmarc-interoperability-11" ipr="trust200902">
 	<!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -402,7 +402,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 		          						<t>change it to a locally-defined address which will be forwarded back to the original sender, or</t>
 		          						<t>"break" the address by modifying the domain to a non-existent domain (such as by adding a suffix like ".invalid".) </t>
 	          						</list>
-          						The later modification may create issues because it is an invalid domain name, and some MTAs may pay particular attention to the validity of email addresses in RFC5322.From and the reputation of the domains present there.</t>
+          						The latter modification may create issues because it is an invalid domain name, and some MTAs may pay particular attention to the validity of email addresses in RFC5322.From and the reputation of the domains present there.</t>
 		          				<t>Configuring the MLM to "wrap" the message in a MIME message/rfc822 part and to send as the Mailing List email address. Many email clients (as of August 2015), especially mobile clients, have difficulty reading such messages and this is not expected to change soon.</t>
 		          				<t>Configuring the MLM to not modify the message so that the DKIM signature remains valid. Some Mailing Lists are set up this way and require few additional changes to ensure the DKIM signature is preserved. Moving lists that currently modify mail to a policy like this, may be too much of a change for the members of such lists.</t>
                                                         <t>Rejecting posts or membership requests from domains with a DMARC policy other than "p=none". However members or potential members of such  Mailing  Lists may complain of unfair exclusion.</t>
