@@ -19,11 +19,12 @@ which is available here: http://xml.resource.org. -->
 <!ENTITY RFC7208 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7208.xml">
 <!ENTITY RFC7372 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7372.xml">
 <!ENTITY RFC7489 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7489.xml">
+<!ENTITY RFC7601 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7601.xml">
 <!ENTITY I-D.kucherawy-dkim-transform SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.kucherawy-dkim-transform.xml">
-<!ENTITY I-D.levine-dkim-conditional SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-levine-dkim-conditional-00.xml">
-<!ENTITY I-D.otis-tpa-label SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-otis-tpa-label-00.xml">
-<!ENTITY I-D.kucherawy-dkim-list-canon SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-dkim-list-canon-00.xml">
-<!ENTITY I-D.kucherawy-dkim-delegate SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-dkim-delegate-01.xml">
+<!ENTITY I-D.levine-dkim-conditional SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-levine-dkim-conditional-02.xml">
+<!ENTITY I-D.otis-tpa-label SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-otis-tpa-label-08.xml">
+<!ENTITY I-D.kucherawy-dkim-list-canon SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-dkim-list-canon-01.xml">
+<!ENTITY I-D.kucherawy-dkim-delegate SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-dkim-delegate-02.xml">
 <!ENTITY I-D.kucherawy-original-authres SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-kucherawy-original-authres-00.xml">
 <!ENTITY I-D.andersen-arc SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-andersen-arc-00.xml">
 <!ENTITY I-D.jones-arc-usage SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.draft-jones-arc-usage-00.xml">
@@ -53,7 +54,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-ietf-dmarc-interoperability-09" ipr="trust200902">
+<rfc category="info" docName="draft-ietf-dmarc-interoperability-12" ipr="trust200902">
 	<!-- category values: std, bcp, info, exp, and historic
      ipr values: full3667, noModification3667, noDerivatives3667
      you can add the attributes updates="NNNN" and obsoletes="NNNN" 
@@ -184,20 +185,20 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 			<t>Interoperability issues between DMARC and indirect email flows arise when conformance to the DMARC specification leads a receiving implementation to apply DMARC based policy restrictions to messages that are both compliant with the architecture as specified in <xref target="RFC5598"/> and viewed as legitimate by the intended recipient.</t>
 			<t>Note that domains which assert a "p=none" policy and email which passes standard
 			DMARC validation do not have any interoperability issues.</t>
-			<t>Email messages that do not conform to other email specifications but are considered legitimate by the intended recipients are not discussed in this document. The rest of this section describes several conceptual causes of interoperability issues.</t> 
+			<t>Email messages that do not conform to IETF email specifications but are considered legitimate by the intended recipients are not discussed in this document. The rest of this section describes several conceptual causes of interoperability issues.</t> 
 			<section title="Identifier Alignment"> 
-				<t>DMARC relies on <xref target="RFC6376">DKIM</xref> and <xref target="RFC7208">SPF</xref> to perform message source validation.  The <xref target="RFC7489">DMARC</xref> mechanism refers to source domains that are validated by DKIM or SPF as Authenticated Identifiers.  DMARC requires an Authenticated Identifier to be related to the domain found in the message's RFC5322.From header field <xref target="RFC5322"/>. This relationship is referred to as Identifier Alignment.</t> 
-				<t>DMARC allows for Identifier Alignment to be achieved in two different modes: strict and relaxed. Strict mode requires an exact match of either of the Authenticated Identifiers to the message's RFC5322.From header field <xref target="RFC5322"/>. Relaxed mode allows for Identifier Alignment if Authenticated Identifiers and the message's RFC5322.From header field <xref target="RFC5322"/> share the same Organizational Domain. In general, interoperability issues between strict and relaxed modes are the same, with strict mode constraining the application of possible solutions. The mitigations described in this document generally require a relaxed mode of Identifier Alignment.</t>
-				<t>DKIM provides a cryptographic means for a domain identifier to be associated with a particular message. As a standalone technology DKIM identifiers are not required to be relevant to the content of a message. However, for a DKIM identifier to align in DMARC, the signing domain of a valid signature must be part of the same Organizational Domain as the domain in the RFC5322.From header field <xref target="RFC5322"/>. </t> 
+				<t>DMARC relies on <xref target="RFC6376">DKIM</xref> and <xref target="RFC7208">SPF</xref> to perform message source validation.  The <xref target="RFC7489">DMARC</xref> mechanism refers to source domains that are validated by DKIM or SPF as Authenticated Identifiers.  DMARC requires an Authenticated Identifier to be related to the domain found in the message's RFC5322.from header field <xref target="RFC5322"/>. This relationship is referred to as Identifier Alignment.</t> 
+				<t>DMARC allows for Identifier Alignment to be achieved in two different modes: strict and relaxed. Strict mode requires an exact match of either of the Authenticated Identifiers to the message's RFC5322.from header field <xref target="RFC5322"/>. Relaxed mode allows for Identifier Alignment if Authenticated Identifiers and the message's RFC5322.from header field <xref target="RFC5322"/> share the same Organizational Domain. In general, interoperability issues between strict and relaxed modes are the same, with strict mode constraining the application of possible solutions. The mitigations described in this document generally require a relaxed mode of Identifier Alignment.</t>
+				<t>DKIM provides a cryptographic means for a domain identifier to be associated with a particular message. As a standalone technology DKIM identifiers are not required to be relevant to the content of a message. However, for a DKIM identifier to align in DMARC, the signing domain of a valid signature must be part of the same Organizational Domain as the domain in the RFC5322.from header field <xref target="RFC5322"/>. </t> 
 				<t>In addition, DKIM allows for the possibility of multiple valid signatures.  The DMARC mechanism will process Authenticated Identifiers that are based on DKIM signatures until an aligned Authenticated Identifier is found (if any). However, operational experience has shown that some implementations have difficulty processing multiple signatures.  The impact on DMARC processing is clear: implementations that cannot process multiple DKIM signatures may incorrectly flag messages as "failing DMARC" and erroneously apply DMARC based policy to otherwise conforming messages. </t> 
-				<t>SPF can provide two Authenticated Identifiers. The DMARC relevant Authenticated Identifiers that SPF provides is the <xref target="RFC7208">RFC7208.MAILFROM</xref> based on the <xref target="RFC5321">RFC5321.MailFrom</xref> domain, or, if the RFC5321.MailFrom address is absent (as in the case of "bounce" messages), on the RFC5321.HELO/EHLO SMTP domain. The SPF validated domain in RFC7208.MAILFROM must be part of the same Organizational Domain as the domain in the RFC5322.From header field to be aligned. It is important to note that even when an SPF record exists for the domain in <xref target="RFC5322">RFC5322.From</xref>, SPF will not authenticate it unless it is also the domain checked by SPF.  Also note that the RFC7208.MAILFROM definition is different from the <xref target="RFC5321">RFC5321.MailFrom</xref> definition. </t> 
+				<t>SPF can provide two Authenticated Identifiers. The DMARC relevant Authenticated Identifiers that SPF provides is the <xref target="RFC7208">RFC7208.MAILFROM</xref> based on the <xref target="RFC5321">RFC5321.mailfrom</xref> domain, or, if the RFC5321.mailfrom address is absent (as in the case of "bounce" messages), on the RFC5321.HELO/EHLO SMTP domain. The SPF validated domain in RFC7208.MAILFROM must be part of the same Organizational Domain as the domain in the RFC5322.from header field to be aligned. It is important to note that even when an SPF record exists for the domain in <xref target="RFC5322">RFC5322.from</xref>, SPF will not authenticate it unless it is also the domain checked by SPF.  Also note that the RFC7208.MAILFROM definition is different from the <xref target="RFC5321">RFC5321.mailfrom</xref> definition. </t> 
 			</section> 
 			<section title="Message Forwarding">
-				<t>Message forwarding is a generic concept encapsulating a variety of behaviors.  <xref target="IMA_DMARC"/> describes forwarding behavior as it relates to the components of the Internet Mail Architecture.</t>
-				<t>All forwarding behavior involves the retransmission of email. As discussed above, in order for SPF to yield an Authenticated Identifier that is pertinent to DMARC, the domain of the RFC7208.MAILFROM must be in alignment with the RFC5322.From header field.  Forwarding introduces specific issues to the availability of SPF-based Authenticated Identifiers:
+				<t><xref target="IMA_DMARC"/> describes forwarding behavior as it relates to the components of the Internet Mail Architecture.</t>
+				<t>All forwarding behavior involves the retransmission of email. As discussed above, in order for SPF to yield an Authenticated Identifier that is pertinent to DMARC, the domain of the RFC7208.MAILFROM must be in alignment with the RFC5322.from header field.  Forwarding introduces specific issues to the availability of SPF-based Authenticated Identifiers:
 				<list style="symbols">
-					<t>If the RFC5321.MailFrom is present and the forwarder maintains the original RFC5321.MailFrom, SPF validation will fail unless the forwarder is an authorized part of the originator's email sending infrastructure. If the forwarder replaces the RFC5321.MailFrom with its own domain, SPF might pass but Identifier Alignment with the RFC5322.From header field will fail.</t>
-					<t>If the RFC5321.MailFrom is empty (as in the case of Delivery Status Notifications), the RFC5321.Helo domain of the forwarder will likely be in different organizational domain than the orignal RFC5322.From header field's domain. SPF may pass but Identifier Alignment with the RFC5322.From header field will fail.</t>
+					<t>If the RFC5321.mailfrom is present and the forwarder maintains the original RFC5321.mailfrom, SPF validation will fail unless the forwarder is an authorized part of the originator's email sending infrastructure. If the forwarder replaces the RFC5321.mailfrom with its own domain, SPF might pass but Identifier Alignment with the RFC5322.from header field will fail.</t>
+					<t>If the RFC5321.mailfrom is empty (as in the case of Delivery Status Notifications), the RFC5321.Helo domain of the forwarder will likely be in different organizational domain than the orignal RFC5322.from header field's domain. SPF may pass but Identifier Alignment with the RFC5322.from header field will fail.</t>
 				</list>
 				In both cases, SPF cannot yield relevant Authenticated Identifiers, and DKIM must be relied upon to produce results that are relevant to DMARC. </t>
 			</section>
@@ -220,7 +221,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
             		<t>Message Store (MS)</t>
             	</list>
            		Of these components MSA, MTA, and MDA are discussed in relation to interoperability with DMARC.</t>
-				<t>A Mediator is a hybrid of several component types that is given special consideration in this section due to the unique issues Mediators face when attempting to interoperate with DMARC.</t>
+                                <t><xref target="RFC5598"/> Section 5 also defines a Mediator is a hybrid of several component types.  A Mediator is given special consideration in this section due to the unique issues they face when attempting to interoperate with DMARC.</t>
 				<section title="Message Submission Agents">
 					<t>An MSA accepts messages submitted by a Message User Agent (MUA) and enforces the policies of the hosting ADministrative Management Domain (ADMD) and the requirements of Internet standards.</t>
 					<t>MSAs are split into two sub-components:
@@ -229,8 +230,8 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
               				<t>MHS-focused MSA functions (hMSA)</t>
               			</list>
               		</t>
-					<t>MSA interoperability issues with DMARC begin when an aMSA accepts a message where the RFC5322.From header field contains a domain that is outside of the ADMD of the MSA.  The ADMD will almost certainly not be capable of sending email that yields Authenticated Identifiers aligned with the domain found in the RFC5322.From header field.  Examples of this issue include "forward-to-friend" functionality commonly found on news/article websites or "send-as" functionality present on some MUAs.</t>
-					<t>When an hMSA takes responsibility for transit of a message containing a domain in the RFC5322.From header field that is outside of the hMSA's ADMD, the hMSA faces DMARC interoperability issues if the domain publishes a DMARC policy of "quarantine" or "reject".  These issues are marked by the inherent difficulty of establishing alignment with the domain present in a message's RFC5322.From header field.  Examples of this issue include:
+					<t>MSA interoperability issues with DMARC begin when an aMSA accepts a message where the RFC5322.from header field contains a domain that is outside of the ADMD of the MSA.  These issues manifest themselves in one of several ways, such as when someone uses a mail service with their own domain but has failed to properly configure an SPF record; or when an MUA attempts to transmit mail as someone else.  Examples of the latter issue include "forward-to-friend" functionality commonly found on news/article websites or "send-as" functionality present on some MUAs.</t>
+					<t>When an hMSA takes responsibility for transit of a message containing a domain in the RFC5322.from header field that is outside of the hMSA's ADMD, the hMSA faces DMARC interoperability issues if the domain publishes a DMARC policy of "quarantine" or "reject".  These issues are marked by the inherent difficulty of establishing alignment with the domain present in a message's RFC5322.from header field.  Examples of this issue include:
                			<list style="symbols">
                				<t>Pseudo-open relays - a residential ISP that allows its customers to relay non-local domains through its infrastructure.</t>
                				<t>Embedded devices - cable/DSL modems, firewalls, wireless access points, printers that send email using hardcoded domains.</t>
@@ -241,7 +242,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
                		</t>
 				</section>
 				<section title="Message Transfer Agents" anchor="mta">
-					<t>MTAs relay a message until the message reaches a destination MDA.</t>
+					<t>MTAs relay a message until the message reaches a destination MDA. As such, they are in a position to introduce interoperability problems.</t>
 					<section title="Message Encoding">
 						<t>An MTA may modify the message encoding, for instance by converting 8-bit MIME sections to quoted-printable 7-bit sections. This modification is outside the scope of DKIM canonicalization and will invalidate DKIM signatures that include message content.</t>
                                                 <t>An MTA could also re-encode the message without changing the encoding type, receiving a MIME-encoded message and producing a semantically and syntactically equivalent MIME body that is not identical to the original. This is characteristic of systems that use some other message representation internally.</t>
@@ -267,10 +268,9 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 				</section>
 			</section>
 			<section title="Mediators" anchor="mediators">
-				<t>See <xref target="RFC5598"/> for a complete definition of Mediators.</t>
-				<t>Mediators forward messages through a re-posting process.  Mediators share some functionality with basic MTA relaying, but have greater flexibility in both addressing and content modifications.</t>
+				<t><xref target="RFC5598">Mediators</xref> forward messages through a re-posting process.  Mediators share some functionality with basic MTA relaying, but have greater flexibility in both addressing and content modifications.</t>
 				<t>DMARC interoperability issues are common within the context of Mediators, which are often used precisely for their ability to modify messages.</t>
-				<t>The DMARC design does not cope with some Mediator functionality such as content modifications that invalidate DKIM signatures and RFC5321.MailFrom rewriting to support SPF authentication of resent mail when the new Recipient receives the message from the Mediator rather than the initial organization.</t>
+				<t>The DMARC design does not cope with some Mediator functionality such as content modifications that invalidate DKIM signatures and RFC5321.mailfrom rewriting to support SPF authentication of resent mail when the new Recipient receives the message from the Mediator rather than the initial organization.</t>
 				<section title="Alias">
 					<t>An Alias is a simple re-addressing facility that provides one or more new Internet Mail addresses, rather than a single, internal one.  A message continues through the transfer service for delivery to one or more alternative addresses.</t>
 					<t>Aliases can be implemented by mailbox-level forwarding (e.g. through "dot-forwarding") or SIEVE-level forwarding (through the SIEVE 'redirect' action) or other methods.  When an Alias preserves message content and does not make significant header changes, DKIM signatures may remain valid.  However, Aliases often extend the delivery path outside of the scope covered by the originating ADMD's SPF record(s).</t>
@@ -285,7 +285,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 				</section>
 				<section title="ReSenders" anchor="resenders">
 					<t>ReSenders "splice" a message's addressing information to connect the Author of the original message with the Recipient(s) of the new message.  The new Recipient sees the message as being from the original Author, even if the Mediator adds commentary.</t>					
-					<t>Without Authenticated Identifiers aligned with the Author's RFC5322.From header field domain, the new Recipient has no way to achieve a passing DMARC evaluation.</t>
+					<t>Without Authenticated Identifiers aligned with the Author's RFC5322.from header field domain, the new Recipient has no way to achieve a passing DMARC evaluation.</t>
 					<t>Examples of ReSenders include MUA-level forwarding by resending a message to a new recipient or by forwarding a message "inline" to a new recipient (this does not include forwarding a message "as an attachment").  An additional example comes in the form of calendaring software that allows a meeting attendee (not the meeting organizer) to modify the content of an invite generating new invitations that claim to be reissued from the meeting organizer.</t>
 				</section>
 				<section title="Mailing Lists">
@@ -348,11 +348,12 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 				<section title="Mitigations for Senders">
 					<section title="Identifier Alignment" anchor="IA">
 						<t><list style="symbols">
-							<t> MTAs handling multiple domains may choose to change RFC5321.MailFrom to align with RFC5322.From to improve SPF usability for DMARC.</t>
-							<t> MTAs handling multiple domains may also choose to align RFC5321.HELO/EHLO to RFC5322.From, particularly when sending non-delivery (also known as "bounce") messages (ref <xref target="RFC5321"/> section 3.6.3). Dynamically adjusting the RFC5321.HELO based on the RFC5322.From may not be possible for some MTA software.</t>
+							<t> MTAs handling multiple domains may choose to change RFC5321.mailfrom to align with RFC5322.from to improve SPF usability for DMARC.</t>
+							<t> MTAs handling multiple domains may also choose to align RFC5321.HELO/EHLO to RFC5322.from, particularly when sending non-delivery (also known as "bounce") messages (ref <xref target="RFC5321"/> section 3.6.3). Dynamically adjusting the RFC5321.HELO based on the RFC5322.from may not be possible for some MTA software.</t>
 							<t> MTAs may choose to DKIM sign bounces with an aligned domain to allow DKIM-based DMARC pass.</t>
-							<t> MTAs sending email on behalf of multiple domains may require Domain Owners to provide DKIM keys to use DKIM to avoid SPF validation issues, given the requirement for DMARC alignment with the RFC5322.From header field. Managing DKIM keys with a third party has security risks that should be carefully managed (see also <xref target="RFC6376" /> section 8). Methods involving CNAMEs and/or subdomains may alleviate some risks.</t>
-							<t>Senders who are sending on behalf of users in other Administrative Domains may choose to use an RFC5322.From under the sender's control. The new From can be either a forwarding address in a domain controlled by the Sender, or a placeholder address, with the original user's address in a RFC5322.Reply-to header field. However, performing this modification may cause the recipient's MUA to deviate from customary behavior.</t>
+							<t> MTAs sending email on behalf of multiple domains may require Domain Owners to provide DKIM keys to use DKIM to avoid SPF validation issues, given the requirement for DMARC alignment with the RFC5322.from header field. Managing DKIM keys with a third party has security risks that should be carefully managed (see also <xref target="RFC6376" /> section 8). Methods involving CNAMEs and/or subdomains may alleviate some risks.</t>
+							<t>Senders who are sending on behalf of users in other Administrative Domains may choose to use an RFC5322.from under the sender's control. The new From can be either a forwarding address in a domain controlled by the Sender, or a placeholder address, with the original user's address in a RFC5322.Reply-to header field. However, performing this modification may cause the recipient's MUA to deviate from customary behavior.</t>
+                                        <t>When implementing "forward-to-friend" functionality one approach to avoid DMARC failures is to pass a well formed message to the user's MUA so that it may fill in an appropriate identity and submit through its own MSA.</t>
               				<t>Senders can use domains with distinct DMARC policies for email sent directly and email known to use indirect mail flows. However, for known brands, all active domains are likely to be targeted equally by abusers.</t>
 						</list></t>
 					</section>
@@ -379,10 +380,10 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 					</section>
 				</section>
 				<section title="Mitigations for ReSenders">
-					<section title="Changes to the RFC5322.From">
-						<t>Many ReSender issues can be avoided by using an RFC5322.From header field under the ReSender's control, instead of the initial RFC5322.From. This will correct identifier alignment issues and allow arbitrary message modification as long as the ReSender signs the message with an aligned domain signature. When ReSenders change the RFC5322.From, it is desirable to preserve the information about the original initiator of the message.</t>
+					<section title="Changes to the RFC5322.from">
+						<t>Many ReSender issues can be avoided by using an RFC5322.from header field under the ReSender's control, instead of the initial RFC5322.from. This will correct identifier alignment issues and allow arbitrary message modification as long as the ReSender signs the message with an aligned domain signature. When ReSenders change the RFC5322.from, it is desirable to preserve the information about the original initiator of the message.</t>
 						<t>A first option is to use the <xref target="RFC5703">Original-From</xref> (or X-Original-From) header field for this purpose in various contexts (X- header fields name are discouraged by <xref target="RFC6648"/>). However, handling of Original-From (or X-Original-From) is not defined anywhere. It is not currently used consistently or displayed to the user, and in any situation where it is used, it is a new unauthenticated identifier available for exploitation unless included within the scope of the new DKIM signature(s).</t>
-						<t>Another option for ReSenders is to rewrite the RFC5322.From header field address to a locally controlled address which will be forwarded back to the original sender (subject to its own ReSender forwarding mitigations!).</t>
+						<t>Another option for ReSenders is to rewrite the RFC5322.from header field address to a locally controlled address which will be forwarded back to the original sender (subject to its own ReSender forwarding mitigations!).</t>
 					</section>
 					<section title="Avoiding Message Modification">
 						<t><list style="symbols">
@@ -395,13 +396,13 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 					<section title="Mailing Lists" anchor="mlm">
 						<t><xref target="RFC6377"/> provides some guidance on using DKIM with Mailing lists. The following mitigation techniques can be used to ease interoperability issues with DMARC and Mailing lists: 
 		          			<list style="symbols">
-		          				<t>Configuring the Mailing List Manager (MLM) to alter the RFC5322.From header field to use the domain of the MLM is a mitigation policy that is now present in several different Mailing List software distributions. Since most list subscribers prefer to know the identity of the author of the original message, typically this information may be provided in the display name part of the RFC5322.From header field. This display name needs to be carefully crafted as to not collide with the original display name of the author, nor contain something that looks like an email address or domain name. These modifications may to some extent defeat the purpose of DMARC itself. It may make it difficult to ensure that users of all email clients can easily reply to the author, the list, or all using the email client features provided for that purpose. Use of RFC5322.Reply-To header field can alleviate this problem depending on whether the mailing list is configured to reply-to-list, reply-to-author or reply-to-fixed-address, however it is important to note that this header field can take multiple email addresses. When altering the RFC5322.From there are three possibilities:
+		          				<t>Configuring the Mailing List Manager (MLM) to alter the RFC5322.from header field to use the domain of the MLM is a mitigation policy that is now present in several different Mailing List software distributions. Since most list subscribers prefer to know the identity of the author of the original message, typically this information may be provided in the display name part of the RFC5322.from header field. This display name needs to be carefully crafted as to not collide with the original display name of the author, nor contain something that looks like an email address or domain name. These modifications may to some extent defeat the purpose of DMARC itself. It may make it difficult to ensure that users of all email clients can easily reply to the author, the list, or all using the email client features provided for that purpose. Use of RFC5322.Reply-To header field can alleviate this problem depending on whether the mailing list is configured to reply-to-list, reply-to-author or reply-to-fixed-address, however it is important to note that this header field can take multiple email addresses. When altering the RFC5322.from there are three possibilities:
 		          					<list style="numbers">
 		          						<t>change it to put the mailing list email address,</t>
 		          						<t>change it to a locally-defined address which will be forwarded back to the original sender, or</t>
 		          						<t>"break" the address by modifying the domain to a non-existent domain (such as by adding a suffix like ".invalid".) </t>
 	          						</list>
-          						The later modification may create issues because it is an invalid domain name, and some MTAs may pay particular attention to the validity of email addresses in RFC5322.From and the reputation of the domains present there.</t>
+          						The latter modification may create issues because it is an invalid domain name, and some MTAs may pay particular attention to the validity of email addresses in RFC5322.from and the reputation of the domains present there.</t>
 		          				<t>Configuring the MLM to "wrap" the message in a MIME message/rfc822 part and to send as the Mailing List email address. Many email clients (as of August 2015), especially mobile clients, have difficulty reading such messages and this is not expected to change soon.</t>
 		          				<t>Configuring the MLM to not modify the message so that the DKIM signature remains valid. Some Mailing Lists are set up this way and require few additional changes to ensure the DKIM signature is preserved. Moving lists that currently modify mail to a policy like this, may be too much of a change for the members of such lists.</t>
                                                         <t>Rejecting posts or membership requests from domains with a DMARC policy other than "p=none". However members or potential members of such  Mailing  Lists may complain of unfair exclusion.</t>
@@ -412,18 +413,17 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 				</section>
 			</section>
 			<section title="Proposed and In-Progress Mitigations">
-				<t>The following mitigations are based on Internet Drafts which have not yet received broad consensus. They are described here to offer exploratory path for solutions. These solutions should not be used in a production environment.
+				<t>The following mitigations are based on Internet Drafts (I-Ds) which have not yet received broad consensus. They are described here to offer exploratory path for solutions. These solutions should not be used in a production environment. Because of the transient nature of I-Ds, specific citations are not included because a number of them will inevitably become obsolete and those which gain concensus in the community will become RFCs and should be discovered as such.
 					<list style="symbols">
-					<t>Third party authorization, <xref target="RFC6541"/>, <xref target="I-D.otis-tpa-label"/> and <xref target="I-D.kucherawy-dkim-delegate"/> provide ways to extend identifier alignment under the control of the domain owner.</t>
-					<t>DKIM with constrained transformations, <xref target="I-D.kucherawy-dkim-list-canon"/> is proposed to record a canonical list posting format for signing, so that typical MLM changes do not invalidate signatures.</t>
-					<t>DKIM with recorded transformations, <xref target="I-D.kucherawy-dkim-transform"/> is proposed to indicate what limited transformations were done to the message so that a receiver could reverse them and confirm the validity of the orignal DKIM signature.</t>
-					<t><xref target="I-D.kucherawy-original-authres"/> is intended as a way to pass along Original Authentication Results to "downstream" receivers. It is not widely implemented and relies on a trust relationship between the forwarder and the other receivers.</t>
-					<t><xref target="I-D.levine-dkim-conditional"/> could be used to have the sender add a limited DKIM signature, that signs only a very limited set of header fields and not the body of the message. If accompanied by suitable other DKIM signature(s) it may be possible to achieve DMARC alignment while limiting the possibilities of replay attack.</t>
-                                        <t><xref target="I-D.andersen-arc"/> (and the accompanying <xref target="I-D.jones-arc-usage">usage recommendations</xref>) proposes a mechanism to provide an authenticated channel for the initial received authentication results to be conveyed through multiple ReSenders ("intermediaries" in the terminology used in the draft) to the ultimate receiving system. This information is proposed as the basis for improved local policy decisions by the receiver.</t>
+                                            <t>Third party authorization schemes provide ways to extend identifier alignment under control of the domain owner.</t>
+                                            <t>Ways to canonicalize messages that transit mailing lists so that their alterations can be isolated from the original signed content.</t>
+                                            <t>Mechanisms to record message transformations applied at each hop so they can be reversed and the original signed content recovered.</t>
+                                            <t>"Conditional" DKIM signatures, whereby the author domain indicates its signature is only good if accompanied by a signature from an expected downstream relay.</t>
+                                            <t>Mechanisms to extend <xref target="RFC7601">Authentication-Results</xref> to multiple hops, creating a provable chain of custody as well as a view of message authentication results at each handling step.</t>
 					</list>
 				</t>
 				<section title="Getting More Radical: Requiring New Communication Paths Between MUAs">
-					<t>In practice a number of operators are using strict alignment mode in DMARC in order to avoid receiving new and innovative forms of unwanted and unauthentic email through systems purporting to be mailing list handlers.  The receiving ADMD has no knowledge of which lists the user has subscribed to and which they have not.  One avenue of exploration would be for the user to authorize mailing lists as proxies for authentication, at which point the receiving ADMD would be vesting some trust in the mailing list service.  The creators of DKIM foresaw precisely this possibility at the time by not tightly binding any semantics to the RFC5322.From header field.  Some experimental work has taken place in this area, as mentioned above.  Additional work might examine a new communication path to the user to authorize some form of transitive trust.</t>
+					<t>In practice a number of operators are using strict alignment mode in DMARC in order to avoid receiving new and innovative forms of unwanted and unauthentic email through systems purporting to be mailing list handlers.  The receiving ADMD has no knowledge of which lists the user has subscribed to and which they have not.  One avenue of exploration would be for the user to authorize mailing lists as proxies for authentication, at which point the receiving ADMD would be vesting some trust in the mailing list service.  The creators of DKIM foresaw precisely this possibility at the time by not tightly binding any semantics to the RFC5322.from header field.  Some experimental work has taken place in this area, as mentioned above.  Additional work might examine a new communication path to the user to authorize some form of transitive trust.</t>
 				</section>
 			</section>
 		</section>
@@ -434,7 +434,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 		<section anchor="Security" title="Security Considerations">
 			<t>This document is an analysis of DMARC's impact on indirect email flows.  It describes the possibility of accidental denial-of-service that can be created by rejections of messages by DMARC-aware Mail Receivers.</t>
 			<t>In <xref target="IA" />, discusses the importance of appropriate DKIM key management vis a vis third party email senders.</t>
-			<t>In <xref target="mlm" />, warns that rewriting the RFC5322.From header field and changing the domain name should not be done with any domain.</t>
+			<t>In <xref target="mlm" />, warns that rewriting the RFC5322.from header field and changing the domain name should not be done with any domain.</t>
 		</section>
 		<section title="Acknowledgments" anchor="ack">
 			<t>Miles Fidelman, John Levine, David Crocker, Stephen J. Turnbull, Rolf E. Sonneveld, Tim Draegen and Franck Martin contributed to the IETF DMARC Working Group's wiki page listing all known interoperability issues with DMARC and indirect email flows.</t>
@@ -465,21 +465,13 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
       &RFC5703;
       &RFC6376;
       &RFC6377;
-      &RFC6541;
       &RFC6648;
       &RFC7208;
       &RFC7372;
     </references>
 		<references title="Informative References">
       &RFC7489;
-      &I-D.kucherawy-dkim-transform;
-      &I-D.levine-dkim-conditional;
-      &I-D.otis-tpa-label;
-      &I-D.kucherawy-dkim-list-canon;
-      &I-D.kucherawy-dkim-delegate;
-      &I-D.kucherawy-original-authres;
-      &I-D.andersen-arc;
-      &I-D.jones-arc-usage;
+      &RFC7601;
     </references>
 	</back>
 </rfc>
