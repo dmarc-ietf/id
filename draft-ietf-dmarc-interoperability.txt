@@ -91,7 +91,7 @@ Table of Contents
          3.1.2.2.  Header Standardization  . . . . . . . . . . . . .   9
          3.1.2.3.  Content Validation  . . . . . . . . . . . . . . .   9
        3.1.3.  Message Delivery Agents . . . . . . . . . . . . . . .   9
-     3.2.  Mediators . . . . . . . . . . . . . . . . . . . . . . . .   9
+     3.2.  Mediators . . . . . . . . . . . . . . . . . . . . . . . .  10
        3.2.1.  Alias . . . . . . . . . . . . . . . . . . . . . . . .  10
        3.2.2.  ReSenders . . . . . . . . . . . . . . . . . . . . . .  11
        3.2.3.  Mailing Lists . . . . . . . . . . . . . . . . . . . .  11
@@ -258,9 +258,11 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
    In the SPF specification, the RFC7208.MAILFROM [RFC7208] value is
    defined to be based on RFC5321.mailfrom unless that value is absent
    (as in the case of "bounce" messages) in which case, the second
-   (RFC5321.HELO/EHLO) identifier value is used.
+   (RFC5321.HELO/EHLO) identifier value is used.  This "fallback"
+   definition has occasionally been misunderstood by senders since
+   "bounce" messages are often an "automatic" feature of MTA software.
 
-   For the purposes of DMARC validation/alignment, this hybrid
+   For the purposes of DMARC validation/alignment, the hybrid
    RFC7208.MAILFROM [RFC7208] identifier's domain is used if, and only
    if, it is aligned with the RFC5322.from [RFC5322] domain.  The
    alignment of the validated domain is determined based on the DMARC
@@ -272,8 +274,6 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
    Section 3 describes forwarding behavior as it relates to the
    components of the Internet Mail Architecture.
 
-   All forwarding behavior involves the retransmission of email.  As
-   discussed above, in order for SPF to yield an Authenticated
 
 
 
@@ -282,6 +282,8 @@ Martin, et al.             Expires May 4, 2016                  [Page 5]
 Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
+   All forwarding behavior involves the retransmission of email.  As
+   discussed above, in order for SPF to yield an Authenticated
    Identifier that is pertinent to DMARC, the domain of the
    RFC7208.MAILFROM must be in alignment with the RFC5322.from header
    field.  Forwarding introduces specific issues to the availability of
@@ -327,8 +329,6 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
    the relaxed canonicalization is more computationally intensive and
    may not have been preferred in the early deployment of DKIM, leaving
    some deployments using the less forgiving "simple" canonicalization.
-   While the prevalence is unknown, there are some DKIM verifiers which
-   have problems evaluating relaxed canonicalization correctly.
 
 
 
@@ -337,6 +337,9 @@ Martin, et al.             Expires May 4, 2016                  [Page 6]
 
 Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
+
+   While the prevalence is unknown, there are some DKIM verifiers which
+   have problems evaluating relaxed canonicalization correctly.
 
 3.  Internet Mail Architecture, DMARC, and Indirect Email Flows
 
@@ -383,9 +386,6 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
    MSA interoperability issues with DMARC begin when an aMSA accepts a
    message where the RFC5322.from header field contains a domain that is
-   outside of the ADMD of the MSA.  These issues manifest themselves in
-   one of several ways, such as when someone uses a mail service with
-   their own domain but has failed to properly configure an SPF record;
 
 
 
@@ -394,6 +394,9 @@ Martin, et al.             Expires May 4, 2016                  [Page 7]
 Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
+   outside of the ADMD of the MSA.  These issues manifest themselves in
+   one of several ways, such as when someone uses a mail service with
+   their own domain but has failed to properly configure an SPF record;
    or when an MUA attempts to transmit mail as someone else.  Examples
    of the latter issue include "forward-to-friend" functionality
    commonly found on news/article websites or "send-as" functionality
@@ -438,9 +441,6 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
    An MTA could also re-encode the message without changing the encoding
    type, receiving a MIME-encoded message and producing a semantically
    and syntactically equivalent MIME body that is not identical to the
-   original.  This is characteristic of systems that use some other
-   message representation internally.
-
 
 
 
@@ -449,6 +449,9 @@ Martin, et al.             Expires May 4, 2016                  [Page 8]
 
 Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
+
+   original.  This is characteristic of systems that use some other
+   message representation internally.
 
 3.1.2.2.  Header Standardization
 
@@ -492,11 +495,8 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
    an issue when the email is reintroduced into the transport
    infrastructure.
 
-3.2.  Mediators
 
-   Mediators [RFC5598] forward messages through a re-posting process.
-   Mediators share some functionality with basic MTA relaying, but have
-   greater flexibility in both addressing and content modifications.
+
 
 
 
@@ -505,6 +505,12 @@ Martin, et al.             Expires May 4, 2016                  [Page 9]
 
 Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
+
+3.2.  Mediators
+
+   Mediators [RFC5598] forward messages through a re-posting process.
+   Mediators share some functionality with basic MTA relaying, but have
+   greater flexibility in both addressing and content modifications.
 
    DMARC interoperability issues are common within the context of
    Mediators, which are often used precisely for their ability to modify
@@ -547,12 +553,6 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
    In most cases, the aMSA providing Alias services has no
    administrative relationship to the ADMD of the originator or the
-   final recipient, so solutions to Alias-related DMARC failure should
-   not assume such a relationship.
-
-
-
-
 
 
 
@@ -561,6 +561,9 @@ Martin, et al.             Expires May 4, 2016                 [Page 10]
 
 Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
+
+   final recipient, so solutions to Alias-related DMARC failure should
+   not assume such a relationship.
 
 3.2.2.  ReSenders
 
@@ -607,9 +610,6 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
    o  enforcing community standards by rewriting banned words;
 
-   o  allowing moderators to add arbitrary commentary to messages
-      (discussed in [RFC6377]).
-
 
 
 
@@ -617,6 +617,9 @@ Martin, et al.             Expires May 4, 2016                 [Page 11]
 
 Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
+
+   o  allowing moderators to add arbitrary commentary to messages
+      (discussed in [RFC6377]).
 
    Any such modifications would invalidate a DKIM signature.
 
@@ -663,9 +666,6 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
    recipient domains.  For example, an acquisition may lead an acquiring
    company to decide to decommission the acquired company's domains by
    rewriting messages to use the domain of the acquiring company.  Since
-   the RFC5322.To header field is usually DKIM-signed, this kind of
-   rewriting will invalidate such DKIM signatures.
-
 
 
 
@@ -673,6 +673,9 @@ Martin, et al.             Expires May 4, 2016                 [Page 12]
 
 Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
+
+   the RFC5322.To header field is usually DKIM-signed, this kind of
+   rewriting will invalidate such DKIM signatures.
 
 3.2.5.  Boundary Filters
 
@@ -717,9 +720,6 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
       perform this function and employ some trusted mechanism to
       communicate the results of the SPF, DKIM and DMARC evaluation(s)
       to the primary MX server.
-
-
-
 
 
 

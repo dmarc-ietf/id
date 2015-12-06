@@ -199,8 +199,8 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
                                       <t>the <xref target="RFC5321">RFC5321.mailfrom</xref> domain, and</t>
                                       <t>the RFC5321.HELO/EHLO SMTP domain.</t> 
                                       </list></t>
-                                      <t>In the SPF specification, the <xref target="RFC7208">RFC7208.MAILFROM</xref> value is defined to be based on RFC5321.mailfrom unless that value is absent (as in the case of "bounce" messages) in which case, the second (RFC5321.HELO/EHLO) identifier value is used.</t>
-                                      <t>For the purposes of DMARC validation/alignment, this hybrid <xref target="RFC7208">RFC7208.MAILFROM</xref> identifier's domain is used if, and only if, it is aligned with the <xref target="RFC5322">RFC5322.from</xref> domain. The alignment of the validated domain is determined based on the DMARC record's "strict" or "relaxed" designation as described above for the DKIM identifiers and in <xref target="RFC7489" />.</t>
+                                      <t>In the SPF specification, the <xref target="RFC7208">RFC7208.MAILFROM</xref> value is defined to be based on RFC5321.mailfrom unless that value is absent (as in the case of "bounce" messages) in which case, the second (RFC5321.HELO/EHLO) identifier value is used. This "fallback" definition has occasionally been misunderstood by senders since "bounce" messages are often an "automatic" feature of MTA software.</t>
+                                      <t>For the purposes of DMARC validation/alignment, the hybrid <xref target="RFC7208">RFC7208.MAILFROM</xref> identifier's domain is used if, and only if, it is aligned with the <xref target="RFC5322">RFC5322.from</xref> domain. The alignment of the validated domain is determined based on the DMARC record's "strict" or "relaxed" designation as described above for the DKIM identifiers and in <xref target="RFC7489" />.</t>
                                 </section>
 			</section> 
 			<section title="Message Forwarding">
