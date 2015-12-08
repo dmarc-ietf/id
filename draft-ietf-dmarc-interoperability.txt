@@ -5,18 +5,18 @@
 DMARC                                                     F. Martin, Ed.
 Internet-Draft                                                  LinkedIn
 Intended status: Informational                              E. Lear, Ed.
-Expires: May 4, 2016                                  Cisco Systems GmbH
+Expires: June 10, 2016                                Cisco Systems GmbH
                                                          T. Draegen, Ed.
                                                           dmarcian, inc.
                                                           E. Zwicky, Ed.
                                                                    Yahoo
                                                         K. Andersen, Ed.
                                                                 LinkedIn
-                                                           November 2015
+                                                        December 8, 2015
 
 
      Interoperability Issues Between DMARC and Indirect Email Flows
-                  draft-ietf-dmarc-interoperability-12
+                  draft-ietf-dmarc-interoperability-13
 
 Abstract
 
@@ -44,7 +44,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 4, 2016.
+   This Internet-Draft will expire on June 10, 2016.
 
 
 
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Martin, et al.             Expires May 4, 2016                  [Page 1]
+Martin, et al.            Expires June 10, 2016                 [Page 1]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Martin, et al.             Expires May 4, 2016                  [Page 2]
+Martin, et al.            Expires June 10, 2016                 [Page 2]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
          4.1.2.2.  Policy Override . . . . . . . . . . . . . . . . .  16
@@ -165,9 +165,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                  [Page 3]
+Martin, et al.            Expires June 10, 2016                 [Page 3]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
 1.1.  Document Conventions
@@ -221,9 +221,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                  [Page 4]
+Martin, et al.            Expires June 10, 2016                 [Page 4]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
 2.1.1.  DKIM Identifier(s)
@@ -277,9 +277,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                  [Page 5]
+Martin, et al.            Expires June 10, 2016                 [Page 5]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
    All forwarding behavior involves the retransmission of email.  As
@@ -333,9 +333,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                  [Page 6]
+Martin, et al.            Expires June 10, 2016                 [Page 6]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
    While the prevalence is unknown, there are some DKIM verifiers which
@@ -389,9 +389,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                  [Page 7]
+Martin, et al.            Expires June 10, 2016                 [Page 7]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
    outside of the ADMD of the MSA.  These issues manifest themselves in
@@ -445,9 +445,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                  [Page 8]
+Martin, et al.            Expires June 10, 2016                 [Page 8]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
    original.  This is characteristic of systems that use some other
@@ -501,9 +501,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                  [Page 9]
+Martin, et al.            Expires June 10, 2016                 [Page 9]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
 3.2.  Mediators
@@ -557,9 +557,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                 [Page 10]
+Martin, et al.            Expires June 10, 2016                [Page 10]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
    final recipient, so solutions to Alias-related DMARC failure should
@@ -613,9 +613,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                 [Page 11]
+Martin, et al.            Expires June 10, 2016                [Page 11]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
    o  allowing moderators to add arbitrary commentary to messages
@@ -669,9 +669,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                 [Page 12]
+Martin, et al.            Expires June 10, 2016                [Page 12]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
    the RFC5322.To header field is usually DKIM-signed, this kind of
@@ -725,9 +725,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                 [Page 13]
+Martin, et al.            Expires June 10, 2016                [Page 13]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
 3.3.  Combinations
@@ -781,9 +781,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                 [Page 14]
+Martin, et al.            Expires June 10, 2016                [Page 14]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
    Qmail is still used, although the base code has not been updated
@@ -837,9 +837,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                 [Page 15]
+Martin, et al.            Expires June 10, 2016                [Page 15]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
    o  When implementing "forward-to-friend" functionality one approach
@@ -893,9 +893,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                 [Page 16]
+Martin, et al.            Expires June 10, 2016                [Page 16]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
 4.1.3.1.  Changes to the RFC5322.from
@@ -949,9 +949,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                 [Page 17]
+Martin, et al.            Expires June 10, 2016                [Page 17]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
       typically this information may be provided in the display name
@@ -1005,9 +1005,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                 [Page 18]
+Martin, et al.            Expires June 10, 2016                [Page 18]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
       Mail System Status Codes which help differentiate between various
@@ -1061,9 +1061,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                 [Page 19]
+Martin, et al.            Expires June 10, 2016                [Page 19]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
    be vesting some trust in the mailing list service.  The creators of
@@ -1117,9 +1117,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                 [Page 20]
+Martin, et al.            Expires June 10, 2016                [Page 20]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
    [RFC3463]  Vaudreuil, G., "Enhanced Mail System Status Codes", RFC
@@ -1173,9 +1173,9 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                 [Page 21]
+Martin, et al.            Expires June 10, 2016                [Page 21]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
 8.2.  Informative References
@@ -1229,9 +1229,9 @@ Authors' Addresses
 
 
 
-Martin, et al.             Expires May 4, 2016                 [Page 22]
+Martin, et al.            Expires June 10, 2016                [Page 22]
 
-Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
+Internet-Draft     DMARC Indirect Email Interop Issues     December 2015
 
 
    Kurt Andersen (editor)
@@ -1285,4 +1285,4 @@ Internet-Draft     DMARC Indirect Email Interop Issues     November 2015
 
 
 
-Martin, et al.             Expires May 4, 2016                 [Page 23]
+Martin, et al.            Expires June 10, 2016                [Page 23]
