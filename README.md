@@ -3,6 +3,7 @@ id
 
 This repository is to store working internet drafts for the IETF dmarc WG
 
+* version 14 - 2016-01-18 Updated section 2.1 based on S.Turnbull's feedback
 * version 13 - 2015-12-08 reworked section 2.1 based on E.Lear's request
 * version 12 - 2015-11-20 updated based on E.Lear's inputs
 * version 11 - 2015-11-12 fixes "later" vs "latter" in section 4.1.3.3

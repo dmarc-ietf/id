@@ -380,6 +380,7 @@
 <link href="#rfc.section.2.1" rel="Chapter" title="2.1 Identifier Alignment"/>
 <link href="#rfc.section.2.1.1" rel="Chapter" title="2.1.1 DKIM Identifier(s)"/>
 <link href="#rfc.section.2.1.2" rel="Chapter" title="2.1.2 SPF Identifier(s)"/>
+<link href="#rfc.section.2.1.3" rel="Chapter" title="2.1.3 Multiple RFC5322.from Addresses"/>
 <link href="#rfc.section.2.2" rel="Chapter" title="2.2 Message Forwarding"/>
 <link href="#rfc.section.2.3" rel="Chapter" title="2.3 Message Modification"/>
 <link href="#rfc.section.3" rel="Chapter" title="3 Internet Mail Architecture, DMARC, and Indirect Email Flows"/>
@@ -425,8 +426,8 @@
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Martin, F., Ed., Lear, E., Ed., Draegen, T., Ed., Zwicky, E., Ed., and K. Andersen, Ed." />
-  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-dmarc-interoperability-13" />
-  <meta name="dct.issued" scheme="ISO8601" content="2015-12-8" />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-dmarc-interoperability-14" />
+  <meta name="dct.issued" scheme="ISO8601" content="2016-1-18" />
   <meta name="dct.abstract" content="DMARC introduces a mechanism for expressing domain-level policies and preferences for email message validation, disposition, and reporting.  The DMARC mechanism can encounter interoperability issues when messages do not flow directly from the author's administrative domain to the final recipients. Collectively these email flows are referred to as indirect email flows.  This document describes interoperability issues between DMARC and indirect email flows. Possible methods for addressing interoperability issues are presented." />
   <meta name="description" content="DMARC introduces a mechanism for expressing domain-level policies and preferences for email message validation, disposition, and reporting.  The DMARC mechanism can encounter interoperability issues when messages do not flow directly from the author's administrative domain to the final recipients. Collectively these email flows are referred to as indirect email flows.  This document describes interoperability issues between DMARC and indirect email flows. Possible methods for addressing interoperability issues are presented." />
 
@@ -450,7 +451,7 @@
   <td class="right">E. Lear, Ed.</td>
 </tr>
 <tr>
-  <td class="left">Expires: June 10, 2016</td>
+  <td class="left">Expires: July 21, 2016</td>
   <td class="right">Cisco Systems GmbH</td>
 </tr>
 <tr>
@@ -479,7 +480,7 @@
 </tr>
 <tr>
   <td class="left"></td>
-  <td class="right">December 8, 2015</td>
+  <td class="right">January 18, 2016</td>
 </tr>
 
     	
@@ -487,7 +488,7 @@
   </table>
 
   <p class="title">Interoperability Issues Between DMARC and Indirect Email Flows<br />
-  <span class="filename">draft-ietf-dmarc-interoperability-13</span></p>
+  <span class="filename">draft-ietf-dmarc-interoperability-14</span></p>
   
   <h1 id="rfc.abstract">
   <a href="#rfc.abstract">Abstract</a>
@@ -499,11 +500,11 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on June 10, 2016.</p>
+<p>This Internet-Draft will expire on July 21, 2016.</p>
 <h1 id="rfc.copyrightnotice">
   <a href="#rfc.copyrightnotice">Copyright Notice</a>
 </h1>
-<p>Copyright (c) 2015 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>Copyright (c) 2016 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
 
   
@@ -517,6 +518,7 @@
 <ul><li>2.1.   <a href="#rfc.section.2.1">Identifier Alignment</a></li>
 <ul><li>2.1.1.   <a href="#rfc.section.2.1.1">DKIM Identifier(s)</a></li>
 <li>2.1.2.   <a href="#rfc.section.2.1.2">SPF Identifier(s)</a></li>
+<li>2.1.3.   <a href="#rfc.section.2.1.3">Multiple RFC5322.from Addresses</a></li>
 </ul><li>2.2.   <a href="#rfc.section.2.2">Message Forwarding</a></li>
 <li>2.3.   <a href="#rfc.section.2.3">Message Modification</a></li>
 </ul><li>3.   <a href="#rfc.section.3">Internet Mail Architecture, DMARC, and Indirect Email Flows</a></li>
@@ -574,11 +576,12 @@
 <p id="rfc.section.2.p.2">Note that domains which assert a "p=none" policy and email which passes standard DMARC validation do not have any interoperability issues.</p>
 <p id="rfc.section.2.p.3">Email messages that do not conform to IETF email specifications but are considered legitimate by the intended recipients are not discussed in this document. The rest of this section describes several conceptual causes of interoperability issues.</p>
 <h1 id="rfc.section.2.1"><a href="#rfc.section.2.1">2.1.</a> Identifier Alignment</h1>
-<p id="rfc.section.2.1.p.1">DMARC relies on <a href="#RFC6376">DKIM</a> <cite title="NONE">[RFC6376]</cite> and <a href="#RFC7208">SPF</a> <cite title="NONE">[RFC7208]</cite> to perform message source validation.  The <a href="#RFC7489">DMARC</a> <cite title="NONE">[RFC7489]</cite> mechanism refers to source domains that are validated by DKIM or SPF as Authenticated Identifiers.  DMARC requires an Authenticated Identifier to be related to the domain found in the message's RFC5322.from header field <a href="#RFC5322">[RFC5322]</a>. This relationship is referred to as Identifier Alignment.</p>
-<p id="rfc.section.2.1.p.2">DMARC allows for Identifier Alignment to be achieved in two different modes: strict and relaxed. Strict mode requires an exact match of either of the Authenticated Identifiers to the message's RFC5322.from header field <a href="#RFC5322">[RFC5322]</a>. Relaxed mode allows for Identifier Alignment if Authenticated Identifiers and the message's RFC5322.from header field <a href="#RFC5322">[RFC5322]</a> share the same Organizational Domain. In general, interoperability issues between strict and relaxed modes are the same, with strict mode constraining the application of possible solutions. The mitigations described in this document generally require a relaxed mode of Identifier Alignment.</p>
+<p id="rfc.section.2.1.p.1">Note to operators and administrators: The identifiers which are used by DKIM and SPF are technical components of the transport process for SMTP. They may or may not, as described below, bear a meaningful relationship to the content or source of the message itself. This "relationship by proximity" can be a point of confusion for non-technical end users, either recipients or senders.</p>
+<p id="rfc.section.2.1.p.2">DMARC relies on <a href="#RFC6376">DKIM</a> <cite title="NONE">[RFC6376]</cite> and <a href="#RFC7208">SPF</a> <cite title="NONE">[RFC7208]</cite> to perform message source validation.  The <a href="#RFC7489">DMARC</a> <cite title="NONE">[RFC7489]</cite> specification refers to source domains that are validated by DKIM or SPF as "Authenticated Identifiers".  To be used by DMARC an "Authenticated Identifier" must also be related to the domain found in the message's RFC5322.from header field <a href="#RFC5322">[RFC5322]</a>. This relationship between an Authenticated Identifier's domain and the domain of the RFC5322.from is referred to as "Identifier Alignment".</p>
+<p id="rfc.section.2.1.p.3">DMARC allows for Identifier Alignment to be determined in two different modes: strict and relaxed. Strict mode requires an exact match between the domain of any of the Authenticated Identifiers and the message's RFC5322.from header field <a href="#RFC5322">[RFC5322]</a>. Relaxed mode allows for Identifier Alignment if Authenticated Identifiers and the message's RFC5322.from header field <a href="#RFC5322">[RFC5322]</a> share the same Organizational Domain. In general, DMARC interoperability issues are the same for both strict and relaxed alignment, but strict alignment constrains the possible solutions because of the more rigorous matching requirement. The mitigations described in this document generally require the relaxed mode of Identifier Alignment.</p>
 <h1 id="rfc.section.2.1.1"><a href="#rfc.section.2.1.1">2.1.1.</a> DKIM Identifier(s)</h1>
-<p id="rfc.section.2.1.1.p.1">DKIM provides a cryptographic means for one or more domain identifier to be associated with a particular message. As a standalone technology DKIM identifiers are not required to be relevant to the content of a message. However, for a DKIM identifier to align in DMARC, the signing domain of a valid signature must be part of the same Organizational Domain as the domain in the RFC5322.from header field <a href="#RFC5322">[RFC5322]</a>. </p>
-<p id="rfc.section.2.1.1.p.2">In addition, DKIM allows for the possibility of multiple valid signatures.  The DMARC mechanism will process Authenticated Identifiers that are based on DKIM signatures until an aligned Authenticated Identifier is found (if any). However, operational experience has shown that some implementations have difficulty processing multiple signatures.  The impact on DMARC processing is clear: implementations that cannot process multiple DKIM signatures may incorrectly flag messages as "failing DMARC" and erroneously apply DMARC based policy to otherwise conforming messages. </p>
+<p id="rfc.section.2.1.1.p.1">DKIM provides a cryptographic means for one or more domain identifier to be associated with a particular message. As a standalone technology DKIM identifiers are not required to be related to the source of the message's content. However, for a DKIM identifier to align in DMARC, the signing domain of a valid signature must be part of the same Organizational Domain as the domain in the RFC5322.from header field <a href="#RFC5322">[RFC5322]</a>. </p>
+<p id="rfc.section.2.1.1.p.2">In addition, DKIM allows for the possibility of multiple valid signatures.  The DMARC mechanism will process Authenticated Identifiers that are based on DKIM signatures until an aligned Authenticated Identifier is found (if any). However, operational experience has shown that some implementations have difficulty processing multiple signatures.   Implementations that cannot process multiple DKIM signatures may incorrectly flag messages as "not passing" (DMARC alignment) and erroneously apply DMARC-based policy to otherwise conforming messages.</p>
 <h1 id="rfc.section.2.1.2"><a href="#rfc.section.2.1.2">2.1.2.</a> SPF Identifier(s)</h1>
 <p id="rfc.section.2.1.2.p.1">The <a href="#RFC7208">SPF specification</a> <cite title="NONE">[RFC7208]</cite> defines two Authenticated Identifiers for each message. These identifiers derive from: </p>
 
@@ -586,8 +589,11 @@
   <li>the <a href="#RFC5321">RFC5321.mailfrom</a> <cite title="NONE">[RFC5321]</cite> domain, and</li>
   <li>the RFC5321.HELO/EHLO SMTP domain.</li>
 </ol>
-<p id="rfc.section.2.1.2.p.2">In the SPF specification, the <a href="#RFC7208">RFC7208.MAILFROM</a> <cite title="NONE">[RFC7208]</cite> value is defined to be based on RFC5321.mailfrom unless that value is absent (as in the case of "bounce" messages) in which case, the second (RFC5321.HELO/EHLO) identifier value is used. This "fallback" definition has occasionally been misunderstood by senders since "bounce" messages are often an "automatic" feature of MTA software.</p>
+<p id="rfc.section.2.1.2.p.2">In the SPF specification, the <a href="#RFC7208">RFC7208.MAILFROM</a> <cite title="NONE">[RFC7208]</cite> value is defined to be based on RFC5321.mailfrom unless that value is absent (as in the case of "bounce" messages) in which case, the second (RFC5321.HELO/EHLO) identifier value is used. This "fallback" definition has occasionally been misunderstood by operators of MTA systems since "bounce" messages are often an "automatic" feature of MTA software. Some MTA software does not provide the ability to apply a DKIM signature to such bounce messages.</p>
 <p id="rfc.section.2.1.2.p.3">For the purposes of DMARC validation/alignment, the hybrid <a href="#RFC7208">RFC7208.MAILFROM</a> <cite title="NONE">[RFC7208]</cite> identifier's domain is used if, and only if, it is aligned with the <a href="#RFC5322">RFC5322.from</a> <cite title="NONE">[RFC5322]</cite> domain. The alignment of the validated domain is determined based on the DMARC record's "strict" or "relaxed" designation as described above for the DKIM identifiers and in <a href="#RFC7489">[RFC7489]</a>.</p>
+<h1 id="rfc.section.2.1.3"><a href="#rfc.section.2.1.3">2.1.3.</a> Multiple RFC5322.from Addresses</h1>
+<p><a href="#RFC5322">[RFC5322]</a> permits only one From header field, but it may contain multiple mailboxes. Since this is an extremely rare usage, DMARC specifies that the handling of this situation is implementation dependent.</p>
+<p id="rfc.section.2.1.3.p.2">Because the presence of multiple domains can be used by an attacker (an attacker could add their domain to the RFC5322.from field, provide arbitrary new content, and sign the message)  the DMARC specification recommends that the strictest policy be applied to such messages (<a href="#RFC7489">section 6.6.1</a> <cite title="NONE">[RFC7489]</cite>).</p>
 <h1 id="rfc.section.2.2"><a href="#rfc.section.2.2">2.2.</a> Message Forwarding</h1>
 <p><a href="#IMA_DMARC">Section 3</a> describes forwarding behavior as it relates to the components of the Internet Mail Architecture.</p>
 <p id="rfc.section.2.2.p.2">All forwarding behavior involves the retransmission of email. As discussed above, in order for SPF to yield an Authenticated Identifier that is pertinent to DMARC, the domain of the RFC7208.MAILFROM must be in alignment with the RFC5322.from header field.  Forwarding introduces specific issues to the availability of SPF-based Authenticated Identifiers: </p>
