@@ -129,7 +129,10 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2016
    8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  21
      8.1.  Normative References  . . . . . . . . . . . . . . . . . .  21
      8.2.  Informative References  . . . . . . . . . . . . . . . . .  22
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  22
+   Appendix A.  Appendix A - Example SPF Bounce  . . . . . . . . . .  22
+     A.1.  Initial Message . . . . . . . . . . . . . . . . . . . . .  22
+     A.2.  Bounce message  . . . . . . . . . . . . . . . . . . . . .  23
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  24
 
 1.  Introduction
 
@@ -158,9 +161,6 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2016
    issues are presented.  There are often multiple ways to address any
    given interoperability issue.  While this document strives to be
    comprehensive in its review, it should not be treated as complete.
-   Also, some practices which are in use at the time of this document
-   may or may not be "best practices" as future standards evolve.
-
 
 
 
@@ -169,6 +169,9 @@ Martin, et al.            Expires July 21, 2016                 [Page 3]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2016
 
+
+   Also, some practices which are in use at the time of this document
+   may or may not be "best practices" as future standards evolve.
 
 1.1.  Document Conventions
 
@@ -215,9 +218,6 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2016
    DMARC allows for Identifier Alignment to be determined in two
    different modes: strict and relaxed.  Strict mode requires an exact
    match between the domain of any of the Authenticated Identifiers and
-   the message's RFC5322.from header field [RFC5322].  Relaxed mode
-   allows for Identifier Alignment if Authenticated Identifiers and the
-   message's RFC5322.from header field [RFC5322] share the same
 
 
 
@@ -226,6 +226,9 @@ Martin, et al.            Expires July 21, 2016                 [Page 4]
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2016
 
 
+   the message's RFC5322.from header field [RFC5322].  Relaxed mode
+   allows for Identifier Alignment if Authenticated Identifiers and the
+   message's RFC5322.from header field [RFC5322] share the same
    Organizational Domain.  In general, DMARC interoperability issues are
    the same for both strict and relaxed alignment, but strict alignment
    constrains the possible solutions because of the more rigorous
@@ -270,10 +273,7 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2016
    MTA software.  Some MTA software does not provide the ability to
    apply a DKIM signature to such bounce messages.
 
-   For the purposes of DMARC validation/alignment, the hybrid
-   RFC7208.MAILFROM [RFC7208] identifier's domain is used if, and only
-   if, it is aligned with the RFC5322.from [RFC5322] domain.  The
-   alignment of the validated domain is determined based on the DMARC
+   See Appendix A for an example treatment of this scenario.
 
 
 
@@ -282,6 +282,10 @@ Martin, et al.            Expires July 21, 2016                 [Page 5]
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2016
 
 
+   For the purposes of DMARC validation/alignment, the hybrid
+   RFC7208.MAILFROM [RFC7208] identifier's domain is used if, and only
+   if, it is aligned with the RFC5322.from [RFC5322] domain.  The
+   alignment of the validated domain is determined based on the DMARC
    record's "strict" or "relaxed" designation as described above for the
    DKIM identifiers and in [RFC7489].
 
@@ -326,10 +330,6 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2016
    In both cases, SPF cannot yield relevant Authenticated Identifiers,
    and DKIM must be relied upon to produce results that are relevant to
    DMARC.
-
-
-
-
 
 
 
@@ -1214,14 +1214,14 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2016
               RFC7601, August 2015,
               <http://www.rfc-editor.org/info/rfc7601>.
 
-Authors' Addresses
+Appendix A.  Appendix A - Example SPF Bounce
 
-   Franck Martin (editor)
-   LinkedIn
-   Mountain View, CA
-   USA
+A.1.  Initial Message
 
-   Email: fmartin@linkedin.com
+   Here is the message as it exits the Origin MTA (segv.d1.example):
+
+
+
 
 
 
@@ -1232,6 +1232,126 @@ Authors' Addresses
 Martin, et al.            Expires July 21, 2016                [Page 22]
 
 Internet-Draft     DMARC Indirect Email Interop Issues      January 2016
+
+
+ Return-Path: <jqd@d1.example>
+ Received: from [10.10.10.131] (w-x-y-z.dsl.static.isp.com [w.x.y.z])
+     (authenticated bits=0)
+     by segv.d1.example with ESMTP id t0FN4a8O084569;
+     Thu, 14 Jan 2015 15:00:01 -0800 (PST)
+     (envelope-from jqd@d1.example)
+ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=d1.example;
+     s=20130426; t=1421363082;
+     bh=EoJqaaRvhrngQxmQ3VnRIIMRBgecuKf1pdkxtfGyWaU=;
+     h=Message-ID:Date:From:MIME-Version:To:CC:Subject:Content-Type:
+      Content-Transfer-Encoding;
+     b=HxsvPubDE+R96v9dM9Y7V3dJUXvajd6rvF5ec5BPe/vpVBRJnD4I2weEIyYijrvQw
+      bv9uUA1t94kMN0Q+haFo6hiQPnkuDxku5+oxyZWOqtNH7CTMgcBWWTp4QD4Gd3TRJl
+      gotsX4RkbNcUhlfnoQ0p+CywWjieI8aR6eof6WDQ=
+ Message-ID: <54B84785.1060301@d1.example>
+ Date: Thu, 14 Jan 2015 15:00:01 -0800
+ From: John Q Doe <jqd@d1.example>
+ To: no-recipient@dmarc.org
+ Subject: Example 1
+
+ Hey gang,
+ This is a test message.
+ --J.
+
+A.2.  Bounce message
+
+   When dmarc.org bounces the message without a DKIM signature, it
+   specifies the HELO/EHLO domain as dmarc.org.local which has no SPF
+   record. dmarc.org has a reject policy in place for such non-passing
+   cases.  Since there is no DKIM signature on the bounce message, the
+   failed SPF lookup results in a dmarc=fail and d1.example could be
+   expected to discard the bounce message itself:
+
+ Return-Path: <>
+ Received: from dmarc.org.local (mail.dmarc.org. [10.255.0.1])
+    by mx.d1.example with ESMTPS id Lkm25302jJR;5
+    for <jqd@d1.example>
+    (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+    Thu, 14 Jan 2015 15:00:24 -0800 (PST)
+ Authentication-Results: mx.d1.example;
+    spf=none (d1.example: dmarc.org.local does not designate
+    permitted sender hosts) smtp.mail=;
+    dmarc=fail (p=REJECT dis=NONE) header.from=dmarc.org
+ MIME-Version: 1.0
+ Return-Path: <>
+ Received: by 10.10.10.131 with SMTP id u67mr102828634qge.33; Thu,
+  14 Jan 2015 15:00:24 -0800 (PST)
+ From: Mail Delivery Subsystem <mailer-daemon@dmarc.org>
+
+
+
+Martin, et al.            Expires July 21, 2016                [Page 23]
+
+Internet-Draft     DMARC Indirect Email Interop Issues      January 2016
+
+
+ To: jqd@d1.example
+ Subject: Delivery Status Notification (Failure)
+ Message-ID: <001a11c16e6a9ead220528df294a@dmarc.org>
+ Date: Thu, 14 Jan 2016 23:00:24 +0000
+ Content-Type: text/plain; charset=UTF-8
+
+ This is an automatically generated Delivery Status Notification
+
+ Delivery to the following recipient failed permanently:
+
+      no-recipient@dmarc.org
+
+ Technical details of permanent failure:
+ Your message was rejected by the server for the recipient domain
+   dmarc.org by mail.dmarc.org. [10.255.0.1].
+
+ The error that the other server returned was:
+ 550 5.1.1 <no-recipient@dmarc.org>... User unknown
+
+ ----- Original message -----
+ Received: from [10.10.10.131] (w-x-y-z.dsl.static.isp.com [w.x.y.z])
+     (authenticated bits=0)
+     by segv.d1.example with ESMTP id t0FN4a8O084569;
+     Thu, 14 Jan 2015 15:00:01 -0800 (PST)
+     (envelope-from jqd@d1.example)
+ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=d1.example;
+     s=20130426; t=1421363082;
+     bh=EoJqaaRvhrngQxmQ3VnRIIMRBgecuKf1pdkxtfGyWaU=;
+     h=Message-ID:Date:From:MIME-Version:To:CC:Subject:Content-Type:
+      Content-Transfer-Encoding;
+     b=HxsvPubDE+R96v9dM9Y7V3dJUXvajd6rvF5ec5BPe/vpVBRJnD4I2weEIyYijrvQw
+      bv9uUA1t94kMN0Q+haFo6hiQPnkuDxku5+oxyZWOqtNH7CTMgcBWWTp4QD4Gd3TRJl
+      gotsX4RkbNcUhlfnoQ0p+CywWjieI8aR6eof6WDQ=
+ Message-ID: <54B84785.1060301@d1.example>
+ Date: Thu, 14 Jan 2015 15:00:01 -0800
+ From: John Q Doe <jqd@d1.example>
+ To: no-recipient@dmarc.org
+ Subject: Example 1
+
+ Hey gang,
+ This is a test message.
+ --J.
+
+Authors' Addresses
+
+
+
+
+
+
+
+Martin, et al.            Expires July 21, 2016                [Page 24]
+
+Internet-Draft     DMARC Indirect Email Interop Issues      January 2016
+
+
+   Franck Martin (editor)
+   LinkedIn
+   Mountain View, CA
+   USA
+
+   Email: fmartin@linkedin.com
 
 
    Eliot Lear (editor)
@@ -1277,12 +1397,4 @@ Internet-Draft     DMARC Indirect Email Interop Issues      January 2016
 
 
 
-
-
-
-
-
-
-
-
-Martin, et al.            Expires July 21, 2016                [Page 23]
+Martin, et al.            Expires July 21, 2016                [Page 25]

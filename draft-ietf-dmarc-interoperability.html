@@ -419,6 +419,9 @@
 <link href="#rfc.references" rel="Chapter" title="8 References"/>
 <link href="#rfc.references.1" rel="Chapter" title="8.1 Normative References"/>
 <link href="#rfc.references.2" rel="Chapter" title="8.2 Informative References"/>
+<link href="#rfc.appendix.A" rel="Chapter" title="A Appendix A - Example SPF Bounce"/>
+<link href="#rfc.appendix.A.1" rel="Chapter" title="A.1 Initial Message"/>
+<link href="#rfc.appendix.A.2" rel="Chapter" title="A.2 Bounce message"/>
 <link href="#rfc.authors" rel="Chapter"/>
 
 
@@ -557,6 +560,9 @@
 <li>8.   <a href="#rfc.references">References</a></li>
 <ul><li>8.1.   <a href="#rfc.references.1">Normative References</a></li>
 <li>8.2.   <a href="#rfc.references.2">Informative References</a></li>
+</ul><li>Appendix A.   <a href="#rfc.appendix.A">Appendix A - Example SPF Bounce</a></li>
+<ul><li>A.1.   <a href="#rfc.appendix.A.1">Initial Message</a></li>
+<li>A.2.   <a href="#rfc.appendix.A.2">Bounce message</a></li>
 </ul><li><a href="#rfc.authors">Authors' Addresses</a></li>
 
 
@@ -590,7 +596,8 @@
   <li>the RFC5321.HELO/EHLO SMTP domain.</li>
 </ol>
 <p id="rfc.section.2.1.2.p.2">In the SPF specification, the <a href="#RFC7208">RFC7208.MAILFROM</a> <cite title="NONE">[RFC7208]</cite> value is defined to be based on RFC5321.mailfrom unless that value is absent (as in the case of "bounce" messages) in which case, the second (RFC5321.HELO/EHLO) identifier value is used. This "fallback" definition has occasionally been misunderstood by operators of MTA systems since "bounce" messages are often an "automatic" feature of MTA software. Some MTA software does not provide the ability to apply a DKIM signature to such bounce messages.</p>
-<p id="rfc.section.2.1.2.p.3">For the purposes of DMARC validation/alignment, the hybrid <a href="#RFC7208">RFC7208.MAILFROM</a> <cite title="NONE">[RFC7208]</cite> identifier's domain is used if, and only if, it is aligned with the <a href="#RFC5322">RFC5322.from</a> <cite title="NONE">[RFC5322]</cite> domain. The alignment of the validated domain is determined based on the DMARC record's "strict" or "relaxed" designation as described above for the DKIM identifiers and in <a href="#RFC7489">[RFC7489]</a>.</p>
+<p id="rfc.section.2.1.2.p.3">See <a href="#Appendix-A">Appendix A</a> for an example treatment of this scenario.</p>
+<p id="rfc.section.2.1.2.p.4">For the purposes of DMARC validation/alignment, the hybrid <a href="#RFC7208">RFC7208.MAILFROM</a> <cite title="NONE">[RFC7208]</cite> identifier's domain is used if, and only if, it is aligned with the <a href="#RFC5322">RFC5322.from</a> <cite title="NONE">[RFC5322]</cite> domain. The alignment of the validated domain is determined based on the DMARC record's "strict" or "relaxed" designation as described above for the DKIM identifiers and in <a href="#RFC7489">[RFC7489]</a>.</p>
 <h1 id="rfc.section.2.1.3"><a href="#rfc.section.2.1.3">2.1.3.</a> Multiple RFC5322.from Addresses</h1>
 <p><a href="#RFC5322">[RFC5322]</a> permits only one From header field, but it may contain multiple mailboxes. Since this is an extremely rare usage, DMARC specifies that the handling of this situation is implementation dependent.</p>
 <p id="rfc.section.2.1.3.p.2">Because the presence of multiple domains can be used by an attacker (an attacker could add their domain to the RFC5322.from field, provide arbitrary new content, and sign the message)  the DMARC specification recommends that the strictest policy be applied to such messages (<a href="#RFC7489">section 6.6.1</a> <cite title="NONE">[RFC7489]</cite>).</p>
@@ -924,6 +931,95 @@
     </tr>
   </tbody>
 </table>
+<h1 id="rfc.appendix.A"><a href="#rfc.appendix.A">Appendix A.</a> <a href="#Appendix-A" id="Appendix-A">Appendix A - Example SPF Bounce</a></h1>
+<h1 id="rfc.appendix.A.1"><a href="#rfc.appendix.A.1">A.1.</a> Initial Message</h1>
+<p id="rfc.section.A.1.p.1">Here is the message as it exits the Origin MTA (segv.d1.example):</p>
+<pre>
+Return-Path: &lt;jqd@d1.example&gt;
+Received: from [10.10.10.131] (w-x-y-z.dsl.static.isp.com [w.x.y.z])
+    (authenticated bits=0)
+    by segv.d1.example with ESMTP id t0FN4a8O084569;
+    Thu, 14 Jan 2015 15:00:01 -0800 (PST)
+    (envelope-from jqd@d1.example)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=d1.example;
+    s=20130426; t=1421363082;
+    bh=EoJqaaRvhrngQxmQ3VnRIIMRBgecuKf1pdkxtfGyWaU=;
+    h=Message-ID:Date:From:MIME-Version:To:CC:Subject:Content-Type:
+     Content-Transfer-Encoding;
+    b=HxsvPubDE+R96v9dM9Y7V3dJUXvajd6rvF5ec5BPe/vpVBRJnD4I2weEIyYijrvQw
+     bv9uUA1t94kMN0Q+haFo6hiQPnkuDxku5+oxyZWOqtNH7CTMgcBWWTp4QD4Gd3TRJl
+     gotsX4RkbNcUhlfnoQ0p+CywWjieI8aR6eof6WDQ=
+Message-ID: &lt;54B84785.1060301@d1.example&gt;
+Date: Thu, 14 Jan 2015 15:00:01 -0800
+From: John Q Doe &lt;jqd@d1.example&gt;
+To: no-recipient@dmarc.org
+Subject: Example 1
+ 
+Hey gang,
+This is a test message.
+--J.
+</pre>
+<h1 id="rfc.appendix.A.2"><a href="#rfc.appendix.A.2">A.2.</a> Bounce message</h1>
+<p id="rfc.section.A.2.p.1">When dmarc.org bounces the message without a DKIM signature, it specifies the HELO/EHLO domain as dmarc.org.local which has no SPF record. dmarc.org has a reject policy in place for such non-passing cases. Since there is no DKIM signature on the bounce message, the failed SPF lookup results in a dmarc=fail and d1.example could be expected to discard the bounce message itself:</p>
+<pre>
+Return-Path: &lt;&gt;
+Received: from dmarc.org.local (mail.dmarc.org. [10.255.0.1])
+   by mx.d1.example with ESMTPS id Lkm25302jJR;5
+   for &lt;jqd@d1.example&gt;
+   (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+   Thu, 14 Jan 2015 15:00:24 -0800 (PST)
+Authentication-Results: mx.d1.example;
+   spf=none (d1.example: dmarc.org.local does not designate 
+   permitted sender hosts) smtp.mail=;
+   dmarc=fail (p=REJECT dis=NONE) header.from=dmarc.org
+MIME-Version: 1.0
+Return-Path: &lt;&gt;
+Received: by 10.10.10.131 with SMTP id u67mr102828634qge.33; Thu, 
+ 14 Jan 2015 15:00:24 -0800 (PST)
+From: Mail Delivery Subsystem &lt;mailer-daemon@dmarc.org&gt;
+To: jqd@d1.example
+Subject: Delivery Status Notification (Failure)
+Message-ID: &lt;001a11c16e6a9ead220528df294a@dmarc.org&gt;
+Date: Thu, 14 Jan 2016 23:00:24 +0000
+Content-Type: text/plain; charset=UTF-8
+
+This is an automatically generated Delivery Status Notification
+
+Delivery to the following recipient failed permanently:
+
+     no-recipient@dmarc.org
+
+Technical details of permanent failure: 
+Your message was rejected by the server for the recipient domain 
+  dmarc.org by mail.dmarc.org. [10.255.0.1].
+
+The error that the other server returned was:
+550 5.1.1 &lt;no-recipient@dmarc.org&gt;... User unknown
+
+----- Original message -----
+Received: from [10.10.10.131] (w-x-y-z.dsl.static.isp.com [w.x.y.z])
+    (authenticated bits=0)
+    by segv.d1.example with ESMTP id t0FN4a8O084569;
+    Thu, 14 Jan 2015 15:00:01 -0800 (PST)
+    (envelope-from jqd@d1.example)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=d1.example;
+    s=20130426; t=1421363082;
+    bh=EoJqaaRvhrngQxmQ3VnRIIMRBgecuKf1pdkxtfGyWaU=;
+    h=Message-ID:Date:From:MIME-Version:To:CC:Subject:Content-Type:
+     Content-Transfer-Encoding;
+    b=HxsvPubDE+R96v9dM9Y7V3dJUXvajd6rvF5ec5BPe/vpVBRJnD4I2weEIyYijrvQw
+     bv9uUA1t94kMN0Q+haFo6hiQPnkuDxku5+oxyZWOqtNH7CTMgcBWWTp4QD4Gd3TRJl
+     gotsX4RkbNcUhlfnoQ0p+CywWjieI8aR6eof6WDQ=
+Message-ID: &lt;54B84785.1060301@d1.example&gt;
+Date: Thu, 14 Jan 2015 15:00:01 -0800
+From: John Q Doe &lt;jqd@d1.example&gt;
+To: no-recipient@dmarc.org
+Subject: Example 1
+ 
+Hey gang,
+This is a test message.
+--J.
+</pre>
 <h1 id="rfc.authors">
   <a href="#rfc.authors">Authors' Addresses</a>
 </h1>
