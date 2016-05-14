@@ -532,7 +532,7 @@ This is a test message.
 
 <figure><artwork><![CDATA[
 Return-Path: <>
-Received: from dmarc.org.local (mail.dmarc.org. [10.255.0.1])
+Received: from dmarc.org.local (mail.dmarc.org. [192.0.2.1])
    by mx.d1.example with ESMTPS id Lkm25302jJR5
    for <jqd@d1.example>
    (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
@@ -542,8 +542,8 @@ Authentication-Results: mx.d1.example;
    permitted sender hosts) smtp.mail=;
    dmarc=fail (p=REJECT dis=NONE) header.from=dmarc.org
 MIME-Version: 1.0
-Received: from segv.d1.example (segv.d1.example [10.15.20.25])
- by 10.10.10.131 with SMTP id u67mr102828634qge33; Thu, 
+Received: from segv.d1.example (segv.d1.example [198.51.100.1])
+ by 192.0.2.2 with SMTP id u67mr102828634qge33; Thu, 
  14 Jan 2015 15:00:24 -0800 (PST)
 From: Mail Delivery Subsystem <mailer-daemon@dmarc.org>
 To: jqd@d1.example
@@ -560,15 +560,15 @@ Delivery to the following recipient failed permanently:
 
 Technical details of permanent failure: 
 Your message was rejected by the server for the recipient domain 
-  dmarc.org by mail.dmarc.org [10.255.0.1].
+  dmarc.org by mail.dmarc.org [192.0.2.1].
 
 The error that the other server returned was:
 550 5.1.1 <no-recipient@dmarc.org>... User unknown
 
 ----- Original message -----
 Return-Path: <jqd@d1.example>
-Received: from [10.10.10.131] (131-10-10-10.dsl.static.example.com 
-    [10.10.10.131]) (authenticated bits=0)
+Received: from [203.252.0.131] (131-0-252-203-dsl.static.example.com 
+    [203.252.0.131]) (authenticated bits=0)
     by segv.d1.example with ESMTP id t0FN4a8O084569;
     Thu, 14 Jan 2015 15:00:01 -0800 (PST)
     (envelope-from jqd@d1.example)
