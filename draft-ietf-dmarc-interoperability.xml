@@ -451,7 +451,7 @@ please see http://xml2rfc.ietf.org/authoring/README.html. -->
 		</section>
 		<section anchor="Security" title="Security Considerations">
 			<t>This document is an analysis of DMARC's impact on indirect email flows. It describes the possibility of accidental denial-of-service that can be created by rejections of messages by DMARC-aware Mail Receivers.</t>
-			<t><xref target="IA" /> discusses the importance of appropriate DKIM key management vis-å-vis third-party email senders.</t>
+			<t><xref target="IA" /> discusses the importance of appropriate DKIM key management vis-a-vis third-party email senders.</t>
 			<t><xref target="mlm" /> warns that rewriting the RFC5322.From header field and changing the domain name should not be done with any domain.</t>
 		</section>
 		<section title="Acknowledgments" anchor="ack">
