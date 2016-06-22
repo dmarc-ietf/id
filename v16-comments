@@ -1,0 +1,84 @@
+I've reviewed all of the comments by the IESG reviewers and have made a number of edits to produce a -17 version of the draft. Not all of the comments were directly answerable so I've included some explanation below.
+
+--Kurt
+
+On Mon, Jun 13, 2016 at 1:44 PM, Ben Campbell <ben@nostrum.com> wrote:
+> ----------------------------------------------------------------------
+> 
+> - Abstract: Please expand DMARC on first mention.
+
+Done
+ 
+> - 4.1.1.1, last bullet: "However, for known brands, all active domains
+> are likely to be targeted equally by abusers."
+> 
+> I'm not sure quite what is meant by "known brands". Is this the same as
+> well known email services?
+ 
+No. I've clarified the intent by changing the sentence to read "...for all
+well-known brands..."
+
+> 6. Some of the mentioned mitigations involved relaxing alignment checks.
+> Do those warrant a mention here?
+ 
+I think that it is more accurate to say that some of the proposed 
+mechanisms either bypass or transcend the straight-forward alignment
+logic.  None of them have enough momentum at this time to merit special
+call-outs in section 6 (IMO).  If they progress, they will each have to
+handle their own security considerations.
+
+> -- last paragraph: " Section 4.1.3.3 warns that rewriting the
+> RFC5322.From header field and changing the domain name should not 
+> be done with any domain."
+> 
+> I'm not sure I understand that sentence, especially around "not be done
+> with any domain". Nor do I see which text in 4.1.3.3 specifically says
+> that.
+ 
+The reference that I had in mind was to item 3 of the first bullet in 
+4.1.3.3. I've adjusted the text in 6 to now read: "Section 4.1.3.3 warns 
+that rewriting the RFC5322.From header field to create an artificial 
+domain name should not be done with any domain."
+> ----------------------------------------------------------------------
+
+
+On Thu, Jun 16, 2016 at 5:37 AM, Stephen Farrell <stephen.farrell@cs.tcd.ie> wrote:
+> ----------------------------------------------------------------------
+> 
+> - I think the abstract and intro are too coy in saying that
+> DMARC "can" introduce interop issues 
+ 
+I added text to these sections to be more explicit about the 
+conditions which lead to interoperability problems. 
+
+In the abstract: "The use of restrictive policies through the DMARC 
+framework can cause interoperability issues when messages do not flow. . ."
+
+In the intro: " The DMARC mechanism, especially when employed with 
+restrictive policies, encounters several different types of 
+interoperability issues. . ."
+
+Section 3.2.3.1 is pretty straightforward already. I did not see
+a need to change the text in that section.
+
+> - I think the abstract and intro would be better if they
+> explicitly ack'd that DMARC affects mailing lists. . .
+
+While mailing lists can be adversely impacted, I don't think
+that they are necessarily more impacted than the other items
+which are called out in the body of the document. 
+ 
+> - 3.1.2: Saying that the MTA is the thing to "introduce" the
+> interop issue here seems a bit wrong - isn't the issue caused by
+> the existing MTA practice combined with the introduction of
+> DMARC?
+
+IMO, DMARC is causing a latent interoperabilty to become overt.
+Neither component is "introducing" the problem, it is more of
+a matter of revealing something that was already broken. I 
+changed the text to read:
+
+"Some common message handling strategies break the integrity of 
+DKIM signatures. A restrictive DMARC policy along with a broken 
+DKIM signature causes latent interoperability problems to become 
+overt problems."
