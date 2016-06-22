@@ -3,6 +3,7 @@ id
 
 This repository is to store working internet drafts for the IETF dmarc WG
 
+* version 17 - 2016-06-21 Responding to IESG comments
 * version 16 - 2016-06-08 Nits (Peter Yee) and RFC6890 fixes
 * version 15 - 2016-05-13 Nits and grammar fixes
 * version 14 - 2016-01-18 Updated section 2.1 based on S.Turnbull's feedback and added Appendix A
